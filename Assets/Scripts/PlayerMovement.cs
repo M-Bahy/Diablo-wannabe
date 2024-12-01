@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Camera _maincamera;
 
     private NavMeshAgent agent;
-
+    float agentSpeed = 10f;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = agentSpeed;
 
     }
 
