@@ -43,7 +43,7 @@ public class BombThrower : MonoBehaviour
         GameObject bombInstance = Instantiate(bombPrefab, handTransform.position, Quaternion.identity);
 
         // Adjust the spawn position slightly in front of the player
-        Vector3 throwPosition = handTransform.position + handTransform.forward * forwardOffset;
+        Vector3 throwPosition = handTransform.position - (handTransform.forward * forwardOffset);
         bombInstance.transform.position = throwPosition;
 
         // Apply a forward force to the bomb based on the player's direction
