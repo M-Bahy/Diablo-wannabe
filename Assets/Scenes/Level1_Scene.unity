@@ -1979,7 +1979,7 @@ PrefabInstance:
     - target: {fileID: 95000012058624550, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f4b706aa72776aad3a93814d58bf7887, type: 2}
+      objectReference: {fileID: 9100000, guid: 551dd93e220b6f59d88487e067cdc33d, type: 2}
     - target: {fileID: 95000012058624550, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
