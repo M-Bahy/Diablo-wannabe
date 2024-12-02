@@ -87,11 +87,16 @@ public class Player : MonoBehaviour
         }
         healthText.text = $"{playerCurrenttHealth:F0}";
 
-        if(expSlider.value != exp){
+        if(expSlider.value != exp && level < 4){
             expSlider.value = exp;
             
         }
-        expText.text = $"{exp:F0}";
+        if( level == 4){
+            expSlider.value = 0;
+        }
+        if(level < 4  || exp == 0){
+            expText.text = $"{exp:F0}";
+        }
 
         levelText.text = $"{level:F0}";
 
@@ -103,6 +108,10 @@ public class Player : MonoBehaviour
         level += 1;
         exp = exp - requiredExp;
         requiredExp +=100;
+        
+        if(level == 4){
+            exp = 0;
+        }
         
         expSlider.maxValue = requiredExp;
 
