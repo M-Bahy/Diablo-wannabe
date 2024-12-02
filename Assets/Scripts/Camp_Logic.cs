@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Camp_Logic : MonoBehaviour
@@ -21,6 +20,8 @@ public class Camp_Logic : MonoBehaviour
     List<GameObject> demonsArray = new List<GameObject>();
 
     bool keyFlag = false;
+    bool doneFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +30,10 @@ public class Camp_Logic : MonoBehaviour
         maxX = this.transform.position.x + 20;
         maxZ = this.transform.position.z + 20;
 
-        //Instantiate(demon, new Vector3(minX, demonY, minZ), Quaternion.identity);
-        //Instantiate(minion, new Vector3(minX, minionY, minZ), Quaternion.identity);
-
         int demonCount = Random.Range(1, 3);
         int minionCount = Random.Range(8, 11);
         GameObject tmp;
+
         for (int i = 0; i < demonCount; i++)
         {
             Vector3 randomPosition = GetRandomPosition(demonY);
@@ -48,7 +47,6 @@ public class Camp_Logic : MonoBehaviour
             tmp = Instantiate(minion, randomPosition, Quaternion.identity);
             minionsArray.Add(tmp);
         }
-
     }
 
     Vector3 GetRandomPosition(float y)
@@ -61,21 +59,17 @@ public class Camp_Logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // THIS CODE IS NOT AN EFFICIENT WAY TO CHECK IF ALL MINIONS AND DEMONS ARE DEAD SINCE IT'LL CHECK EVERY FRAME
-        foreach (var minion in minionsArray)
+        if (!doneFlag)
         {
-            // if a minion is alive, put the key as false
-        }
+            // Optimized: Check if all minions and demons are dead
+            keyFlag = minionsArray.All(m => m == null || m.GetComponent<Minion_Logic>().isDead) &&
+                      demonsArray.All(d => d == null || d.GetComponent<Minion_Logic>().isDead);
 
-        foreach (var demon in demonsArray)
-        {
-            // if a demon is alive, put the key as false
-        }
-
-        if (keyFlag)
-        {
-            Instantiate(key, new Vector3((minX + maxX) / 2, 1.0f, (minZ + maxZ) / 2), Quaternion.identity);
-            keyFlag = true;
+            if (keyFlag)
+            {
+                Instantiate(key, new Vector3((minX + maxX) / 2, 1.0f, (minZ + maxZ) / 2), Quaternion.identity);
+                doneFlag = true;
+            }
         }
     }
 }
