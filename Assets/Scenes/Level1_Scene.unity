@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
-  demon: {fileID: 919132149155446097, guid: 7fbb2d599cbc38c41818c42ffbb5d905, type: 3}
+  demon: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
 --- !u!4 &12979443 stripped
 Transform:
@@ -636,67 +636,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
---- !u!1001 &431118498
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 95.06457
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.213
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 105.90621
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556727770689264146, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220638573120127144, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_Name
-      value: Maw J Laygo
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220638573120127144, guid: 554f78032169f614ba34902d64a68de0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 554f78032169f614ba34902d64a68de0, type: 3}
 --- !u!1001 &474439894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2349,5 +2288,4 @@ SceneRoots:
   - {fileID: 1818818163}
   - {fileID: 1860999654}
   - {fileID: 268547702}
-  - {fileID: 431118498}
   - {fileID: 474439894}
