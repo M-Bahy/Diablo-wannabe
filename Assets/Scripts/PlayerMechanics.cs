@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     int playerMaxHealth = 100;
     int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 3;
+    int abilityPoints = 0;
     private Animator animator;
 
 
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             // Trigger the animation
             if(numberOfHealingPortions>0 && playerCurrenttHealth != playerMaxHealth ){
@@ -70,6 +71,8 @@ public class Player : MonoBehaviour
             levelUp();
         }
 
+        
+
         updateHUDUI();
 
         // if(playerCurrenttHealth == 0 ){
@@ -77,6 +80,27 @@ public class Player : MonoBehaviour
         //     //game over here
         // }
         
+
+
+
+
+        //cheats
+        //exp cheat
+        if (Input.GetKeyDown(KeyCode.X)){
+            exp += 100;
+        }
+        //ability cheat
+        if (Input.GetKeyDown(KeyCode.A)){
+            abilityPoints += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.H)){
+            playerCurrenttHealth +=20;
+        }
+        if (Input.GetKeyDown(KeyCode.D)){
+            playerCurrenttHealth -=20;
+        }
+
+
     }
 
     private void updateHUDUI()
