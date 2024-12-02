@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     
     int level = 1;
     int exp = 0;
+    int requiredExp = 100;
     int playerMaxHealth = 100;
     int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 3;
@@ -22,12 +23,23 @@ public class Player : MonoBehaviour
 
     public TMP_Text healthText ;
     public Slider healthSlider ; 
+
+    public TMP_Text expText ;
+    public Slider expSlider ; 
+
+    public TMP_Text levelText ;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         
+
+
+        healthSlider.value = playerCurrenttHealth;
         healthSlider.maxValue = playerMaxHealth;
+
+        expSlider.value = exp;
+        expSlider.maxValue = requiredExp;
 
     }
 
@@ -48,8 +60,17 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            exp+=30;
 
-        updateHealthUI();
+        }
+
+        if(exp >= requiredExp  && level < 4){
+            levelUp();
+        }
+
+        updateHUDUI();
 
         // if(playerCurrenttHealth == 0 ){
         //     animator.Play("dead");
@@ -58,15 +79,36 @@ public class Player : MonoBehaviour
         
     }
 
-    private void updateHealthUI()
+    private void updateHUDUI()
     {
-        healthText.text =  playerCurrenttHealth.ToString("F0");
         if(healthSlider.value != playerCurrenttHealth){
             healthSlider.value = playerCurrenttHealth;
+            
         }
         healthText.text = $"{playerCurrenttHealth:F0}";
+
+        if(expSlider.value != exp){
+            expSlider.value = exp;
+            
+        }
+        expText.text = $"{exp:F0}";
+
+        levelText.text = $"{level:F0}";
+
+
+        
     }
     private void levelUp(){
+
+        level += 1;
+        exp = exp - requiredExp;
+        requiredExp +=100;
+        
+        expSlider.maxValue = requiredExp;
+
+
+
+
         playerMaxHealth +=100;
         playerCurrenttHealth = playerMaxHealth;
         // this is for the ui slider
