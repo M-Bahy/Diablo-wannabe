@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_Name
-      value: wizard_weapon_macanim DEMO
+      value: Wizard
       objectReference: {fileID: 0}
     - target: {fileID: 4000011578242470, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 064b68482f8cd4d488b9eb3624d10b58, type: 2}
     - target: {fileID: 4912993257457275529, guid: 0884a399b5bed468cb3cd8b2b8296203, type: 3}
       propertyPath: m_Name
-      value: Big Boss
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 4912993257457634985, guid: 0884a399b5bed468cb3cd8b2b8296203, type: 3}
       propertyPath: m_LocalPosition.x
