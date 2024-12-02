@@ -511,6 +511,26 @@ PrefabInstance:
       addedObject: {fileID: 868970297}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 312893f539145244eb941380e62dd9e8, type: 3}
+--- !u!1 &124512033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2220638573120127144, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+  m_PrefabInstance: {fileID: 1529062674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &124512036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124512033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f315ca398053f2e49b1b6e099dab9f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 4501535684440153051, guid: 4afc69605bf6ff34db03da486ff84ff9, type: 3}
+  throwForce: 3
+  forwardOffset: 0.3
 --- !u!1 &268547699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1924,66 @@ MonoBehaviour:
   expText: {fileID: 728154093}
   expSlider: {fileID: 2068692252}
   levelText: {fileID: 1456936481}
+--- !u!1001 &1529062674
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 80.608505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 121.6274
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556727770689264146, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220638573120127144, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      propertyPath: m_Name
+      value: Demon_Sword_Bomb
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2220638573120127144, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124512036}
+  m_SourcePrefab: {fileID: 100100000, guid: ebb1b9cf1a332c541bd455a4b8305af9, type: 3}
 --- !u!1001 &1567562865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2750,3 +2830,4 @@ SceneRoots:
   - {fileID: 1088444126}
   - {fileID: 1860999654}
   - {fileID: 268547702}
+  - {fileID: 1529062674}
