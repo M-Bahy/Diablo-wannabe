@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 1405500143010117903}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4557705, y: 0, z: -8.813454}
+  m_LocalPosition: {x: 3.420303, y: 4.05, z: 4.06226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 2387494017223470464}
   - component: {fileID: 2387494017214399076}
   - component: {fileID: 5097777655267971254}
+  - component: {fileID: 1886005510581231039}
   m_Layer: 0
   m_Name: Tortoise_Boss_Anims
   m_TagString: Untagged
@@ -143,8 +144,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.000008800915}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 9.66997, y: 9.66997, z: 9.66997}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2387494017223470468}
   - {fileID: 2387494017223470470}
@@ -207,6 +208,22 @@ MonoBehaviour:
     - {fileID: 4000013260434498, guid: aacfe325f61764f45a69c167fdca32bb, type: 3}
     - {fileID: 4000013251374948, guid: 31421ef5b77d6b04989e44e99c5b15eb, type: 3}
     - {fileID: 4000012839391294, guid: b72af42d67b08c343b94f1458e043de3, type: 3}
+--- !u!114 &1886005510581231039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2387494017223766432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 2, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2387494017223766434
 GameObject:
   m_ObjectHideFlags: 0
