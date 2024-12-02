@@ -1,32 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
+using UnityEngine.UI;
+
 
 public class HUD_Script : MonoBehaviour
 {
-    private Animator playerAnimator;
-    private string Tag;
+
+    public int abilityPoints = 0; 
+    public Button[] abilityButtons; 
+    public TMP_Text[] buttonTexts;
+
+    private bool[] abilitiesUnlocked;
+
 
     void Start()
     {
-        playerAnimator = GetComponent<Animator>();
-        // get the tag of the componenet
-        Tag = gameObject.tag;
+        abilitiesUnlocked = new bool[abilityButtons.Length];
 
+       
+        for (int i = 0; i < abilityButtons.Length; i++)
+        {
+            int index = i; // Capture index for the lambda expression
+            abilityButtons[i].onClick.AddListener(() => TryUnlockAbility(index));
+        }
     }
 
-    public void basicAbility()
+    void TryUnlockAbility(int index)
     {
-        if (Tag == "Sorcerer")
-
+        if (!abilitiesUnlocked[index] && abilityPoints > 0)
         {
-            playerAnimator.Play("dead");
+            abilitiesUnlocked[index] = true;
+            abilityPoints--;
+            UnlockAbility(index);
         }
-        else if (Tag == "Barbarian")
-        {
-            playerAnimator.SetTrigger("BasicAttack");
-        }
-
-
     }
+
+    void UnlockAbility(int index)
+    {
+        buttonTexts[index].color = Color.green;
+        abilityButtons[index].GetComponent<Image>().color = Color.black;
+    }
+
+
 }
