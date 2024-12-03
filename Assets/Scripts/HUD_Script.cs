@@ -12,15 +12,16 @@ public class HUD_Script : MonoBehaviour
     public Button[] abilityButtons; 
     public TMP_Text[] buttonTexts;
 
-    private bool[] abilitiesUnlocked;
+    public static bool[] abilitiesUnlocked;
 
 
     void Start()
     {
         abilitiesUnlocked = new bool[abilityButtons.Length];
+        abilitiesUnlocked[0] = true; 
 
-       
-        for (int i = 0; i < abilityButtons.Length; i++)
+
+        for (int i = 1; i < abilityButtons.Length; i++)
         {
             int index = i; // Capture index for the lambda expression
             abilityButtons[i].onClick.AddListener(() => TryUnlockAbility(index));
