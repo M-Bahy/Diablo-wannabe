@@ -3,11 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour
 {
+    /////////////   
+    private bool isAttacking = false;
+    private bool buttonCliked = false;
+    private bool defenseButtonClicked = false;
+    private string tag;
+    private NavMeshAgent agent;
+    //////////////
     
     int level = 1;
     int exp = 0;
@@ -32,10 +40,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ///////
         animator = GetComponent<Animator>();
         
-
-
+        agent = GetComponent<NavMeshAgent>();
+        tag = gameObject.tag;
+        ///////
         healthSlider.value = playerCurrenttHealth;
         healthSlider.maxValue = playerMaxHealth;
 
@@ -61,13 +71,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            exp+=30;
+           exp+=30;
 
         }
-
-        if(exp >= requiredExp  && level < 4){
+      
+        if (exp >= requiredExp  && level < 4){
             levelUp();
         }
 
@@ -101,7 +111,97 @@ public class Player : MonoBehaviour
         }
 
 
+
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
+        {
+            BasicAttack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1])
+        {
+            buttonCliked = true;
+            defenseButtonClicked = true;
+        }
+        if (defenseButtonClicked && Input.GetMouseButtonDown(1))
+        {
+
+            DefensiveAttack();
+
+        }
+
+
+   
+
     }
+
+
+
+    void BasicAttack()
+    {
+
+        if (tag == "Sorcerer")
+        {
+            isAttacking = true;
+            animator.Play("attack_short_001", 0, 0f);
+            StartCoroutine(ResetAfterAttack());
+        }
+    }
+
+    void DefensiveAttack()
+    {
+        if (tag == "Sorcerer")
+        {
+
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                // add one two seconds delay
+                //StartCoroutine(TeleportAfterDelay(hit.point));
+                agent.SetDestination(hit.point);
+                transform.position = hit.point;
+
+             
+                StartCoroutine(AbilityCooldown(1, 10f)); // Cooldown for 10 seconds
+
+            }
+
+        }
+        defenseButtonClicked = false;
+        buttonCliked = false;
+
+    }
+
+
+    IEnumerator ResetAfterAttack()
+    {
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        isAttacking = false;
+
+    }
+    IEnumerator TeleportAfterDelay(Vector3 targetPosition)
+    {
+        // Wait for 2 seconds before teleporting
+        yield return new WaitForSeconds(2f);
+
+        // Teleport to the target position
+        transform.position = targetPosition;
+    }
+
+    IEnumerator AbilityCooldown(int abilityIndex, float cooldownTime)
+    {
+        // Set the ability cooldown to true
+        HUD_Script.abilitiesCoolDown[abilityIndex] = true;
+
+        // Wait for the cooldown duration
+        yield return new WaitForSeconds(cooldownTime);
+
+        // Set the ability cooldown back to false
+        HUD_Script.abilitiesCoolDown[abilityIndex] = false;
+    }
+
 
     private void updateHUDUI()
     {
