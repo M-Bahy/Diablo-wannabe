@@ -69,7 +69,35 @@ public class Boss_phase1_script : MonoBehaviour
         int numberOfMinions = 3;
         for (int i = 0; i < numberOfMinions; i++)
         {
-            Vector3 pos = new Vector3(transform.position.x + Random.Range(-5, 5), transform.position.y, transform.position.z + Random.Range(-5, 5));
+            // left :
+            // -17.5,-83.5
+            // right :
+            // 10.4,80.83
+            // front :
+            // -59.22 , -13.94
+            // back :
+            // 25.99 , 62.93
+            bool left = Random.Range(0, 2) == 0;
+            bool front = Random.Range(0, 2) == 0;
+            float x = 0.0f;
+            float z = 0.0f;
+            if (left)
+            {
+                x = Random.Range(-17.5f, -83.5f);
+            }
+            else
+            {
+                x = Random.Range(10.4f, 80.83f);
+            }
+            if (front)
+            {
+                z = Random.Range(-59.22f, -13.94f);
+            }
+            else
+            {
+                z = Random.Range(25.99f, 62.93f);
+            }
+            Vector3 pos = new Vector3(x, transform.position.y, z);
             Instantiate(minions, pos, Quaternion.identity);
         }
     }
