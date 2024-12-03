@@ -16,6 +16,8 @@ public class Camp_Logic : MonoBehaviour
     [SerializeField] GameObject demon;
     [SerializeField] GameObject key;
 
+    [SerializeField] GameObject player; // THIS IS NOT FINAL, WE NEED A WAY TO PASS THE PLAYER
+
     List<GameObject> minionsArray = new List<GameObject>();
     List<GameObject> demonsArray = new List<GameObject>();
 
@@ -72,4 +74,61 @@ public class Camp_Logic : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Aggro");
+        if (other.CompareTag("Sorcerer") || other.CompareTag("Barbarian"))
+        {
+            // Randomly select one demon (if available)
+            if (demonsArray.Count > 0)
+            {
+                GameObject selectedDemon = demonsArray
+                    .Where(d => d != null && !d.GetComponent<Minion_Logic>().isDead)
+                    .OrderBy(_ => Random.value)
+                    .FirstOrDefault();
+
+                if (selectedDemon != null)
+                {
+                    Minion_Logic demonLogic = selectedDemon.GetComponent<Minion_Logic>();
+                    demonLogic.player = player;
+                    demonLogic?.goAggresive(true);
+                }
+            }
+
+            // Randomly select up to five minions (if available)
+            List<GameObject> availableMinions = minionsArray
+                .Where(m => m != null && !m.GetComponent<Minion_Logic>().isDead)
+                .OrderBy(_ => Random.value)
+                .Take(5)
+                .ToList();
+
+            foreach (GameObject minion in availableMinions)
+            {
+                Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
+                minionLogic.player = player;
+                minionLogic?.goAggresive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Deaggro");
+        if (other.CompareTag("Sorcerer") || other.CompareTag("Barbarian"))
+        {
+            foreach (GameObject demon in demonsArray)
+            {
+                Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
+                demonLogic?.goAggresive(false);
+            }
+
+            foreach (GameObject minion in minionsArray)
+            {
+                Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
+                minionLogic?.goAggresive(false);
+            }
+        }
+    }
+
 }
