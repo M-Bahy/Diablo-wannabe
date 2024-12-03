@@ -17,8 +17,11 @@ public class HUD_Script : MonoBehaviour
 
     void Start()
     {
-        abilitiesUnlocked = new bool[abilityButtons.Length];
-        abilitiesUnlocked[0] = true; 
+        
+           abilitiesUnlocked = new bool[4];
+           abilitiesUnlocked[0] = true;
+           
+        
 
 
         for (int i = 1; i < abilityButtons.Length; i++)

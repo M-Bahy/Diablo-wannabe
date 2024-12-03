@@ -1,59 +1,120 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Hero_Attack : MonoBehaviour
 {
 
-    private float attackRange = 1.0f; 
-    private string enemyTag = "Enemy"; 
     private Animator animator;
-    private bool[] abilitiesUnlocked;
     private bool isAttacking = false;
-
+    private bool buttonCliked = false;
+    private bool defenseButtonClicked = false;
+    private string tag;
+    private NavMeshAgent agent;
     // Start is called before the first frame update
     void Start()
     {
-        abilitiesUnlocked = HUD_Script.abilitiesUnlocked;
+   
+     
         animator = GetComponent<Animator>();
+        // get tag of the gameobject
+        tag = gameObject.tag;
+        agent = GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isAttacking) 
+       
+
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
         {
             BasicAttack();
         }
+
+        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1])
+        {
+            buttonCliked = true;
+            defenseButtonClicked = true;
+        }
+        if(defenseButtonClicked && Input.GetMouseButtonDown(1))
+        {
+
+            DefensiveAttack();
+
+        }
+
     }
 
 
     void BasicAttack()
     {
 
-
-        isAttacking = true;
-
-        animator.Play("attack_short_001", 0, 0f);
-
-
-        StartCoroutine(ResetAfterAttack());
-
+        if (tag == "Sorcerer")
+        {
+            isAttacking = true;
+            animator.Play("attack_short_001", 0, 0f);
+            StartCoroutine(ResetAfterAttack());
+        }
 
 
+
+    }
+
+    void DefensiveAttack()
+    {
+        if (tag == "Sorcerer")
+        {
+           
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                // add one two seconds delay
+                //StartCoroutine(TeleportAfterDelay(hit.point));
+                agent.SetDestination(hit.point);
+                transform.position = hit.point;
+
+            }
+        
+        }
+
+        defenseButtonClicked = false;
+        buttonCliked = false;
     }
 
 
     IEnumerator ResetAfterAttack()
     {
-        // Wait until the attack animation is done
+       
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-        // Set isAttacking to false once the animation is finished
         isAttacking = false;
 
-        // Optionally, you can explicitly set the state to "Idle" here if needed
-        // animator.Play("Idle");
+    }
+    IEnumerator TeleportAfterDelay(Vector3 targetPosition)
+    {
+        // Wait for 2 seconds before teleporting
+        yield return new WaitForSeconds(2f);
+
+        // Teleport to the target position
+        transform.position = targetPosition;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
