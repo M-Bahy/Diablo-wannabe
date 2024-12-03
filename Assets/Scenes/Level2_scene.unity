@@ -1981,6 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 596993857}
+  minions: {fileID: 961803237283086986, guid: f2e88bd765545024e8e7fd868dca8642, type: 3}
 --- !u!1 &2092990868
 GameObject:
   m_ObjectHideFlags: 0
