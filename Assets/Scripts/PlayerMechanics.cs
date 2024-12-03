@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             exp+=30;
 
@@ -116,11 +116,11 @@ public class Player : MonoBehaviour
             
         }
         if( level == 4){
-            expSlider.value = 0;
+            exp = 0;
+            expSlider.value = exp;
         }
-        if(level < 4  || exp == 0){
-            expText.text = $"{exp:F0}";
-        }
+        expText.text = $"{exp:F0}";
+        
 
         levelText.text = $"{level:F0}";
 
