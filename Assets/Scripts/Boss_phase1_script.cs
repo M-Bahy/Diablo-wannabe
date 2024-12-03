@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss_phase1_script : MonoBehaviour
 {
+    public static bool fightStarted = false;
     // Start is called before the first frame update
     void Start()
     {
