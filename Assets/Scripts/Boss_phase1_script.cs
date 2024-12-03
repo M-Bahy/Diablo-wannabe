@@ -8,11 +8,14 @@ public class Boss_phase1_script : MonoBehaviour
     public GameObject player;
     public GameObject minions;
     Animator anim;
+    bool initialSummon = true;
+    float summonDelay = 10f;
+    float ogSummonDelay = 0;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        
+        ogSummonDelay = summonDelay;
        
     }
 
@@ -26,11 +29,25 @@ public class Boss_phase1_script : MonoBehaviour
 
             if (canISummon())
             {
-                summon();
+                if (initialSummon)
+                {
+                    initialSummon = false;
+                    summon();
+                }
+                else
+                {
+                    summonDelay -= Time.deltaTime;
+                    if (summonDelay <= 0)
+                    {
+                        summon();
+                        summonDelay = ogSummonDelay;
+                    }
+                }
+                
             }
             else
             {
-                anim.Play("Dive bommb");
+                //anim.Play("Dive bommb");
             }
 
         }
@@ -45,9 +62,11 @@ public class Boss_phase1_script : MonoBehaviour
 
     public void summon()
     {
-        anim.Play("Summoning");
-
-        int numberOfMinions = Random.Range(1, 4);
+        // anim.Play("Summoning");
+        anim.ResetTrigger("summon");
+        anim.SetTrigger("summon");
+        // int numberOfMinions = Random.Range(1, 4);
+        int numberOfMinions = 3;
         for (int i = 0; i < numberOfMinions; i++)
         {
             Vector3 pos = new Vector3(transform.position.x + Random.Range(-5, 5), transform.position.y, transform.position.z + Random.Range(-5, 5));
