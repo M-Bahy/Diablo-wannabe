@@ -11,12 +11,15 @@ public class Boss_phase1_script : MonoBehaviour
     bool initialSummon = true;
     float summonDelay = 10f;
     float ogSummonDelay = 0;
+
+    float diveBoomDelay = 5f;
+    float ogDiveBoomDelay = 0;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         ogSummonDelay = summonDelay;
-       
+        ogDiveBoomDelay = diveBoomDelay;
     }
 
     // Update is called once per frame
@@ -45,10 +48,16 @@ public class Boss_phase1_script : MonoBehaviour
                 }
                 
             }
-            else
-            {
-                //anim.Play("Dive bommb");
-            }
+           // else
+          //  {
+                diveBoomDelay -= Time.deltaTime;
+                if (diveBoomDelay <= 0)
+                {
+                    anim.ResetTrigger("dive_boomb");
+                    anim.SetTrigger("dive_boomb");
+                    diveBoomDelay = ogDiveBoomDelay;
+                }
+          //  }
 
         }
 
