@@ -1963,6 +1963,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067267552}
   m_CullTransparentMesh: 1
+--- !u!1 &2085175668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2387494017223766432, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+  m_PrefabInstance: {fileID: 1868600704485369101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2085175673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085175668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fdda431f6b9c454a10bcf0ae2865e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2092990868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,8 +2065,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1405500143010117903, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2387494017214399076, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 01c53f03c1afe6144ab5e4e606bf11ad, type: 2}
     - target: {fileID: 2387494017223470464, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_LocalScale.x
       value: 12.000001
@@ -2109,7 +2130,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2387494017223766432, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2085175673}
   m_SourcePrefab: {fileID: 100100000, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
