@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class Boss_phase1_script : MonoBehaviour
@@ -14,12 +15,14 @@ public class Boss_phase1_script : MonoBehaviour
 
     float diveBoomDelay = 5f;
     float ogDiveBoomDelay = 0;
+    public NavMeshSurface surface;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         ogSummonDelay = summonDelay;
         ogDiveBoomDelay = diveBoomDelay;
+
     }
 
     // Update is called once per frame
@@ -107,7 +110,9 @@ public class Boss_phase1_script : MonoBehaviour
                 z = Random.Range(25.99f, 62.93f);
             }
             Vector3 pos = new Vector3(x, transform.position.y, z);
-            Instantiate(minions, pos, Quaternion.identity);
+            GameObject minion = Instantiate(minions, pos, Quaternion.identity);
+            s_m.player = player;
+           // surface.BuildNavMesh();
         }
     }
 }
