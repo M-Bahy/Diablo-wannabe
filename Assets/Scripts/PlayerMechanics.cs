@@ -15,8 +15,10 @@ public class Player : MonoBehaviour
     private bool defenseButtonClicked = false;
     private string tag;
     private NavMeshAgent agent;
+    private bool ultimateButtonClicked = false;
+    public GameObject infernoPrefab;
     //////////////
-    
+
     int level = 1;
     int exp = 0;
     int requiredExp = 100;
@@ -117,10 +119,21 @@ public class Player : MonoBehaviour
             BasicAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1])
+        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
         {
             buttonCliked = true;
             defenseButtonClicked = true;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        {
+            buttonCliked = true;
+            ultimateButtonClicked = true;
+        }
+        if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
+        {
+
+            UltimateAttack();
+
         }
         if (defenseButtonClicked && Input.GetMouseButtonDown(1))
         {
@@ -172,7 +185,29 @@ public class Player : MonoBehaviour
         buttonCliked = false;
 
     }
+    void UltimateAttack()
+    {
 
+
+        if (tag == "Sorcerer")
+        {
+
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 spawnPosition = hit.point;
+                spawnPosition.y += 5.0f;
+                GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
+                StartCoroutine(AbilityCooldown(3, 15f));
+                Destroy(infernoInstance, 5f);
+
+            }
+        }
+        ultimateButtonClicked = false;
+        buttonCliked = false;
+    }
 
     IEnumerator ResetAfterAttack()
     {
@@ -201,6 +236,8 @@ public class Player : MonoBehaviour
         // Set the ability cooldown back to false
         HUD_Script.abilitiesCoolDown[abilityIndex] = false;
     }
+
+  
 
 
     private void updateHUDUI()
