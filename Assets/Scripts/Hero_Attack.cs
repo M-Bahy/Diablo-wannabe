@@ -34,7 +34,7 @@ public class Hero_Attack : MonoBehaviour
             BasicAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1])
+        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1])
         {
             buttonCliked = true;
             defenseButtonClicked = true;
