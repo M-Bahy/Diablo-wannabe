@@ -1537,7 +1537,7 @@ GameObject:
   - component: {fileID: 669960231}
   - component: {fileID: 669960230}
   m_Layer: 5
-  m_Name: HealText
+  m_Name: ShieldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
