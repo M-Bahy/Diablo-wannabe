@@ -158,6 +158,12 @@ public class Player : MonoBehaviour
             animator.Play("attack_short_001", 0, 0f);
             StartCoroutine(ResetAfterAttack());
         }
+        else if(tag == "Barbarian")
+        {
+            isAttacking = true;
+            animator.Play("Normal_Attack", 0, 0f);
+            StartCoroutine(ResetAfterAttack());
+        }
     }
 
     void DefensiveAttack()
