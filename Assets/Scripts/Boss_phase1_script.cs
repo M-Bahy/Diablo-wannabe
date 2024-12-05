@@ -28,9 +28,11 @@ public class Boss_phase1_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // look at player
-        transform.LookAt(player.transform);
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+       BossMech bm = GetComponent<BossMech>();
+        if (bm.gameOver )
+        {
+            return;
+        }
 
         if (fightStarted){
 
