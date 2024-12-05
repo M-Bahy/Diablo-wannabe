@@ -27,6 +27,11 @@ public class BossMech : MonoBehaviour
     public Slider shieldHealthSlider ; 
 
     public Slider bosshealthSlider ; 
+
+    float generationDelay = 10f;
+    float ogGenerationDelay = 0;
+    bool shieldDestroyed = false;
+    bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,28 +44,35 @@ public class BossMech : MonoBehaviour
 
         shieldHealthSlider.maxValue= shieldHealth;
         shieldHealthSlider.value = shieldHealth;
+        ogGenerationDelay = generationDelay;
         
     }
 
     public void damageBoss(){
+       
         if(phaseOne){
             phaseOneHealth -=11;
-
+             animator.Play("GetDamage");
         }
         else{
-            Debug.Log("Ana gwa el else");
+          //  Debug.Log("Ana gwa el else");
             if(shieldHealth >0 ){
-                Debug.Log("Ana damage shield");
+              //  Debug.Log("Ana damage shield");
                 shieldHealth -= 11;
                 
                 
-                if(shieldHealth < 0){
+                if(shieldHealth <= 0){
                     phaseTwoHealth += shieldHealth;
                     shieldHealth = 0;
+                    shield.SetActive(false);
+                    shieldHealthSlider.gameObject.SetActive(false); 
+                    shieldDestroyed = true;
+                    animator.Play("GetDamage2"); 
                 }
             }
             else{
                 phaseTwoHealth -=11;
+                animator.Play("GetDamage2");
             }
 
         }
@@ -77,6 +89,15 @@ public class BossMech : MonoBehaviour
                 startPhaseTwo();
         }
 
+        }
+        else{
+            if(phaseTwoHealth <= 0){
+                animator.Play("END");
+                phaseTwoHealth = 0;
+                bosshealthSlider.value = phaseTwoHealth;
+                bosshealthText.text = $"{phaseTwoHealth:F0}";
+                gameOver = true;
+        }
         }
  
     }
@@ -106,11 +127,25 @@ public class BossMech : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameOver){
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.P)){
             damageBoss();
         }
 
-
+        if(shieldDestroyed ){
+            generationDelay -= Time.deltaTime;
+            if(generationDelay <= 0){
+                shieldHealth = 50;
+              //  shieldHealthSlider.value = shieldHealth;
+                shieldDestroyed = false;
+                shield.SetActive(true);
+                shieldHealthSlider.gameObject.SetActive(true);
+                generationDelay = ogGenerationDelay;
+                updateHUDUI();
+        }
+        }
     }
 
     private void updateHUDUI()
@@ -129,4 +164,6 @@ public class BossMech : MonoBehaviour
 
         
     }
+
+
 }
