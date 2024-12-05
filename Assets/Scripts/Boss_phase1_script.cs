@@ -22,7 +22,7 @@ public class Boss_phase1_script : MonoBehaviour
         anim = GetComponent<Animator>();
         ogSummonDelay = summonDelay;
         ogDiveBoomDelay = diveBoomDelay;
-
+        Player.isLevel1 = false;
     }
 
     // Update is called once per frame

@@ -26,9 +26,10 @@ public class Player : MonoBehaviour
     int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 3;
     int abilityPoints = 0;
+    int numberOfFragments = 0;
     private Animator animator;
 
-
+    public static bool isLevel1 = true;
 
 
 
@@ -172,10 +173,12 @@ public class Player : MonoBehaviour
             {
                 // add one two seconds delay
                 //StartCoroutine(TeleportAfterDelay(hit.point));
-                agent.SetDestination(hit.point);
+                agent.enabled = false;
                 transform.position = hit.point;
+                agent.enabled = true;
+                agent.SetDestination(hit.point);
 
-             
+
                 StartCoroutine(AbilityCooldown(1, 10f)); // Cooldown for 10 seconds
 
             }
@@ -198,7 +201,8 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Vector3 spawnPosition = hit.point;
-                spawnPosition.y += 5.0f;
+                if (!isLevel1)
+                    spawnPosition.y += 5.0f;
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(3, 15f));
                 Destroy(infernoInstance, 5f);
@@ -283,5 +287,14 @@ public class Player : MonoBehaviour
         playerCurrenttHealth = playerMaxHealth;
         // this is for the ui slider
         healthSlider.maxValue = playerMaxHealth;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Fragment")
+        {
+            numberOfFragments++;
+            Destroy(collision.gameObject);
+        }
     }
 }

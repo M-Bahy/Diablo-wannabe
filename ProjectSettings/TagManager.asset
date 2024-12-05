@@ -8,6 +8,7 @@ TagManager:
   - Sorcerer
   - Barbarian
   - Summoned_Minions
+  - Inferno
   layers:
   - Default
   - TransparentFX

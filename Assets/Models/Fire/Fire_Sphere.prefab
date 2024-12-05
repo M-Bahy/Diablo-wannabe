@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 820543477933564818}
   m_Layer: 0
   m_Name: Fire_Sphere
-  m_TagString: Untagged
+  m_TagString: Inferno
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4860,12 +4860,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20, y: 1, z: 20}
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Size: {x: 13.834278, y: 8.739825, z: 13.891647}
+  m_Center: {x: 0.13950539, y: 2.8699126, z: 0.28334427}
 --- !u!1 &713940157168698278
 GameObject:
   m_ObjectHideFlags: 0
@@ -29352,7 +29352,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 9.36e-43, y: -9.95478e-39, z: 9.36e-43, w: 1.204e-42}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
