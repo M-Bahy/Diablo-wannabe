@@ -22,31 +22,63 @@ public class BossMech : MonoBehaviour
     public GameObject shield ;
 
     public TMP_Text bosshealthText ;
+    public TMP_Text shieldhealthText ;
+
+    public Slider shieldHealthSlider ; 
+
     public Slider bosshealthSlider ; 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-
+        shield.SetActive(false);
+        shieldHealthSlider.gameObject.SetActive(false);
 
         bosshealthSlider.maxValue = phaseOneHealth;
         bosshealthSlider.value = phaseOneHealth;
+
+        shieldHealthSlider.maxValue= shieldHealth;
+        shieldHealthSlider.value = shieldHealth;
         
     }
 
     public void damageBoss(){
-        phaseOneHealth -=10;
+        if(phaseOne){
+            phaseOneHealth -=11;
+
+        }
+        else{
+            Debug.Log("Ana gwa el else");
+            if(shieldHealth >0 ){
+                Debug.Log("Ana damage shield");
+                shieldHealth -= 11;
+                
+                
+                if(shieldHealth < 0){
+                    phaseTwoHealth += shieldHealth;
+                    shieldHealth = 0;
+                }
+            }
+            else{
+                phaseTwoHealth -=11;
+            }
+
+        }
         updateHUDUI();
         checkIfBossDie();
     }
 
     private void checkIfBossDie()
     {
-        if(phaseOneHealth <= 0){
-            animator.Play("Death");
-            //animator.Play("Resurrection");
-            startPhaseTwo();
+        if(phaseOne){
+            if(phaseOneHealth <= 0){
+                animator.Play("Death");
+                //animator.Play("Resurrection");
+                startPhaseTwo();
         }
+
+        }
+ 
     }
 
     private void startPhaseTwo()
@@ -55,8 +87,17 @@ public class BossMech : MonoBehaviour
         phaseOne = false;
         bosshealthSlider.maxValue = phaseTwoHealth;
         bosshealthSlider.value = phaseTwoHealth;
-        updateHUDUI();
+
         shield.SetActive(true);
+        shieldHealthSlider.gameObject.SetActive(true);
+
+        shieldHealthSlider.maxValue= shieldHealth;
+        shieldHealthSlider.value = shieldHealth;
+        updateHUDUI();
+
+        
+
+    
 
 
         
@@ -69,6 +110,7 @@ public class BossMech : MonoBehaviour
             damageBoss();
         }
 
+
     }
 
     private void updateHUDUI()
@@ -78,6 +120,9 @@ public class BossMech : MonoBehaviour
             bosshealthText.text = $"{phaseOneHealth:F0}";
         }
         else{
+            shieldHealthSlider.value = shieldHealth;
+            shieldhealthText.text = $"{shieldHealth:F0}";
+
             bosshealthSlider.value = phaseTwoHealth;
             bosshealthText.text = $"{phaseTwoHealth:F0}";
         }
