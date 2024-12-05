@@ -1161,6 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064d3d4e0091e4b0889140474bd0e7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infernoPrefab: {fileID: 70345215526028572, guid: 8cec66e215abfe64e9b30caff2e37cd3, type: 3}
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
   expText: {fileID: 1801215173}
