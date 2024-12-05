@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 
-public class Player : MonoBehaviour
+public class PlayerMechanics : MonoBehaviour
 {
     /////////////   
     private bool isAttacking = false;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     int exp = 0;
     int requiredExp = 100;
     int playerMaxHealth = 100;
-    int playerCurrenttHealth = 90;
+    public int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 3;
     int abilityPoints = 0;
     private Animator animator;

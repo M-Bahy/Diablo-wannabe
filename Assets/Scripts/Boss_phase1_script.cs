@@ -30,6 +30,7 @@ public class Boss_phase1_script : MonoBehaviour
     {
         // look at player
         transform.LookAt(player.transform);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
         if (fightStarted){
 
