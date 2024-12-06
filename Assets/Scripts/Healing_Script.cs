@@ -49,4 +49,16 @@ public class Healing_Script : MonoBehaviour
             availableHealingPotions.Add(Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity));
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "potion")
+        {
+            if (collectedHealingPotions.Count < collectedHealingPotionsLimit)
+            {
+                collectedHealingPotions.Add(availableHealingPotions[0]);
+                availableHealingPotions.RemoveAt(0);
+                Destroy(other.gameObject);
+            }
+        }
+    }
 }
