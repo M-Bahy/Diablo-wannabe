@@ -1388,6 +1388,12 @@ MonoBehaviour:
   expText: {fileID: 1801215173}
   expSlider: {fileID: 104758850}
   levelText: {fileID: 1996766608}
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  portal: {fileID: 0}
+  telepoertCircle: {fileID: 0}
+  wizardClone: {fileID: 0}
+  _maincamera: {fileID: 0}
 --- !u!54 &596993864
 Rigidbody:
   m_ObjectHideFlags: 0
