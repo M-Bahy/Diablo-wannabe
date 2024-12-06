@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     /////////////   
-    private bool isAttacking = false;
+    public static bool isAttacking = false;
     private bool buttonCliked = false;
     private bool defenseButtonClicked = false;
     private string tag;
