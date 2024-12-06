@@ -20,6 +20,8 @@ public class PlayerMechanics : MonoBehaviour
     private bool ultimateButtonClicked = false;
     public GameObject infernoPrefab;
     private bool wildButtonClicked = false;
+    private GameObject activeShield;
+    public GameObject shieldPrefab;
     //////////////
 
     int level = 1;
@@ -146,7 +148,7 @@ public class PlayerMechanics : MonoBehaviour
             BasicAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
+        if (tag == "Sorcerer" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
         {
             buttonCliked = true;
             defenseButtonClicked = true;
@@ -163,7 +165,10 @@ public class PlayerMechanics : MonoBehaviour
             buttonCliked = true;
             wildButtonClicked = true;
         }
-
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1])
+        {
+            DefensiveAttack();
+        }
         if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
         {
 
@@ -241,10 +246,20 @@ public class PlayerMechanics : MonoBehaviour
                 StartCoroutine(AbilityCooldown(1, 10f)); // Cooldown for 10 seconds
 
             }
+            defenseButtonClicked = false;
+            buttonCliked = false;
 
         }
-        defenseButtonClicked = false;
-        buttonCliked = false;
+        else if(tag == "Barbarian")
+        {
+           activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+           activeShield.transform.parent = transform;
+           StartCoroutine(AbilityCooldown(1, 10f));
+           StartCoroutine(DeactivateShieldAfterTime(3f));
+
+            
+        }
+
 
     }
     void UltimateAttack()
@@ -300,6 +315,19 @@ public class PlayerMechanics : MonoBehaviour
         isAttacking = false;
 
     }
+
+
+    IEnumerator DeactivateShieldAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        // Destroy the shield GameObject
+        Destroy(activeShield);
+
+        // Explicitly set the reference to null
+        activeShield = null;
+    }
+
     IEnumerator ResetAfterBarbarianAttack()
     {
         yield return new WaitForSeconds(1.9f); // Wait for the animation duration
@@ -378,6 +406,10 @@ public class PlayerMechanics : MonoBehaviour
     
     
     public void takeDamage(int damage){
+        if(tag == "Barbarian" && activeShield != null)
+        {
+            return;
+        }
         playerCurrenttHealth -= damage;
         if(playerCurrenttHealth <= 0){
             playerCurrenttHealth = 0;
