@@ -284,7 +284,7 @@ public class PlayerMechanics : MonoBehaviour
     }
     IEnumerator ResetAfterBarbarianAttack()
     {
-        yield return new WaitForSeconds(2.0f); // Wait for the animation duration
+        yield return new WaitForSeconds(1.9f); // Wait for the animation duration
         animator.SetBool("Attack", false); // Reset the attack animation state
         barAttacking = false;
     }
