@@ -19,6 +19,11 @@ public class s_m : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+        if(boss.gameOver){
+            agent.isStopped = true;
+            return;
+        }
         agent.SetDestination(player.transform.position);
         if (agent.remainingDistance > agent.stoppingDistance)
         {

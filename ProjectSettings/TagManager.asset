@@ -9,6 +9,7 @@ TagManager:
   - Barbarian
   - Summoned_Minions
   - jump radius
+  - spikes
   layers:
   - Default
   - TransparentFX

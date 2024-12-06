@@ -16,9 +16,15 @@ public class take_damage_script : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other) {
+        PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
         if(other.gameObject.tag == "jump radius"){
-            PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
-            player.playerCurrenttHealth -= 10;
+            // 20 
+            player.takeDamage(20);
+        }
+        if(other.gameObject.tag == "spikes"){
+            // 30
+            Debug.Log("Spikes");
+            player.takeDamage(30);
         }
     }
 

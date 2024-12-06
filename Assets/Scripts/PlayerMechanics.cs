@@ -59,6 +59,14 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+        if(boss.gameOver){
+            agent.isStopped = true;
+            healthSlider.value = 0;
+            healthText.text = "0";
+            
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             // Trigger the animation
@@ -283,5 +291,19 @@ public class PlayerMechanics : MonoBehaviour
         playerCurrenttHealth = playerMaxHealth;
         // this is for the ui slider
         healthSlider.maxValue = playerMaxHealth;
+    }
+
+    public void takeDamage(int damage){
+        playerCurrenttHealth -= damage;
+        if(playerCurrenttHealth <= 0){
+            playerCurrenttHealth = 0;
+           animator.Play("dead");
+           // here we should display the end game screen
+           BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+           boss.gameOver = true;
+
+        }else{
+            animator.Play("damage");
+        }
     }
 }

@@ -201,7 +201,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 344782428}
   m_HandleRect: {fileID: 0}
@@ -481,6 +481,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252542976}
   m_CullTransparentMesh: 1
+--- !u!1 &292523007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1361328894881189791, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+  m_PrefabInstance: {fileID: 1868600704485369101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &292523011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292523007}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2288439, y: 1.2230222, z: 1.1537066}
+  m_Center: {x: 0.020579511, y: 2.124842, z: -5.68063}
 --- !u!1 &296854527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1040,7 @@ PrefabInstance:
     - target: {fileID: 95000012058624550, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 551dd93e220b6f59d88487e067cdc33d, type: 2}
+      objectReference: {fileID: 9100000, guid: 535b5da3a863b449e821f1b8c9d2013f, type: 2}
     - target: {fileID: 95000012058624550, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
@@ -2037,7 +2063,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 296854528}
   m_HandleRect: {fileID: 0}
@@ -3162,7 +3188,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 637881677}
   m_HandleRect: {fileID: 0}
@@ -3389,7 +3415,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2092990869}
   m_HandleRect: {fileID: 0}
@@ -4237,6 +4263,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1361328894881189791, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_TagString
+      value: spikes
+      objectReference: {fileID: 0}
     - target: {fileID: 1405500143010117903, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -4627,6 +4657,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4812757560403886097, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1180543083}
+    - targetCorrespondingSourceObject: {fileID: 1361328894881189791, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 292523011}
   m_SourcePrefab: {fileID: 100100000, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
