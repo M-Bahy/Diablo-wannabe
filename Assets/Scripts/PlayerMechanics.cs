@@ -177,7 +177,7 @@ public class PlayerMechanics : MonoBehaviour
 
     void BasicAttack()
     {
-
+        animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
             isAttacking = true;
@@ -186,9 +186,17 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
-            isAttacking = true;
-            animator.Play("Normal_Attack", 0, 0f);
-            StartCoroutine(ResetAfterAttack());
+          
+          //  isAttacking = true;
+            animator.SetBool("Attack", true);
+            StartCoroutine(ResetAfterBarbarianAttack());
+
+
+
+            //animator.Play("Normal_Attack", 0, 0f);
+            //StartCoroutine(ResetAfterAttack());
+            //animator.SetBool("Attack", false);
+
         }
     }
 
@@ -264,6 +272,7 @@ public class PlayerMechanics : MonoBehaviour
 
     }
 
+
     IEnumerator ResetAfterAttack()
     {
 
@@ -271,6 +280,12 @@ public class PlayerMechanics : MonoBehaviour
         isAttacking = false;
 
     }
+    IEnumerator ResetAfterBarbarianAttack()
+    {
+        yield return new WaitForSeconds(2.0f); // Wait for the animation duration
+        animator.SetBool("Attack", false); // Reset the attack animation state
+    }
+
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
         // Wait for 2 seconds before teleporting
