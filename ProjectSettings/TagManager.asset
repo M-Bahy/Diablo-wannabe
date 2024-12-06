@@ -12,6 +12,7 @@ TagManager:
   - Fragment
   - jump radius
   - spikes
+  - portal
   layers:
   - Default
   - TransparentFX
