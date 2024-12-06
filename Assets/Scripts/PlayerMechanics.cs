@@ -17,6 +17,7 @@ public class PlayerMechanics : MonoBehaviour
     private NavMeshAgent agent;
     private bool ultimateButtonClicked = false;
     public GameObject infernoPrefab;
+    private bool wildButtonClicked = false;
     //////////////
 
     int level = 1;
@@ -136,11 +137,19 @@ public class PlayerMechanics : MonoBehaviour
             buttonCliked = true;
             defenseButtonClicked = true;
         }
-        if (Input.GetKeyDown(KeyCode.E) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        if (Input.GetKeyDown(KeyCode.E) && HUD_Script.abilitiesUnlocked[2] && !HUD_Script.abilitiesCoolDown[2] && !buttonCliked)
         {
             buttonCliked = true;
             ultimateButtonClicked = true;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        {
+            buttonCliked = true;
+            wildButtonClicked = true;
+        }
+
         if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
         {
 
@@ -154,8 +163,13 @@ public class PlayerMechanics : MonoBehaviour
 
         }
 
+        if (wildButtonClicked && Input.GetMouseButtonDown(1))
+        {
 
-   
+            wildAttack();
+
+        }
+
 
     }
 
@@ -221,13 +235,33 @@ public class PlayerMechanics : MonoBehaviour
                 if (!isLevel1)
                     spawnPosition.y += 5.0f;
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
-                StartCoroutine(AbilityCooldown(3, 15f));
+                StartCoroutine(AbilityCooldown(2, 15f));
                 Destroy(infernoInstance, 5f);
 
             }
         }
         ultimateButtonClicked = false;
         buttonCliked = false;
+    }
+
+
+    void wildAttack()
+    {
+        if (tag == "Sorcerer")
+        {
+            StartCoroutine(AbilityCooldown(3, 15f));
+
+        }
+        else if (tag == "Barbarian")
+        {
+            StartCoroutine(AbilityCooldown(3, 15f));
+
+        }
+
+
+        wildButtonClicked = false;
+        buttonCliked = false;
+
     }
 
     IEnumerator ResetAfterAttack()
