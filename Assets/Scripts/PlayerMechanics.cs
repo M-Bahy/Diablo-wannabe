@@ -11,6 +11,7 @@ public class PlayerMechanics : MonoBehaviour
 {
     /////////////   
     public static bool isAttacking = false;
+    public static bool barAttacking = false;
     private bool buttonCliked = false;
     private bool defenseButtonClicked = false;
     private string tag;
@@ -189,6 +190,7 @@ public class PlayerMechanics : MonoBehaviour
           
           //  isAttacking = true;
             animator.SetBool("Attack", true);
+            barAttacking = true;
             StartCoroutine(ResetAfterBarbarianAttack());
 
 
@@ -284,6 +286,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f); // Wait for the animation duration
         animator.SetBool("Attack", false); // Reset the attack animation state
+        barAttacking = false;
     }
 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
