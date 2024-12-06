@@ -36,7 +36,16 @@ public class Minion_Logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //////////////////////////////////////// THIS CODE IS NOT WORKING
+        if (!PlayerMechanics.isLevel1)
+        {
+            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+            if (boss.gameOver)
+            {
+                agent.isStopped = true;
+                return;
+            }
+        }
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             animator.SetBool("isWalking", false);
@@ -45,7 +54,7 @@ public class Minion_Logic : MonoBehaviour
         {
             animator.SetBool("isWalking", true);
         }
-        //////////////////////////////////////
+
         if (isAggro)
         {
             agent.SetDestination(player.transform.position);
@@ -98,18 +107,19 @@ public class Minion_Logic : MonoBehaviour
         // Move towards the player
         isAggro = yes;
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Inferno" && !isInInferno)
+        if (other.CompareTag("Inferno") && !isInInferno)
         {
             TakeDamage(10); // Initial damage
-            StartCoroutine(InfernoDamageOverTime(2, 1f, collision.gameObject)); // Periodic damage
+            StartCoroutine(InfernoDamageOverTime(2, 1f, other.gameObject)); // Periodic damage
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.tag == "Inferno")
+        if (other.CompareTag("Inferno"))
         {
             isInInferno = false; // Stop periodic damage when exiting the inferno
         }

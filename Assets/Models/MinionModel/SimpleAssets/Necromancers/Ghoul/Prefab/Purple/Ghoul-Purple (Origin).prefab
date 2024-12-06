@@ -1839,7 +1839,9 @@ GameObject:
   - component: {fileID: 5833004339577864778}
   - component: {fileID: 518800861877503542}
   - component: {fileID: 4758960920508932967}
-  - component: {fileID: 2654886017400025453}
+  - component: {fileID: 3388443715065996285}
+  - component: {fileID: 7860354067896557876}
+  - component: {fileID: 4350816329043886354}
   m_Layer: 0
   m_Name: Ghoul-Purple (Origin)
   m_TagString: Summoned_Minions
@@ -1926,7 +1928,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2654886017400025453
+--- !u!114 &3388443715065996285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1935,9 +1937,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 961803237283086986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 098100c348a2a2fcbbed5285f0ac4db3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f07b2abc9d192a4db79869df5e3a3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
+  player: {fileID: 0}
+  healthSlider: {fileID: 4866916509760172453}
+--- !u!136 &7860354067896557876
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961803237283086986}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8010203
+  m_Height: 2.41996
+  m_Direction: 1
+  m_Center: {x: -0.0014427503, y: 0.70997655, z: 0}
+--- !u!54 &4350816329043886354
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961803237283086986}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &981132754368569203
 GameObject:
   m_ObjectHideFlags: 0
@@ -15276,7 +15331,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2533316306793733063}
   m_HandleRect: {fileID: 0}

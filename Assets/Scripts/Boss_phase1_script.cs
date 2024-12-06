@@ -153,8 +153,11 @@ public class Boss_phase1_script : MonoBehaviour
             }
             Vector3 pos = new Vector3(x, transform.position.y, z);
             GameObject minion = Instantiate(minions, pos, Quaternion.identity);
-            s_m.player = player;
-           // surface.BuildNavMesh();
+            Minion_Logic m_l = minion.GetComponent<Minion_Logic>();
+            m_l.player = player;
+            m_l?.goAggresive(true);
+            //s_m.player = player;
+            // surface.BuildNavMesh();
         }
     }
 
