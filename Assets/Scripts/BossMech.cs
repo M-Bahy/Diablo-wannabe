@@ -20,7 +20,7 @@ public class BossMech : MonoBehaviour
 
 
     public GameObject shield ;
-
+    public GameObject aura;
     public TMP_Text bosshealthText ;
     public TMP_Text shieldhealthText ;
 
@@ -39,6 +39,7 @@ public class BossMech : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         shield.SetActive(false);
+        aura.SetActive(false);
         shieldHealthSlider.gameObject.SetActive(false);
 
         bosshealthSlider.maxValue = phaseOneHealth;
@@ -50,10 +51,12 @@ public class BossMech : MonoBehaviour
         
     }
 
-    public void damageBoss(){
-       
+    public void damageBoss(int damageAmount){
+        if(!gameObject.GetComponent<Boss_phase1_script>().isAllMinionsDead()){
+            return;
+        }
         if(phaseOne){
-            phaseOneHealth -=11;
+            phaseOneHealth -= damageAmount;
              animator.Play("GetDamage");
         }
         else{
@@ -62,7 +65,7 @@ public class BossMech : MonoBehaviour
                 //  Debug.Log("Ana gwa el else");
             if(shieldHealth >0 ){
               //  Debug.Log("Ana damage shield");
-                shieldHealth -= 11;
+                shieldHealth -= damageAmount;
                 
                 
                 if(shieldHealth <= 0){
@@ -75,13 +78,16 @@ public class BossMech : MonoBehaviour
                 }
             }
             else{
-                phaseTwoHealth -=11;
+                phaseTwoHealth -= damageAmount;
                 animator.Play("GetDamage2");
             }
             }
             else{
                 // the player here should take damage equals to the damage amount + 15
-                auraActivated = false;
+                deactivateAura();
+                
+                Boss_phase1_script bs = gameObject.GetComponent<Boss_phase1_script>();
+                bs.player.GetComponent<PlayerMechanics>().takeDamage(damageAmount + 15);
             }
           
 
@@ -142,7 +148,7 @@ public class BossMech : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.P)){
-            damageBoss();
+            damageBoss(11);
         }
 
         if(shieldDestroyed ){
@@ -176,5 +182,14 @@ public class BossMech : MonoBehaviour
         
     }
 
+    // activate aura
+    public void activateAura(){
+        auraActivated = true;
+        aura.SetActive(true);
+    }
 
+    public void deactivateAura(){
+        auraActivated = false;
+        aura.SetActive(false);
+    }
 }

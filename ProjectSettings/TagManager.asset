@@ -13,6 +13,7 @@ TagManager:
   - jump radius
   - spikes
   - portal
+  - potion
   layers:
   - Default
   - TransparentFX

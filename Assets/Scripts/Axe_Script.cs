@@ -11,12 +11,12 @@ public class Axe_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
    {
-        if (PlayerMechanics.isAttacking && other.CompareTag("Summoned_Minions"))
+        if (PlayerMechanics.barAttacking && other.CompareTag("Summoned_Minions"))
         {
             
                 GameObject minion = other.gameObject;
-                //minion.GetComponent<Minion_Logic>().TakeDamage(5);
-                Debug.Log("Minion Hit");
+                minion.GetComponent<Minion_Logic>().TakeDamage(5);
+               // Debug.Log("Minion Hit");
 
         }
     }
