@@ -7,7 +7,7 @@ public class Boss_phase1_script : MonoBehaviour
 {
     public static bool fightStarted = true;
     public GameObject player;
-    public GameObject minions;
+    public GameObject minionPrefab;
     Animator anim;
     bool initialSummon = true;
     bool initialCast = true;
@@ -20,6 +20,8 @@ public class Boss_phase1_script : MonoBehaviour
     float spikesDelay = 5f;
     float ogSpikesBoomDelay = 0;
     public NavMeshSurface surface;
+
+   GameObject [] minions = new GameObject[3];
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class Boss_phase1_script : MonoBehaviour
         if (fightStarted){
             
             if(bm.phaseOne){
-                if (canISummon())
+                if (isAllMinionsDead())
             {
                 if (initialSummon)
                 {
@@ -79,7 +81,7 @@ public class Boss_phase1_script : MonoBehaviour
                     {
                         initialCast = false;
                         castAura();
-                        bm.auraActivated = true;
+                        bm.activateAura();
                     }
                     else
                     {
@@ -87,7 +89,7 @@ public class Boss_phase1_script : MonoBehaviour
                         if (castDelay <= 0)
                         {
                             castAura();
-                            bm.auraActivated = true;
+                            bm.activateAura();
                             castDelay = ogCastDelay;
                         }
                     }
@@ -108,10 +110,16 @@ public class Boss_phase1_script : MonoBehaviour
     
     }
 
-    bool canISummon()
+    public bool isAllMinionsDead()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Summoned_Minions");
-        return enemies.Length == 0;
+        foreach (GameObject minion in minions)
+        {
+            if (minion != null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void summon()
@@ -152,10 +160,11 @@ public class Boss_phase1_script : MonoBehaviour
                 z = Random.Range(25.99f, 62.93f);
             }
             Vector3 pos = new Vector3(x, transform.position.y, z);
-            GameObject minion = Instantiate(minions, pos, Quaternion.identity);
+            GameObject minion = Instantiate(minionPrefab, pos, Quaternion.identity);
             Minion_Logic m_l = minion.GetComponent<Minion_Logic>();
             m_l.player = player;
             m_l?.goAggresive(true);
+            minions[i] = minion;
             //s_m.player = player;
             // surface.BuildNavMesh();
         }
