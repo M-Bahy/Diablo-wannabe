@@ -11,7 +11,7 @@ public class Axe_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
    {
-        if (Player.isAttacking && other.CompareTag("Summoned_Minions"))
+        if (PlayerMechanics.isAttacking && other.CompareTag("Summoned_Minions"))
         {
             
                 GameObject minion = other.gameObject;
