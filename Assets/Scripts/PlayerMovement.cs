@@ -11,17 +11,23 @@ public class PlayerMovement : MonoBehaviour
 
     private NavMeshAgent agent;
     float agentSpeed = 10f;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = agentSpeed;
-
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+        if(boss.gameOver){
+            agent.isStopped = true;
+            return;
+        }
         // record the position where the player clicked to move the player
         // if(Input.GetMouseButton(0)){
         //     RaycastHit hit;
@@ -48,7 +54,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+        if(agent.remainingDistance == 0){
+            anim.SetBool("isWalking", false);
         
+        }
+        else{
+           anim.SetBool("isWalking", true);
+        }
 
         
     }

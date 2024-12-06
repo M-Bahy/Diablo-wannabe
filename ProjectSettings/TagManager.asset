@@ -10,6 +10,8 @@ TagManager:
   - Summoned_Minions
   - Inferno
   - Fragment
+  - jump radius
+  - spikes
   layers:
   - Default
   - TransparentFX

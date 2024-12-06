@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 
-public class Player : MonoBehaviour
+public class PlayerMechanics : MonoBehaviour
 {
     /////////////   
     private bool isAttacking = false;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     int exp = 0;
     int requiredExp = 100;
     int playerMaxHealth = 100;
-    int playerCurrenttHealth = 90;
+    public int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 3;
     int abilityPoints = 0;
     int numberOfFragments = 0;
@@ -60,6 +60,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+        if(boss.gameOver){
+            agent.isStopped = true;
+            healthSlider.value = 0;
+            healthText.text = "0";
+            
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             // Trigger the animation
@@ -288,13 +296,31 @@ public class Player : MonoBehaviour
         // this is for the ui slider
         healthSlider.maxValue = playerMaxHealth;
     }
+    
+    
+    public void takeDamage(int damage){
+        playerCurrenttHealth -= damage;
+        if(playerCurrenttHealth <= 0){
+            playerCurrenttHealth = 0;
+           animator.Play("dead");
+           // here we should display the end game screen
+           BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+           boss.gameOver = true;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Fragment")
-        {
-            numberOfFragments++;
-            Destroy(collision.gameObject);
+        }else{
+            animator.Play("damage");
         }
     }
+    
+    
+    private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.tag == "Fragment")
+    {
+        numberOfFragments++;
+        Destroy(collision.gameObject);
+    }
+}
+
+
 }
