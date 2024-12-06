@@ -42,6 +42,8 @@ public class PlayerMechanics : MonoBehaviour
     public Slider expSlider ; 
 
     public TMP_Text levelText ;
+    [SerializeField] GameObject wizardClone;
+    [SerializeField] Camera _maincamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -166,8 +168,13 @@ public class PlayerMechanics : MonoBehaviour
 
         if (wildButtonClicked && Input.GetMouseButtonDown(1))
         {
-
-            wildAttack();
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                WildAttack(hit.point);
+            }
+            
 
         }
 
@@ -255,23 +262,23 @@ public class PlayerMechanics : MonoBehaviour
     }
 
 
-    void wildAttack()
+    void WildAttack(Vector3 pos)
     {
         if (tag == "Sorcerer")
         {
-            StartCoroutine(AbilityCooldown(3, 15f));
-
+            GameObject clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
+            Minion_Logic.wizardClone = clone;
+            // make the clone explode after 5 seconds, dealing 10 damage within a radius
+            // make it disappear
+            StartCoroutine(AbilityCooldown(3, 10f));
         }
         else if (tag == "Barbarian")
         {
-            StartCoroutine(AbilityCooldown(3, 15f));
-
+            StartCoroutine(AbilityCooldown(3, 5f));
         }
-
 
         wildButtonClicked = false;
         buttonCliked = false;
-
     }
 
 
