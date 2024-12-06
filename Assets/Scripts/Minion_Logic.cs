@@ -37,16 +37,13 @@ public class Minion_Logic : MonoBehaviour
     void Update()
     {
         //////////////////////////////////////// THIS CODE IS NOT WORKING
-        if (agent.remainingDistance <= agent.stoppingDistance && !animator.GetBool("Idle"))
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            animator.SetBool("Idle", true);
+            animator.SetBool("isWalking", false);
         }
         else
         {
-            if (animator.GetBool("Idle"))
-                animator.SetBool("Idle", false);
-            if (!animator.GetBool("Walk"))
-                animator.SetBool("Walk", true);
+            animator.SetBool("isWalking", true);
         }
         //////////////////////////////////////
         if (isAggro)
