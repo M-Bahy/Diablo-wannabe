@@ -1518,6 +1518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infernoPrefab: {fileID: 70345215526028572, guid: 8cec66e215abfe64e9b30caff2e37cd3, type: 3}
+  playerMaxHealth: 100
   playerCurrenttHealth: 90
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
@@ -1604,6 +1605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healingPotionPrefab: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
   bottleCountText: {fileID: 347413070}
+  healParticle: {fileID: 8593464584776411535, guid: b21d155ec7ea5a349a0e36106f913148, type: 3}
 --- !u!1 &604517625
 GameObject:
   m_ObjectHideFlags: 0

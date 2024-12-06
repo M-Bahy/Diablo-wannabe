@@ -14,6 +14,8 @@ public class Healing_Script : MonoBehaviour
     int numberOfHealingPotions = 10;
 
     int collectedHealingPotionsLimit = 3; 
+
+    public GameObject healParticle; 
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,8 @@ public class Healing_Script : MonoBehaviour
                 }
                 collectedHealingPotions.RemoveAt(0);
                 bottleCountText.text = "X " + collectedHealingPotions.Count;
-                anim.Play("heal");
+                GameObject healEffect = Instantiate(healParticle, gameObject.transform.position, Quaternion.identity);
+                healEffect.transform.parent = gameObject.transform;
             }
         }
         
