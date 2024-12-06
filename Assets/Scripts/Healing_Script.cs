@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Healing_Script : MonoBehaviour
 {
     public GameObject healingPotionPrefab;
-
+    public TMP_Text bottleCountText;
     List<GameObject> availableHealingPotions = new List<GameObject>();
 
     List<GameObject> collectedHealingPotions = new List<GameObject>();
@@ -58,6 +59,8 @@ public class Healing_Script : MonoBehaviour
                 collectedHealingPotions.Add(availableHealingPotions[0]);
                 availableHealingPotions.RemoveAt(0);
                 Destroy(other.gameObject);
+                int count = collectedHealingPotions.Count;
+                bottleCountText.text = "X " + count;
             }
         }
     }
