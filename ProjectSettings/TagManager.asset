@@ -8,6 +8,8 @@ TagManager:
   - Sorcerer
   - Barbarian
   - Summoned_Minions
+  - Inferno
+  - Fragment
   - jump radius
   - spikes
   layers:
