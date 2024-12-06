@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -26,7 +27,7 @@ public class PlayerMechanics : MonoBehaviour
     int requiredExp = 100;
     int playerMaxHealth = 100;
     public int playerCurrenttHealth = 90;
-    int numberOfHealingPortions = 3;
+    int numberOfHealingPortions = 0;
     int abilityPoints = 0;
     int numberOfFragments = 0;
     private Animator animator;
@@ -42,6 +43,15 @@ public class PlayerMechanics : MonoBehaviour
     public Slider expSlider ; 
 
     public TMP_Text levelText ;
+
+
+    public GameObject leftDoor;
+    public GameObject rightDoor;
+    public GameObject portal;
+    public GameObject telepoertCircle;
+
+
+
     [SerializeField] GameObject wizardClone;
     [SerializeField] Camera _maincamera;
     // Start is called before the first frame update
@@ -102,6 +112,7 @@ public class PlayerMechanics : MonoBehaviour
         
 
         updateHUDUI();
+
 
         // if(playerCurrenttHealth == 0 ){
         //     animator.Play("dead");
@@ -390,8 +401,22 @@ public class PlayerMechanics : MonoBehaviour
     {
         numberOfFragments++;
         Destroy(collision.gameObject);
+        OpenPortal();
+    }
+
+    if (collision.gameObject.tag == "portal")
+    {
+        SceneManager.LoadScene("Level2_scene");
     }
 }
 
-
+    private void OpenPortal()
+    {
+        if(numberOfFragments >= 3){
+            leftDoor.SetActive(false);
+            rightDoor.SetActive(false);
+            portal.SetActive(true);
+            telepoertCircle.SetActive(true);
+        }
+    }
 }
