@@ -304,8 +304,11 @@ public class PlayerMechanics : MonoBehaviour
             playerCurrenttHealth = 0;
            animator.Play("dead");
            // here we should display the end game screen
+           if(!isLevel1){
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
            boss.gameOver = true;
+           }
+           
 
         }else{
             animator.Play("damage");
