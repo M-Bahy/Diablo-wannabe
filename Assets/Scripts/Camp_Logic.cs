@@ -71,7 +71,7 @@ public class Camp_Logic : MonoBehaviour
         {
             // Optimized: Check if all minions and demons are dead
             keyFlag = minionsArray.All(m => m == null || m.GetComponent<Minion_Logic>().isDead) &&
-                      demonsArray.All(d => d == null || d.GetComponent<Minion_Logic>().isDead);
+                      demonsArray.All(d => d == null || d.GetComponent<DemonLogic>().isDead);
 
             if (keyFlag)
             {
@@ -91,13 +91,13 @@ public class Camp_Logic : MonoBehaviour
             if (demonsArray.Count > 0)
             {
                 GameObject selectedDemon = demonsArray
-                    .Where(d => d != null && !d.GetComponent<Minion_Logic>().isDead)
+                    .Where(d => d != null && !d.GetComponent<DemonLogic>().isDead)
                     .OrderBy(_ => Random.value)
                     .FirstOrDefault();
 
                 if (selectedDemon != null)
                 {
-                    Minion_Logic demonLogic = selectedDemon.GetComponent<Minion_Logic>();
+                    DemonLogic demonLogic = selectedDemon.GetComponent<DemonLogic>();
                     demonLogic.player = player;
                     demonLogic?.goAggresive(true);
                     aggroedDemons.Add(selectedDemon);
@@ -129,7 +129,7 @@ public class Camp_Logic : MonoBehaviour
             foreach (GameObject demon in demonsArray)
             {
                 if (demon == null) continue;
-                Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
+                DemonLogic demonLogic = demon.GetComponent<DemonLogic>();
                 demonLogic?.goAggresive(false);
                 aggroedDemons.Remove(demon);
             }
@@ -161,11 +161,11 @@ public class Camp_Logic : MonoBehaviour
             if (aggroedDemons[i] == null)
             {
                 // Find a non-aggroed demon
-                GameObject availableDemon = demonsArray.FirstOrDefault(d => d != null && !aggroedDemons.Contains(d) && !d.GetComponent<Minion_Logic>().isDead);
+                GameObject availableDemon = demonsArray.FirstOrDefault(d => d != null && !aggroedDemons.Contains(d) && !d.GetComponent<DemonLogic>().isDead);
                 if (availableDemon != null)
                 {
                     // Aggro the demon
-                    Minion_Logic demonLogic = availableDemon.GetComponent<Minion_Logic>();
+                    DemonLogic demonLogic = availableDemon.GetComponent<DemonLogic>();
                     demonLogic.player = player;
                     demonLogic?.goAggresive(true);
 

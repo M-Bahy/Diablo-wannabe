@@ -10,7 +10,7 @@ public class DemonLogic : MonoBehaviour
     int demonMaxHealth = 40;
     int demonCurrentHealth = 40;  
     
-    bool isDead = false;
+    public bool isDead = false;
     private bool isAggro = false;
 
     public Slider healthSlider;
