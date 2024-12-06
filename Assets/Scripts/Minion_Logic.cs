@@ -22,6 +22,7 @@ public class Minion_Logic : MonoBehaviour
     public Slider healthSlider;
 
     private bool isInInferno = false;
+    public static GameObject wizardClone;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +58,10 @@ public class Minion_Logic : MonoBehaviour
 
         if (isAggro)
         {
-            agent.SetDestination(player.transform.position);
+            if (wizardClone == null) 
+                agent.SetDestination(player.transform.position);
+            else
+                agent.SetDestination(wizardClone.transform.position);
         }
         else
         {

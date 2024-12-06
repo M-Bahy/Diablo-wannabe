@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -11,12 +12,14 @@ public class PlayerMechanics : MonoBehaviour
 {
     /////////////   
     public static bool isAttacking = false;
+    public static bool barAttacking = false;
     private bool buttonCliked = false;
     private bool defenseButtonClicked = false;
     private string tag;
     private NavMeshAgent agent;
     private bool ultimateButtonClicked = false;
     public GameObject infernoPrefab;
+    private bool wildButtonClicked = false;
     //////////////
 
     int level = 1;
@@ -24,7 +27,7 @@ public class PlayerMechanics : MonoBehaviour
     int requiredExp = 100;
     int playerMaxHealth = 100;
     public int playerCurrenttHealth = 90;
-    int numberOfHealingPortions = 3;
+    int numberOfHealingPortions = 0;
     int abilityPoints = 0;
     int numberOfFragments = 0;
     private Animator animator;
@@ -40,6 +43,17 @@ public class PlayerMechanics : MonoBehaviour
     public Slider expSlider ; 
 
     public TMP_Text levelText ;
+
+
+    public GameObject leftDoor;
+    public GameObject rightDoor;
+    public GameObject portal;
+    public GameObject telepoertCircle;
+
+
+
+    [SerializeField] GameObject wizardClone;
+    [SerializeField] Camera _maincamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +112,7 @@ public class PlayerMechanics : MonoBehaviour
         
 
         updateHUDUI();
+        // OpenPortal();
 
         // if(playerCurrenttHealth == 0 ){
         //     animator.Play("dead");
@@ -136,11 +151,19 @@ public class PlayerMechanics : MonoBehaviour
             buttonCliked = true;
             defenseButtonClicked = true;
         }
-        if (Input.GetKeyDown(KeyCode.E) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        if (Input.GetKeyDown(KeyCode.E) && HUD_Script.abilitiesUnlocked[2] && !HUD_Script.abilitiesCoolDown[2] && !buttonCliked)
         {
             buttonCliked = true;
             ultimateButtonClicked = true;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        {
+            buttonCliked = true;
+            wildButtonClicked = true;
+        }
+
         if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
         {
 
@@ -154,8 +177,18 @@ public class PlayerMechanics : MonoBehaviour
 
         }
 
+        if (wildButtonClicked && Input.GetMouseButtonDown(1))
+        {
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                WildAttack(hit.point);
+            }
+            
 
-   
+        }
+
 
     }
 
@@ -163,7 +196,7 @@ public class PlayerMechanics : MonoBehaviour
 
     void BasicAttack()
     {
-
+        animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
             isAttacking = true;
@@ -172,9 +205,18 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
-            isAttacking = true;
-            animator.Play("Normal_Attack", 0, 0f);
-            StartCoroutine(ResetAfterAttack());
+          
+          //  isAttacking = true;
+            animator.SetBool("Attack", true);
+            barAttacking = true;
+            StartCoroutine(ResetAfterBarbarianAttack());
+
+
+
+            //animator.Play("Normal_Attack", 0, 0f);
+            //StartCoroutine(ResetAfterAttack());
+            //animator.SetBool("Attack", false);
+
         }
     }
 
@@ -221,7 +263,7 @@ public class PlayerMechanics : MonoBehaviour
                 if (!isLevel1)
                     spawnPosition.y += 5.0f;
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
-                StartCoroutine(AbilityCooldown(3, 15f));
+                StartCoroutine(AbilityCooldown(2, 15f));
                 Destroy(infernoInstance, 5f);
 
             }
@@ -230,6 +272,27 @@ public class PlayerMechanics : MonoBehaviour
         buttonCliked = false;
     }
 
+
+    void WildAttack(Vector3 pos)
+    {
+        if (tag == "Sorcerer")
+        {
+            GameObject clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
+            Minion_Logic.wizardClone = clone;
+            // make the clone explode after 5 seconds, dealing 10 damage within a radius
+            // make it disappear
+            StartCoroutine(AbilityCooldown(3, 10f));
+        }
+        else if (tag == "Barbarian")
+        {
+            StartCoroutine(AbilityCooldown(3, 5f));
+        }
+
+        wildButtonClicked = false;
+        buttonCliked = false;
+    }
+
+
     IEnumerator ResetAfterAttack()
     {
 
@@ -237,6 +300,13 @@ public class PlayerMechanics : MonoBehaviour
         isAttacking = false;
 
     }
+    IEnumerator ResetAfterBarbarianAttack()
+    {
+        yield return new WaitForSeconds(1.9f); // Wait for the animation duration
+        animator.SetBool("Attack", false); // Reset the attack animation state
+        barAttacking = false;
+    }
+
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
         // Wait for 2 seconds before teleporting
@@ -331,8 +401,22 @@ public class PlayerMechanics : MonoBehaviour
     {
         numberOfFragments++;
         Destroy(collision.gameObject);
+        OpenPortal();
+    }
+
+    if (collision.gameObject.tag == "portal")
+    {
+        SceneManager.LoadScene("Level2_scene");
     }
 }
 
-
+    private void OpenPortal()
+    {
+        if(numberOfFragments >= 3){
+            leftDoor.SetActive(false);
+            rightDoor.SetActive(false);
+            portal.SetActive(true);
+            telepoertCircle.SetActive(true);
+        }
+    }
 }
