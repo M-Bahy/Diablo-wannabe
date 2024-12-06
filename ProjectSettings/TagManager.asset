@@ -9,6 +9,7 @@ TagManager:
   - Barbarian
   - Summoned_Minions
   - Inferno
+  - Fragment
   layers:
   - Default
   - TransparentFX
