@@ -50,10 +50,10 @@ public class BossMech : MonoBehaviour
         
     }
 
-    public void damageBoss(){
+    public void damageBoss(int damageAmount){
        
         if(phaseOne){
-            phaseOneHealth -=11;
+            phaseOneHealth -= damageAmount;
              animator.Play("GetDamage");
         }
         else{
@@ -62,7 +62,7 @@ public class BossMech : MonoBehaviour
                 //  Debug.Log("Ana gwa el else");
             if(shieldHealth >0 ){
               //  Debug.Log("Ana damage shield");
-                shieldHealth -= 11;
+                shieldHealth -= damageAmount;
                 
                 
                 if(shieldHealth <= 0){
@@ -75,7 +75,7 @@ public class BossMech : MonoBehaviour
                 }
             }
             else{
-                phaseTwoHealth -=11;
+                phaseTwoHealth -= damageAmount;
                 animator.Play("GetDamage2");
             }
             }
@@ -142,7 +142,7 @@ public class BossMech : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.P)){
-            damageBoss();
+            damageBoss(11);
         }
 
         if(shieldDestroyed ){
