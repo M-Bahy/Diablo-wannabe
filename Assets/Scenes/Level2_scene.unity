@@ -4143,6 +4143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbb0b0383a6b4a8596b293d26688826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phaseOne: 1
   phaseOneHealth: 50
   shieldHealth: 50
   phaseTwoHealth: 50
@@ -4151,6 +4152,8 @@ MonoBehaviour:
   shieldhealthText: {fileID: 669960230}
   shieldHealthSlider: {fileID: 771696379}
   bosshealthSlider: {fileID: 1405675838}
+  gameOver: 0
+  auraActivated: 0
 --- !u!1 &2092990868
 GameObject:
   m_ObjectHideFlags: 0

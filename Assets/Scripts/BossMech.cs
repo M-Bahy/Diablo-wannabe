@@ -8,7 +8,7 @@ using System;
 
 public class BossMech : MonoBehaviour
 {
-    bool phaseOne = true;
+    public bool phaseOne = true;
 
 
     private Animator animator;
@@ -32,6 +32,8 @@ public class BossMech : MonoBehaviour
     float ogGenerationDelay = 0;
     bool shieldDestroyed = false;
     public bool gameOver = false;
+
+    public bool auraActivated = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +57,9 @@ public class BossMech : MonoBehaviour
              animator.Play("GetDamage");
         }
         else{
-          //  Debug.Log("Ana gwa el else");
+
+            if (!auraActivated){
+                //  Debug.Log("Ana gwa el else");
             if(shieldHealth >0 ){
               //  Debug.Log("Ana damage shield");
                 shieldHealth -= 11;
@@ -74,6 +78,12 @@ public class BossMech : MonoBehaviour
                 phaseTwoHealth -=11;
                 animator.Play("GetDamage2");
             }
+            }
+            else{
+                // the player here should take damage equals to the damage amount + 15
+                auraActivated = false;
+            }
+          
 
         }
         updateHUDUI();

@@ -10,11 +10,15 @@ public class Boss_phase1_script : MonoBehaviour
     public GameObject minions;
     Animator anim;
     bool initialSummon = true;
+    bool initialCast = true;
     float summonDelay = 10f;
     float ogSummonDelay = 0;
-
+    float castDelay = 10f;
+    float ogCastDelay = 0;
     float diveBoomDelay = 5f;
     float ogDiveBoomDelay = 0;
+    float spikesDelay = 5f;
+    float ogSpikesBoomDelay = 0;
     public NavMeshSurface surface;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +26,8 @@ public class Boss_phase1_script : MonoBehaviour
         anim = GetComponent<Animator>();
         ogSummonDelay = summonDelay;
         ogDiveBoomDelay = diveBoomDelay;
-
+        ogCastDelay = castDelay;
+        ogSpikesBoomDelay = spikesDelay;
     }
 
     // Update is called once per frame
@@ -33,10 +38,12 @@ public class Boss_phase1_script : MonoBehaviour
         {
             return;
         }
-
+        transform.LookAt(player.transform);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         if (fightStarted){
-
-            if (canISummon())
+            
+            if(bm.phaseOne){
+                if (canISummon())
             {
                 if (initialSummon)
                 {
@@ -54,8 +61,6 @@ public class Boss_phase1_script : MonoBehaviour
                 }
                 
             }
-           // else
-          //  {
                 diveBoomDelay -= Time.deltaTime;
                 if (diveBoomDelay <= 0)
                 {
@@ -63,10 +68,41 @@ public class Boss_phase1_script : MonoBehaviour
                     anim.SetTrigger("dive_boomb");
                     diveBoomDelay = ogDiveBoomDelay;
                 }
-          //  }
+            }
+            else{
+                // phase 2
+                if (!bm.auraActivated){
+                    if (initialCast)
+                    {
+                        initialCast = false;
+                        castAura();
+                        bm.auraActivated = true;
+                    }
+                    else
+                    {
+                        castDelay -= Time.deltaTime;
+                        if (castDelay <= 0)
+                        {
+                            castAura();
+                            bm.auraActivated = true;
+                            castDelay = ogCastDelay;
+                        }
+                    }
+                }
+                if (!bm.auraActivated){
+                    spikesDelay -= Time.deltaTime;
+                    if (spikesDelay <= 0)
+                    {
+                        bloodSpikes();
+                        spikesDelay = ogSpikesBoomDelay;
+                    }
+                }
 
+            
         }
 
+    }
+    
     }
 
     bool canISummon()
@@ -117,5 +153,19 @@ public class Boss_phase1_script : MonoBehaviour
             s_m.player = player;
            // surface.BuildNavMesh();
         }
+    }
+
+    public void castAura()
+    {
+        // Cast_Spell
+        anim.ResetTrigger("Cast_Spell");
+        anim.SetTrigger("Cast_Spell");
+    }
+
+    public void bloodSpikes()
+    {
+        // Swinging_Hands
+        anim.ResetTrigger("Swinging_Hands");
+        anim.SetTrigger("Swinging_Hands");
     }
 }
