@@ -20,7 +20,7 @@ public class BossMech : MonoBehaviour
 
 
     public GameObject shield ;
-
+    public GameObject aura;
     public TMP_Text bosshealthText ;
     public TMP_Text shieldhealthText ;
 
@@ -39,6 +39,7 @@ public class BossMech : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         shield.SetActive(false);
+        aura.SetActive(false);
         shieldHealthSlider.gameObject.SetActive(false);
 
         bosshealthSlider.maxValue = phaseOneHealth;
@@ -51,7 +52,9 @@ public class BossMech : MonoBehaviour
     }
 
     public void damageBoss(int damageAmount){
-       Debug.Log("I am damaging the boss with " + damageAmount);
+        if(!gameObject.GetComponent<Boss_phase1_script>().isAllMinionsDead()){
+            return;
+        }
         if(phaseOne){
             phaseOneHealth -= damageAmount;
              animator.Play("GetDamage");
@@ -81,7 +84,7 @@ public class BossMech : MonoBehaviour
             }
             else{
                 // the player here should take damage equals to the damage amount + 15
-                auraActivated = false;
+                deactivateAura();
                 
                 Boss_phase1_script bs = gameObject.GetComponent<Boss_phase1_script>();
                 bs.player.GetComponent<PlayerMechanics>().takeDamage(damageAmount + 15);
@@ -179,5 +182,14 @@ public class BossMech : MonoBehaviour
         
     }
 
+    // activate aura
+    public void activateAura(){
+        auraActivated = true;
+        aura.SetActive(true);
+    }
 
+    public void deactivateAura(){
+        auraActivated = false;
+        aura.SetActive(false);
+    }
 }
