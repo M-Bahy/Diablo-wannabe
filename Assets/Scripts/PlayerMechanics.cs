@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class PlayerMechanics : MonoBehaviour
 {
     /////////////   
-    private bool isAttacking = false;
+    public static bool isAttacking = false;
     private bool buttonCliked = false;
     private bool defenseButtonClicked = false;
     private string tag;
@@ -165,6 +165,12 @@ public class PlayerMechanics : MonoBehaviour
         {
             isAttacking = true;
             animator.Play("attack_short_001", 0, 0f);
+            StartCoroutine(ResetAfterAttack());
+        }
+        else if(tag == "Barbarian")
+        {
+            isAttacking = true;
+            animator.Play("Normal_Attack", 0, 0f);
             StartCoroutine(ResetAfterAttack());
         }
     }
