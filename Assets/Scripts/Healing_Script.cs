@@ -10,7 +10,7 @@ public class Healing_Script : MonoBehaviour
     List<GameObject> availableHealingPotions = new List<GameObject>();
 
     List<GameObject> collectedHealingPotions = new List<GameObject>();
-
+    Animator anim;
     int numberOfHealingPotions = 10;
 
     int collectedHealingPotionsLimit = 3; 
@@ -18,11 +18,32 @@ public class Healing_Script : MonoBehaviour
     void Start()
     {
      spawnHealingPotions();   
+     anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if(collectedHealingPotions.Count > 0)
+            {
+                PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
+                if (player.playerCurrenttHealth == player.playerMaxHealth)
+                {
+                    return;
+                }
+                int healingAmount = player.playerMaxHealth /2;
+                player.playerCurrenttHealth += healingAmount;
+                if (player.playerCurrenttHealth > player.playerMaxHealth)
+                {
+                    player.playerCurrenttHealth = player.playerMaxHealth;
+                }
+                collectedHealingPotions.RemoveAt(0);
+                bottleCountText.text = "X " + collectedHealingPotions.Count;
+                anim.Play("heal");
+            }
+        }
         
     }
 
