@@ -16,29 +16,11 @@ public class take_damage_script : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other) {
-        //Debug.Log(other.gameObject.tag);
         if(other.gameObject.tag == "jump radius"){
-            Debug.Log("hit");
-            // get the player mechanics script
-            // call the take damage function
             PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
             player.playerCurrenttHealth -= 10;
-
-
         }
     }
 
-    // private void OnCollisionEnter(Collision other) {
-    //      Debug.Log(other.gameObject.tag);
-    //      // jump radius
-    //     if(other.gameObject.tag == "jump radius"){
-    //         Debug.Log("hit");
-    //         // get the player mechanics script
-    //         // call the take damage function
-    //         PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
-    //         player.playerCurrenttHealth -= 10;
-
-
-    //     }
-    // }
+   
 }
