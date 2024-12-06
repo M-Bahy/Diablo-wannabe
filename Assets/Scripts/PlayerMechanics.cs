@@ -160,14 +160,18 @@ public class PlayerMechanics : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        if (tag == "Sorcerer" && Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
         {
             buttonCliked = true;
             wildButtonClicked = true;
         }
-        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1])
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && barAttacking == false)
         {
             DefensiveAttack();
+        }
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && barAttacking == false)
+        {
+            WildAttack( new Vector3());
         }
         if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
         {
@@ -297,14 +301,19 @@ public class PlayerMechanics : MonoBehaviour
             // make the clone explode after 5 seconds, dealing 10 damage within a radius
             // make it disappear
             StartCoroutine(AbilityCooldown(3, 10f));
+            wildButtonClicked = false;
+            buttonCliked = false;
         }
         else if (tag == "Barbarian")
         {
+            animator.SetBool("Special_Attack", true);
+            barAttacking = true;
             StartCoroutine(AbilityCooldown(3, 5f));
+            StartCoroutine(ResetAfterBarbarianSpecialAttack());
+
         }
 
-        wildButtonClicked = false;
-        buttonCliked = false;
+     
     }
 
 
@@ -335,6 +344,12 @@ public class PlayerMechanics : MonoBehaviour
         barAttacking = false;
     }
 
+    IEnumerator ResetAfterBarbarianSpecialAttack()
+    {
+        yield return new WaitForSeconds(1.9f); // Wait for the animation duration
+        animator.SetBool("Special_Attack", false); // Reset the attack animation state
+        barAttacking = false;
+    } 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
         // Wait for 2 seconds before teleporting

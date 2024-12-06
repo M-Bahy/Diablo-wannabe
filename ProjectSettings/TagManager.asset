@@ -14,6 +14,7 @@ TagManager:
   - spikes
   - portal
   - potion
+  - Axe
   layers:
   - Default
   - TransparentFX
