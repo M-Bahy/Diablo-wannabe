@@ -60,13 +60,16 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-        if(boss.gameOver){
-            agent.isStopped = true;
-            healthSlider.value = 0;
-            healthText.text = "0";
+        if (!isLevel1)
+        {
+            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+            if(boss.gameOver){
+                agent.isStopped = true;
+                healthSlider.value = 0;
+                healthText.text = "0";
             
-            return;
+                return;
+            }
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
