@@ -119,6 +119,10 @@ public class Camp_Logic : MonoBehaviour
                 aggroedMinions.Add(minion);
             }
         }
+        else if (other.CompareTag("Fireball") && aggroedDemons.Count == 0 && aggroedMinions.Count == 0)
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)

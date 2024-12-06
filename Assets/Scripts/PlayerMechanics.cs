@@ -54,12 +54,14 @@ public class PlayerMechanics : MonoBehaviour
 
     [SerializeField] GameObject wizardClone;
     [SerializeField] Camera _maincamera;
+    [SerializeField] GameObject Fireball;
     // Start is called before the first frame update
     void Start()
     {
         ///////
         animator = GetComponent<Animator>();
         
+
         agent = GetComponent<NavMeshAgent>();
         tag = gameObject.tag;
         ///////
@@ -143,7 +145,13 @@ public class PlayerMechanics : MonoBehaviour
 
         if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
         {
-            BasicAttack();
+            //BasicAttack();
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                BasicAttack(hit.point);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
@@ -194,14 +202,17 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-    void BasicAttack()
+    void BasicAttack(Vector3 pos)
     {
-        animator.ResetTrigger("Attack");
+        //animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
-            isAttacking = true;
-            animator.Play("attack_short_001", 0, 0f);
-            StartCoroutine(ResetAfterAttack());
+            //isAttacking = true;
+            //animator.Play("attack_short_001", 0, 0f);
+            animator.SetBool("isAttacking", true);
+
+            StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
+            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
         }
         else if(tag == "Barbarian")
         {
@@ -219,6 +230,38 @@ public class PlayerMechanics : MonoBehaviour
 
         }
     }
+
+    private IEnumerator SpawnFireballWithDelay(float delay, Vector3 pos)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Check if there's an enemy at the specified position
+        Collider[] hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
+        bool enemyFound = false;
+        foreach (var collider in hitColliders)
+        {
+            if (collider.CompareTag("Minion"))
+            {
+                enemyFound = true;
+                break;
+            }
+        }
+
+        if (enemyFound)
+        {
+            // Instantiate Fireball and direct it towards the target
+            //GameObject fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x, 1, transform.position.z), Quaternion.identity);
+            GameObject fireballInstance = Instantiate(Fireball, transform.position + transform.forward * 1f, Quaternion.identity);
+            fireballInstance.transform.LookAt(pos); // Ensure the fireball faces the target
+            FbScript fireballLogic = fireballInstance.GetComponent<FbScript>();
+            if (fireballLogic != null)
+            {
+                fireballLogic.SetTarget(pos);
+            }
+        }
+        animator.SetBool("isAttacking", false);
+    }
+
 
     void DefensiveAttack()
     {
@@ -279,8 +322,6 @@ public class PlayerMechanics : MonoBehaviour
         {
             GameObject clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
             Minion_Logic.wizardClone = clone;
-            // make the clone explode after 5 seconds, dealing 10 damage within a radius
-            // make it disappear
             StartCoroutine(AbilityCooldown(3, 10f));
         }
         else if (tag == "Barbarian")

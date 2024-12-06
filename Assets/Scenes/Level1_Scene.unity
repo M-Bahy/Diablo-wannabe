@@ -3420,6 +3420,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 728154093}
     - target: {fileID: 8052798872610216484, guid: d76bed9a77ee02c4d91c8c7a5b5b3401, type: 3}
+      propertyPath: Fireball
+      value: 
+      objectReference: {fileID: 1287598617871461836, guid: 2400e81be1649b9449fa5078bad95ffc, type: 3}
+    - target: {fileID: 8052798872610216484, guid: d76bed9a77ee02c4d91c8c7a5b5b3401, type: 3}
       propertyPath: leftDoor
       value: 
       objectReference: {fileID: 746955544}
