@@ -51,7 +51,7 @@ public class BossMech : MonoBehaviour
     }
 
     public void damageBoss(int damageAmount){
-       
+       Debug.Log("I am damaging the boss with " + damageAmount);
         if(phaseOne){
             phaseOneHealth -= damageAmount;
              animator.Play("GetDamage");
@@ -82,6 +82,9 @@ public class BossMech : MonoBehaviour
             else{
                 // the player here should take damage equals to the damage amount + 15
                 auraActivated = false;
+                
+                Boss_phase1_script bs = gameObject.GetComponent<Boss_phase1_script>();
+                bs.player.GetComponent<PlayerMechanics>().takeDamage(damageAmount + 15);
             }
           
 
