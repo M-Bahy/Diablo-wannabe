@@ -26,9 +26,10 @@ public class PlayerMechanics : MonoBehaviour
     public int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 3;
     int abilityPoints = 0;
+    int numberOfFragments = 0;
     private Animator animator;
 
-
+    public static bool isLevel1 = true;
 
 
 
@@ -180,10 +181,12 @@ public class PlayerMechanics : MonoBehaviour
             {
                 // add one two seconds delay
                 //StartCoroutine(TeleportAfterDelay(hit.point));
-                agent.SetDestination(hit.point);
+                agent.enabled = false;
                 transform.position = hit.point;
+                agent.enabled = true;
+                agent.SetDestination(hit.point);
 
-             
+
                 StartCoroutine(AbilityCooldown(1, 10f)); // Cooldown for 10 seconds
 
             }
@@ -206,7 +209,8 @@ public class PlayerMechanics : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Vector3 spawnPosition = hit.point;
-                spawnPosition.y += 5.0f;
+                if (!isLevel1)
+                    spawnPosition.y += 5.0f;
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(3, 15f));
                 Destroy(infernoInstance, 5f);
@@ -292,18 +296,34 @@ public class PlayerMechanics : MonoBehaviour
         // this is for the ui slider
         healthSlider.maxValue = playerMaxHealth;
     }
-
+    
+    
     public void takeDamage(int damage){
         playerCurrenttHealth -= damage;
         if(playerCurrenttHealth <= 0){
             playerCurrenttHealth = 0;
            animator.Play("dead");
            // here we should display the end game screen
+           if(!isLevel1){
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
            boss.gameOver = true;
+           }
+           
 
         }else{
             animator.Play("damage");
         }
     }
+    
+    
+    private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.tag == "Fragment")
+    {
+        numberOfFragments++;
+        Destroy(collision.gameObject);
+    }
+}
+
+
 }

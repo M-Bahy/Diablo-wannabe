@@ -26,8 +26,11 @@ public class Boss_phase1_script : MonoBehaviour
         anim = GetComponent<Animator>();
         ogSummonDelay = summonDelay;
         ogDiveBoomDelay = diveBoomDelay;
+       // PlayerMechanics playerMechanics = player.GetComponent<PlayerMechanics>();
+        PlayerMechanics.isLevel1 = false;
         ogCastDelay = castDelay;
         ogSpikesBoomDelay = spikesDelay;
+
     }
 
     // Update is called once per frame
