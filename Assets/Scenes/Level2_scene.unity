@@ -1178,6 +1178,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       insertIndex: -1
       addedObject: {fileID: 596993867}
+    - targetCorrespondingSourceObject: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 596993869}
   m_SourcePrefab: {fileID: 100100000, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
 --- !u!1 &497832059
 GameObject:
@@ -1445,6 +1448,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.8066034, z: 1}
   m_Center: {x: 0, y: 1.4033017, z: 0}
+--- !u!114 &596993869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596993857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63852afa6f56763d7aa29776fc78f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healingPotionPrefab: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
 --- !u!1 &604517625
 GameObject:
   m_ObjectHideFlags: 0

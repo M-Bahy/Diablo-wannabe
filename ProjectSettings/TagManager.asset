@@ -12,6 +12,7 @@ TagManager:
   - Fragment
   - jump radius
   - spikes
+  - potion
   layers:
   - Default
   - TransparentFX
