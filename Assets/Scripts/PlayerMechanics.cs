@@ -112,7 +112,7 @@ public class PlayerMechanics : MonoBehaviour
         
 
         updateHUDUI();
-
+        // OpenPortal();
 
         // if(playerCurrenttHealth == 0 ){
         //     animator.Play("dead");
