@@ -23,10 +23,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-        if(boss.gameOver){
-            agent.isStopped = true;
-            return;
+        if (!PlayerMechanics.isLevel1)
+        {
+            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
+            if(boss.gameOver){
+                agent.isStopped = true;
+                return;
+            }
         }
         // record the position where the player clicked to move the player
         // if(Input.GetMouseButton(0)){
