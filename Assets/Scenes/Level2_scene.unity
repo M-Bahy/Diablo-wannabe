@@ -4553,7 +4553,7 @@ MonoBehaviour:
   isMainMenu: 0
   musicSource: {fileID: 404746294}
   SFXSource: {fileID: 18956505}
-  background: {fileID: 8300000, guid: f6e0fe903fc766d4b8ad7a6bdc4fb580, type: 3}
+  menus: {fileID: 0}
   menu: {fileID: 0}
   boostTile: {fileID: 0}
   stickyTile: {fileID: 0}

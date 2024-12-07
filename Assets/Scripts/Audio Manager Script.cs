@@ -8,24 +8,36 @@ public class AudioManagerScript : MonoBehaviour
     [Header("------------ Are we in the main menu ------------")]
     [SerializeField] bool isMainMenu;
 
+    [Header("------------ Volume Sliders ------------]")]
+    public Slider musicSlider;
+    public Slider SFXSlider;
+    
     [Header("------------ Audio Source ------------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
-    [Header("------------ Audio Clips ------------]")]
-    public AudioClip background ;
-    public AudioClip menu ;
+    [Header("------------ Music Clips ------------]")]
+    public AudioClip Menus ;
+    public AudioClip Level1 ;
+    public AudioClip Level2 ;
+    [Header("------------ SFX Clips ------------]")]
+    public AudioClip Shield_Inferno_Clone_Activated;
+    public AudioClip Charging_Dashing;
+    public AudioClip Arrow_Fired;
+    public AudioClip Explosive_Detonates;
+    public AudioClip Fireball_Shot;
+    public AudioClip Item_Picked_Up;
+    public AudioClip Wanderer_Damaged;
+    public AudioClip Wanderer_Healing_Potion;
+    public AudioClip Wanderer_Dies;
+    public AudioClip Enemy_Dies;
+    public AudioClip Boss_Summons_Minions;
+    public AudioClip Boss_Stomps_Down;
+    public AudioClip Boss_Casts_Spell;
+    public AudioClip Boss_Swings_Hands;
+    public AudioClip Boss_Getting_Damaged;
+    public AudioClip Boss_Dies;
 
-
-    public AudioClip boostTile ;
-    public AudioClip stickyTile ;
-    public AudioClip suppliesTile ;
-    public AudioClip burningTile ;
-    public AudioClip obstacleTile;
-    public AudioClip emptyTile;
-    public AudioClip invalidAction;
-   public Slider musicSlider;
-    public Slider SFXSlider;
 
     public static float musicVolume = 0.0f;
     public static float SFXVolume = 0.0f;
