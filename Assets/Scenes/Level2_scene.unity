@@ -4564,7 +4564,7 @@ MonoBehaviour:
   Clone_Activated: {fileID: 0}
   Charging: {fileID: 0}
   Explosive_Detonates: {fileID: 0}
-  Fireball_Shot: {fileID: 0}
+  Fireball_Shot: {fileID: 8300000, guid: 9f2d2e97a1fc1ac0fad263bf9aec3de6, type: 3}
   Item_Picked_Up: {fileID: 8300000, guid: 7b7785d50bf3f5ec1b1e3ad334f47b3d, type: 3}
   Wanderer_Damaged: {fileID: 8300000, guid: 07ba9e1afa5f09a89b7e63a9b536a0ce, type: 3}
   Wanderer_Healing_Potion: {fileID: 8300000, guid: 3d7202dc7f767f8d08c6082c912edcce, type: 3}
