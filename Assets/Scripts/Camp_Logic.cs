@@ -129,7 +129,7 @@ public class Camp_Logic : MonoBehaviour
                 foreach (GameObject demon in aggroedDemons)
                 {
                     if (demon == null) continue;
-                    Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
+                    DemonLogic demonLogic = demon.GetComponent<DemonLogic>();
                     demonLogic.player = player;
                     demonLogic?.goAggresive(true);
                 }
