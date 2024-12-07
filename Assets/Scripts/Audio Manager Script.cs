@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManagerScript : MonoBehaviour
 {
@@ -21,9 +22,11 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip emptyTile;
     public AudioClip invalidAction;
 
+    public Slider musicSlider;
 
     private void Start() {
         PlayBackground(background);
+        musicSlider.value = 1.0f;
     }
 
     public void PlaySFX (AudioClip clip)
@@ -48,17 +51,19 @@ public class AudioManagerScript : MonoBehaviour
     }
 
     private void Update() {
+       // Debug.Log(musicSlider.value);
         // when the user presses + or - on the keyboard, the volume of the music will increase or decrease
-        if (Input.GetKeyDown(KeyCode.Plus))
-        {
-            musicSource.volume = Mathf.Clamp(musicSource.volume + 0.1f, 0.0f, 1.0f);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            float volume = Mathf.Clamp(musicSource.volume - 0.1f, 0.0f, 1.0f);
-            SetMusicVolume(volume);
-        }
-        Debug.Log(musicSource.volume);
+        // if (Input.GetKeyDown(KeyCode.Plus))
+        // {
+        //     musicSource.volume = Mathf.Clamp(musicSource.volume + 0.1f, 0.0f, 1.0f);
+        // }
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     float volume = Mathf.Clamp(musicSource.volume - 0.1f, 0.0f, 1.0f);
+        //     SetMusicVolume(volume);
+        // }
+        SetMusicVolume(musicSlider.value);
+      //  Debug.Log(musicSource.volume);
     }
 
 }
