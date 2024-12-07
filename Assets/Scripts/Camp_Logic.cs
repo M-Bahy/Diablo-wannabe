@@ -72,7 +72,7 @@ public class Camp_Logic : MonoBehaviour
         {
             // Optimized: Check if all minions and demons are dead
             keyFlag = minionsArray.All(m => m == null || m.GetComponent<Minion_Logic>().isDead) &&
-                      demonsArray.All(d => d == null || d.GetComponent<Minion_Logic>().isDead);
+                      demonsArray.All(d => d == null || d.GetComponent<DemonLogic>().isDead);
 
             if (keyFlag)
             {
@@ -94,6 +94,18 @@ public class Camp_Logic : MonoBehaviour
             // check if the player is within the camp, if yes then aggro the enemies in the aggroed to the clone, if no then deaggro them
             if (player.transform.position.x >= minX && player.transform.position.x <= maxX && player.transform.position.z >= minZ && player.transform.position.z <= maxZ)
             {
+                GameObject selectedDemon = demonsArray
+                    .Where(d => d != null && !d.GetComponent<DemonLogic>().isDead)
+                    .OrderBy(_ => Random.value)
+                    .FirstOrDefault();
+
+                if (selectedDemon != null)
+                {
+                    DemonLogic demonLogic = selectedDemon.GetComponent<DemonLogic>();
+                    demonLogic.player = player;
+                    demonLogic?.goAggresive(true);
+                    aggroedDemons.Add(selectedDemon);
+                }
 
             }
             else
@@ -154,11 +166,11 @@ public class Camp_Logic : MonoBehaviour
             if (aggroedDemons[i] == null)
             {
                 // Find a non-aggroed demon
-                GameObject availableDemon = demonsArray.FirstOrDefault(d => d != null && !aggroedDemons.Contains(d) && !d.GetComponent<Minion_Logic>().isDead);
+                GameObject availableDemon = demonsArray.FirstOrDefault(d => d != null && !aggroedDemons.Contains(d) && !d.GetComponent<DemonLogic>().isDead);
                 if (availableDemon != null)
                 {
                     // Aggro the demon
-                    Minion_Logic demonLogic = availableDemon.GetComponent<Minion_Logic>();
+                    DemonLogic demonLogic = availableDemon.GetComponent<DemonLogic>();
                     demonLogic.player = player;
                     demonLogic?.goAggresive(true);
 

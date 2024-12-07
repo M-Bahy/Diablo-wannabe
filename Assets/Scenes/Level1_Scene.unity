@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
-  demon: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
+  demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
   player: {fileID: 7693997212503393795}
 --- !u!65 &756866
