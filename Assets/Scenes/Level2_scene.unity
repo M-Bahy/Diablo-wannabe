@@ -4568,12 +4568,12 @@ MonoBehaviour:
   Wanderer_Healing_Potion: {fileID: 0}
   Wanderer_Dies: {fileID: 0}
   Enemy_Dies: {fileID: 0}
-  Boss_Summons_Minions: {fileID: 0}
-  Boss_Stomps_Down: {fileID: 0}
-  Boss_Casts_Spell: {fileID: 0}
-  Boss_Swings_Hands: {fileID: 0}
-  Boss_Getting_Damaged: {fileID: 0}
-  Boss_Dies: {fileID: 0}
+  Boss_Summons_Minions: {fileID: 8300000, guid: de76ee432ed5a1e43be5f5eed06b52a6, type: 3}
+  Boss_Stomps_Down: {fileID: 8300000, guid: 94a2de425fb185232bec5f12223d75d8, type: 3}
+  Boss_Casts_Spell: {fileID: 8300000, guid: 4cd0ddd1df107514c97be4d517028a94, type: 3}
+  Boss_Swings_Hands: {fileID: 8300000, guid: f4599d87167bc164495fa5caced6fd7a, type: 3}
+  Boss_Getting_Damaged: {fileID: 8300000, guid: 2820b171b1b5104abb0ec0bde043cbe7, type: 3}
+  Boss_Dies: {fileID: 8300000, guid: f6e0fe903fc766d4b8ad7a6bdc4fb580, type: 3}
 --- !u!4 &1896187819
 Transform:
   m_ObjectHideFlags: 0
