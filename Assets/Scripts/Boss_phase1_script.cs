@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Boss_phase1_script : MonoBehaviour
@@ -20,8 +21,14 @@ public class Boss_phase1_script : MonoBehaviour
     float spikesDelay = 5f;
     float ogSpikesBoomDelay = 0;
     public NavMeshSurface surface;
+    GameObject [] minions = new GameObject[3];
 
-   GameObject [] minions = new GameObject[3];
+    AudioManagerScript audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +39,7 @@ public class Boss_phase1_script : MonoBehaviour
         PlayerMechanics.isLevel1 = false;
         ogCastDelay = castDelay;
         ogSpikesBoomDelay = spikesDelay;
+        audioManager.PlayBackground(audioManager.Level2);
 
     }
 
@@ -71,17 +79,18 @@ public class Boss_phase1_script : MonoBehaviour
                 {
                     anim.ResetTrigger("dive_boomb");
                     anim.SetTrigger("dive_boomb");
+                    audioManager.PlaySFX(audioManager.Boss_Stomps_Down);
                     diveBoomDelay = ogDiveBoomDelay;
                 }
             }
             else{
                 // phase 2
                 if (!bm.auraActivated){
-                    if (initialCast)
+                    if (false)
                     {
-                        initialCast = false;
-                        castAura();
-                        bm.activateAura();
+                        // initialCast = false;
+                        // castAura();
+                        // bm.activateAura();
                     }
                     else
                     {
@@ -124,6 +133,7 @@ public class Boss_phase1_script : MonoBehaviour
 
     public void summon()
     {
+        audioManager.PlaySFX(audioManager.Boss_Summons_Minions);
         // anim.Play("Summoning");
         anim.ResetTrigger("summon");
         anim.SetTrigger("summon");
@@ -172,6 +182,7 @@ public class Boss_phase1_script : MonoBehaviour
 
     public void castAura()
     {
+        audioManager.PlaySFX(audioManager.Boss_Casts_Spell);
         // Cast_Spell
         anim.ResetTrigger("Cast_Spell");
         anim.SetTrigger("Cast_Spell");
@@ -179,6 +190,7 @@ public class Boss_phase1_script : MonoBehaviour
 
     public void bloodSpikes()
     {
+        audioManager.PlaySFX(audioManager.Boss_Swings_Hands);
         // Swinging_Hands
         anim.ResetTrigger("Swinging_Hands");
         anim.SetTrigger("Swinging_Hands");

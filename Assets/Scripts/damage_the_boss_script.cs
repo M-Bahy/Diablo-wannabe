@@ -20,11 +20,16 @@ public class damage_the_boss_script : MonoBehaviour
 
      private void OnTriggerEnter(Collider other)
     {
+      //  Debug.Log("Triggered");
         if (other.CompareTag("Inferno") && !isInInferno)
         {
             // damage by  10
             gameObject.GetComponent<BossMech>().damageBoss(10);
             StartCoroutine(InfernoDamageOverTime(2, 1f, other.gameObject)); // Periodic damage
+        }
+        if (other.CompareTag("Axe"))
+        {
+            gameObject.GetComponent<BossMech>().damageBoss(5);
         }
     }
 

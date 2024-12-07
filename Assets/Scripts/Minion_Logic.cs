@@ -92,7 +92,7 @@ public class Minion_Logic : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         animator.SetBool("Hit", false);
         animator.SetBool("Death", true);
