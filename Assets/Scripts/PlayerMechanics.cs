@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class PlayerMechanics : MonoBehaviour
@@ -20,6 +21,8 @@ public class PlayerMechanics : MonoBehaviour
     private bool ultimateButtonClicked = false;
     public GameObject infernoPrefab;
     private bool wildButtonClicked = false;
+    private GameObject activeShield;
+    public GameObject shieldPrefab;
     //////////////
 
     int level = 1;
@@ -31,7 +34,7 @@ public class PlayerMechanics : MonoBehaviour
     int abilityPoints = 0;
     int numberOfFragments = 0;
     private Animator animator;
-
+    private Collider collider;
     public static bool isLevel1 = true;
 
 
@@ -60,8 +63,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         ///////
         animator = GetComponent<Animator>();
-        
-
+        collider = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         tag = gameObject.tag;
         ///////
@@ -76,6 +78,24 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (animator.GetBool("isSprint"))
+        {
+            collider.isTrigger = true;
+        }
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) < 4f && animator.GetBool("isSprint"))
+            
+        {   
+            collider.isTrigger = false;
+            //Vector3 newPosition = transform.position;
+            // agent.SetDestination(newPosition);
+            animator.SetBool("isSprint", false);
+            animator.SetBool("isWalking", true);
+        }
+       if(transform.position.x >= 27 && transform.position.x <= 50 && transform.position.z >= 22 && transform.position.z <= 27)
+        {
+            agent.SetDestination(agent.transform.position);
+       }
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -145,7 +165,6 @@ public class PlayerMechanics : MonoBehaviour
 
         if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
         {
-            //BasicAttack();
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -154,7 +173,7 @@ public class PlayerMechanics : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
+        if (tag == "Sorcerer" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
         {
             buttonCliked = true;
             defenseButtonClicked = true;
@@ -166,16 +185,28 @@ public class PlayerMechanics : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
+        if (tag == "Sorcerer" && Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && !buttonCliked)
         {
             buttonCliked = true;
             wildButtonClicked = true;
         }
-
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && barAttacking == false)
+        {
+            DefensiveAttack();
+        }
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && barAttacking == false)
+        {
+            WildAttack( new Vector3());
+        }
         if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
         {
-
-            UltimateAttack();
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                UltimateAttack(hit.point); 
+            }
+          
 
         }
         if (defenseButtonClicked && Input.GetMouseButtonDown(1))
@@ -212,11 +243,23 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
-          
-          //  isAttacking = true;
-            animator.SetBool("Attack", true);
-            barAttacking = true;
-            StartCoroutine(ResetAfterBarbarianAttack());
+            Collider[] hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
+            bool enemyFound = false;
+            foreach (var collider in hitColliders)
+            {
+                if (collider.CompareTag("Summoned_Minions"))
+                {
+                    enemyFound = true;
+                    break;
+                }
+            }
+            if (enemyFound)
+            {
+                animator.SetBool("Attack", true);
+                barAttacking = true;
+                StartCoroutine(ResetAfterBarbarianAttack());
+                StartCoroutine(AbilityCooldown(0, 1f));
+            }
 
 
 
@@ -308,13 +351,23 @@ public class PlayerMechanics : MonoBehaviour
                 StartCoroutine(AbilityCooldown(1, 10f)); // Cooldown for 10 seconds
 
             }
+            defenseButtonClicked = false;
+            buttonCliked = false;
 
         }
-        defenseButtonClicked = false;
-        buttonCliked = false;
+        else if(tag == "Barbarian")
+        {
+           activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+           activeShield.transform.parent = transform;
+           StartCoroutine(AbilityCooldown(1, 10f));
+           StartCoroutine(DeactivateShieldAfterTime(3f));
+
+            
+        }
+
 
     }
-    void UltimateAttack()
+    void UltimateAttack(Vector3 pos)
     {
 
 
@@ -322,18 +375,26 @@ public class PlayerMechanics : MonoBehaviour
         {
 
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                Vector3 spawnPosition = hit.point;
+          
+                Vector3 spawnPosition = pos;
                 if (!isLevel1)
                     spawnPosition.y += 5.0f;
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(2, 15f));
                 Destroy(infernoInstance, 5f);
 
-            }
+            
+        }
+        else if(tag == "Barbarian")
+        {
+            animator.SetBool("isSprint", true);
+            agent.SetDestination(pos);
+
+            StartCoroutine(AbilityCooldown(2, 10f));
+
+           // ChargeToPosition(pos);
+
+
         }
         ultimateButtonClicked = false;
         buttonCliked = false;
@@ -347,15 +408,66 @@ public class PlayerMechanics : MonoBehaviour
             GameObject clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
             Minion_Logic.wizardClone = clone;
             StartCoroutine(AbilityCooldown(3, 10f));
+            wildButtonClicked = false;
+            buttonCliked = false;
         }
         else if (tag == "Barbarian")
         {
+            animator.SetBool("Special_Attack", true);
+            barAttacking = true;
             StartCoroutine(AbilityCooldown(3, 5f));
+            StartCoroutine(ResetAfterBarbarianSpecialAttack());
+
         }
 
-        wildButtonClicked = false;
-        buttonCliked = false;
+     
     }
+
+
+    //private void ChargeToPosition(Vector3 targetPosition)
+    //{
+    //    // Set the movement speed for the charge (faster than normal movement)
+    //    agent.speed = 2f; // Adjust speed for charging
+
+    //    // Ensure the character is moving
+    //    while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) > 4f )
+
+    //    {
+    //        // Move towards the target position while checking for obstacles/enemies
+    //        agent.SetDestination(targetPosition);
+
+    //        // Check for collisions along the way
+    //        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+    //        //foreach (var collider in hitColliders)
+    //        //{
+    //        //    if (collider.CompareTag("Enemy"))
+    //        //    {
+    //        //        // Damage the enemy or apply effects
+    //        //        collider.GetComponent<Enemy>().TakeDamage(20); // Example damage to enemy
+    //        //    }
+    //        //    else if (collider.CompareTag("DestructibleObject"))
+    //        //    {
+    //        //        // Destroy any destructible objects in the way
+    //        //        Destroy(collider.gameObject);
+    //        //    }
+    //        //}
+    //        if (agent.pathStatus == NavMeshPathStatus.PathInvalid || agent.remainingDistance <= agent.stoppingDistance)
+    //        {
+    //            animator.SetBool("isSprint", false); // Stop sprint animation
+    //            break; // Exit the loop as the agent can't reach the position
+    //        }
+    //        // Wait for a frame before checking again
+    //    }
+
+    //    // End the charge and stop the running animation
+    //    animator.SetBool("isSprint", false);
+
+    //    // Reset speed after charge
+
+     
+    //}
+
+
 
 
     IEnumerator ResetAfterAttack()
@@ -365,6 +477,19 @@ public class PlayerMechanics : MonoBehaviour
         isAttacking = false;
 
     }
+
+
+    IEnumerator DeactivateShieldAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        // Destroy the shield GameObject
+        Destroy(activeShield);
+
+        // Explicitly set the reference to null
+        activeShield = null;
+    }
+
     IEnumerator ResetAfterBarbarianAttack()
     {
         yield return new WaitForSeconds(1.9f); // Wait for the animation duration
@@ -372,6 +497,12 @@ public class PlayerMechanics : MonoBehaviour
         barAttacking = false;
     }
 
+    IEnumerator ResetAfterBarbarianSpecialAttack()
+    {
+        yield return new WaitForSeconds(1.9f); // Wait for the animation duration
+        animator.SetBool("Special_Attack", false); // Reset the attack animation state
+        barAttacking = false;
+    } 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
         // Wait for 2 seconds before teleporting
@@ -443,6 +574,10 @@ public class PlayerMechanics : MonoBehaviour
     
     
     public void takeDamage(int damage){
+        if(tag == "Barbarian" && activeShield != null)
+        {
+            return;
+        }
         playerCurrenttHealth -= damage;
         if(playerCurrenttHealth <= 0){
             playerCurrenttHealth = 0;
@@ -474,6 +609,24 @@ public class PlayerMechanics : MonoBehaviour
             SceneManager.LoadScene("Level2_scene");
         }
     }
+    //if(collision.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint") )
+    // {
+    //        Debug.Log("Collision");
+    //        GameObject minion = collision.gameObject;
+    //        minion.GetComponent<Minion_Logic>().Die();
+    //  }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint"))
+        {
+            Debug.Log("Collision");
+            GameObject minion = other.gameObject;
+            minion.GetComponent<Minion_Logic>().Die();
+        }
+    }
+
 
     private void OpenPortal()
     {
