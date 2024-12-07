@@ -15,6 +15,7 @@ TagManager:
   - portal
   - potion
   - Axe
+  - Boss
   layers:
   - Default
   - TransparentFX

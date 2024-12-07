@@ -4407,6 +4407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1405500143010117903, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 2003275046278657630, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -4727,6 +4731,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.565395
       objectReference: {fileID: 0}
+    - target: {fileID: 2387494017223766432, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 2522368156136474760, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4737,7 +4745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367214564526425905, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.05
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4367214564526425905, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_LocalPosition.z

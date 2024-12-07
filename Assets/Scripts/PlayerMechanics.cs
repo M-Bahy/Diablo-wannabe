@@ -34,7 +34,7 @@ public class PlayerMechanics : MonoBehaviour
     int abilityPoints = 0;
     int numberOfFragments = 0;
     private Animator animator;
-
+    private Collider collider;
     public static bool isLevel1 = true;
 
 
@@ -62,7 +62,8 @@ public class PlayerMechanics : MonoBehaviour
     {
         ///////
         animator = GetComponent<Animator>();
-        
+        collider = GetComponent<Collider>();
+
         agent = GetComponent<NavMeshAgent>();
         tag = gameObject.tag;
         ///////
@@ -77,6 +78,21 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (animator.GetBool("isSprint"))
+        {
+            collider.isTrigger = true;
+        }
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) < 4f && animator.GetBool("isSprint"))
+            
+        {   
+            collider.isTrigger = false;
+            //Vector3 newPosition = transform.position;
+            // agent.SetDestination(newPosition);
+            animator.SetBool("isSprint", false);
+            animator.SetBool("isWalking", true);
+        }
+       
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -312,10 +328,12 @@ public class PlayerMechanics : MonoBehaviour
         else if(tag == "Barbarian")
         {
             animator.SetBool("isSprint", true);
-            agent.SetDestination(pos);
+            // agent.SetDestination(pos);
+            MoveInStraightLine(pos);
+
             StartCoroutine(AbilityCooldown(2, 10f));
 
-            StartCoroutine(ChargeToPosition(pos));
+           // ChargeToPosition(pos);
 
 
         }
@@ -323,7 +341,28 @@ public class PlayerMechanics : MonoBehaviour
         buttonCliked = false;
     }
 
+    private void MoveInStraightLine(Vector3 destination)
+    {
+        // Get the direction vector from the Barbarian to the target position
+        Vector3 direction = (destination - transform.position).normalized;
 
+        // Cast a ray in the direction of movement to check for obstacles
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, direction, out hit, 1f)) // 1f is the detection range
+        {
+            // If the ray hits a solid object, stop the movement
+            if (hit.collider.CompareTag("Boss")) // Assuming solid objects are tagged as "SolidObject"
+            {
+                Debug.Log("HITTT");
+                agent.SetDestination(agent.transform.position);
+
+                return; // Stops moving if there's an obstacle in front
+            }
+        }
+
+        // Move the Barbarian using the NavMeshAgent
+        agent.SetDestination(destination);
+    }
     void WildAttack(Vector3 pos)
     {
         if (tag == "Sorcerer")
@@ -349,45 +388,48 @@ public class PlayerMechanics : MonoBehaviour
     }
 
 
-    IEnumerator ChargeToPosition(Vector3 targetPosition)
-    {
-        // Set the movement speed for the charge (faster than normal movement)
-      //  agent.speed = 15f; // Adjust speed for charging
+    //private void ChargeToPosition(Vector3 targetPosition)
+    //{
+    //    // Set the movement speed for the charge (faster than normal movement)
+    //    agent.speed = 2f; // Adjust speed for charging
 
-        // Ensure the character is moving
-        while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) > 5f)
+    //    // Ensure the character is moving
+    //    while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) > 4f )
 
-        {
-            // Move towards the target position while checking for obstacles/enemies
-            agent.SetDestination(targetPosition);
+    //    {
+    //        // Move towards the target position while checking for obstacles/enemies
+    //        agent.SetDestination(targetPosition);
 
-            // Check for collisions along the way
-            //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
-            //foreach (var collider in hitColliders)
-            //{
-            //    if (collider.CompareTag("Enemy"))
-            //    {
-            //        // Damage the enemy or apply effects
-            //        collider.GetComponent<Enemy>().TakeDamage(20); // Example damage to enemy
-            //    }
-            //    else if (collider.CompareTag("DestructibleObject"))
-            //    {
-            //        // Destroy any destructible objects in the way
-            //        Destroy(collider.gameObject);
-            //    }
-            //}
+    //        // Check for collisions along the way
+    //        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+    //        //foreach (var collider in hitColliders)
+    //        //{
+    //        //    if (collider.CompareTag("Enemy"))
+    //        //    {
+    //        //        // Damage the enemy or apply effects
+    //        //        collider.GetComponent<Enemy>().TakeDamage(20); // Example damage to enemy
+    //        //    }
+    //        //    else if (collider.CompareTag("DestructibleObject"))
+    //        //    {
+    //        //        // Destroy any destructible objects in the way
+    //        //        Destroy(collider.gameObject);
+    //        //    }
+    //        //}
+    //        if (agent.pathStatus == NavMeshPathStatus.PathInvalid || agent.remainingDistance <= agent.stoppingDistance)
+    //        {
+    //            animator.SetBool("isSprint", false); // Stop sprint animation
+    //            break; // Exit the loop as the agent can't reach the position
+    //        }
+    //        // Wait for a frame before checking again
+    //    }
 
-            // Wait for a frame before checking again
-            yield return null;
-        }
+    //    // End the charge and stop the running animation
+    //    animator.SetBool("isSprint", false);
 
-        // End the charge and stop the running animation
-        animator.SetBool("isSprint", false);
-
-        // Reset speed after charge
+    //    // Reset speed after charge
 
      
-    }
+    //}
 
 
 
@@ -530,7 +572,23 @@ public class PlayerMechanics : MonoBehaviour
     {
         SceneManager.LoadScene("Level2_scene");
     }
-}
+    //if(collision.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint") )
+    // {
+    //        Debug.Log("Collision");
+    //        GameObject minion = collision.gameObject;
+    //        minion.GetComponent<Minion_Logic>().Die();
+    //  }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint"))
+        {
+            Debug.Log("Collision");
+            GameObject minion = other.gameObject;
+            minion.GetComponent<Minion_Logic>().Die();
+        }
+    }
 
     private void OpenPortal()
     {
