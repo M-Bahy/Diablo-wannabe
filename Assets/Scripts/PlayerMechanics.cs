@@ -615,7 +615,7 @@ public class PlayerMechanics : MonoBehaviour
     //        GameObject minion = collision.gameObject;
     //        minion.GetComponent<Minion_Logic>().Die();
     //  }
-    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
