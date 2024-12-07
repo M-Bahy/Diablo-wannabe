@@ -4566,7 +4566,7 @@ MonoBehaviour:
   Explosive_Detonates: {fileID: 0}
   Fireball_Shot: {fileID: 0}
   Item_Picked_Up: {fileID: 0}
-  Wanderer_Damaged: {fileID: 0}
+  Wanderer_Damaged: {fileID: 8300000, guid: 07ba9e1afa5f09a89b7e63a9b536a0ce, type: 3}
   Wanderer_Healing_Potion: {fileID: 8300000, guid: 3d7202dc7f767f8d08c6082c912edcce, type: 3}
   Wanderer_Dies: {fileID: 8300000, guid: 6287eceda5e9e7f279d03138832fd79d, type: 3}
   Enemy_Dies: {fileID: 8300000, guid: c11af5a091471eaf5bff83b665b6e692, type: 3}
