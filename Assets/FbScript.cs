@@ -52,7 +52,8 @@ public class FbScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Minion"))
         {
             collision.gameObject.GetComponent<Minion_Logic>().TakeDamage(5);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 }

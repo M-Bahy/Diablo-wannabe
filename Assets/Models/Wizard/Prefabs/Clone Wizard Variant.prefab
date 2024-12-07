@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clone Wizard Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2039507677875791058, guid: d76bed9a77ee02c4d91c8c7a5b5b3401, type: 3}
+      propertyPath: m_TagString
+      value: Clone
+      objectReference: {fileID: 0}
     - target: {fileID: 4240100938487205005, guid: d76bed9a77ee02c4d91c8c7a5b5b3401, type: 3}
       propertyPath: m_UseGravity
       value: 0

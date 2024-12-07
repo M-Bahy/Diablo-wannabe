@@ -16,6 +16,7 @@ TagManager:
   - potion
   - Minion
   - Fireball
+  - Clone
   layers:
   - Default
   - TransparentFX

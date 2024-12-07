@@ -207,12 +207,8 @@ public class PlayerMechanics : MonoBehaviour
         //animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
-            //isAttacking = true;
-            //animator.Play("attack_short_001", 0, 0f);
-            animator.SetBool("isAttacking", true);
-
-            StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
             StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
+            StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
         }
         else if(tag == "Barbarian")
         {
@@ -233,10 +229,8 @@ public class PlayerMechanics : MonoBehaviour
 
     private IEnumerator SpawnFireballWithDelay(float delay, Vector3 pos)
     {
-        yield return new WaitForSeconds(delay);
-
         // Check if there's an enemy at the specified position
-        Collider[] hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
+        Collider[] hitColliders = Physics.OverlapBox(pos, new Vector3(5.0f, 5.0f, 5.0f)); // Adjust radius as needed
         bool enemyFound = false;
         foreach (var collider in hitColliders)
         {
@@ -249,16 +243,46 @@ public class PlayerMechanics : MonoBehaviour
 
         if (enemyFound)
         {
-            // Instantiate Fireball and direct it towards the target
-            //GameObject fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x, 1, transform.position.z), Quaternion.identity);
-            GameObject fireballInstance = Instantiate(Fireball, transform.position + transform.forward * 1f, Quaternion.identity);
-            fireballInstance.transform.LookAt(pos); // Ensure the fireball faces the target
+            /////////////////////
+            // Calculate the target direction, keeping rotation limited to the Y-axis
+            Vector3 direction = pos - transform.position;
+            direction.y = 0; // Ignore vertical difference
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            float rotationSpeed = 5f; // Adjust rotation speed as needed
+
+            while (true)
+            {
+                // Gradually rotate towards the target on the Y-axis
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 360);
+
+                // Exit loop when close enough to target rotation
+                if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
+                {
+                    break;
+                }
+
+                yield return null; // Wait for the next frame
+            }
+
+            // Ensure exact final alignment
+            transform.rotation = targetRotation;
+            /////////////////////
+            animator.SetBool("isAttacking", true);
+            yield return new WaitForSeconds(delay);
+
+
+            //transform.LookAt(pos); LINE BEING REPLACED
+            //rb.isKinematic = true;
+            GameObject fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x+1, 1, transform.position.z+1), Quaternion.identity);
+
             FbScript fireballLogic = fireballInstance.GetComponent<FbScript>();
             if (fireballLogic != null)
             {
                 fireballLogic.SetTarget(pos);
             }
         }
+        yield return new WaitForSeconds(delay);
+        //rb.isKinematic = false;
         animator.SetBool("isAttacking", false);
     }
 
