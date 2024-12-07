@@ -39,6 +39,7 @@ public class Boss_phase1_script : MonoBehaviour
         PlayerMechanics.isLevel1 = false;
         ogCastDelay = castDelay;
         ogSpikesBoomDelay = spikesDelay;
+        audioManager.PlayBackground(audioManager.Level2);
 
     }
 
