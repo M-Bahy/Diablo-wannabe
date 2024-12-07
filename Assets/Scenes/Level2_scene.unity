@@ -4563,15 +4563,13 @@ MonoBehaviour:
   Inferno_Activated: {fileID: 0}
   Clone_Activated: {fileID: 0}
   Charging: {fileID: 0}
-  Dashing: {fileID: 0}
-  Arrow_Fired: {fileID: 0}
   Explosive_Detonates: {fileID: 0}
   Fireball_Shot: {fileID: 0}
   Item_Picked_Up: {fileID: 0}
   Wanderer_Damaged: {fileID: 0}
   Wanderer_Healing_Potion: {fileID: 0}
-  Wanderer_Dies: {fileID: 0}
-  Enemy_Dies: {fileID: 0}
+  Wanderer_Dies: {fileID: 8300000, guid: 6287eceda5e9e7f279d03138832fd79d, type: 3}
+  Enemy_Dies: {fileID: 8300000, guid: c11af5a091471eaf5bff83b665b6e692, type: 3}
   Boss_Summons_Minions: {fileID: 8300000, guid: de76ee432ed5a1e43be5f5eed06b52a6, type: 3}
   Boss_Stomps_Down: {fileID: 8300000, guid: 94a2de425fb185232bec5f12223d75d8, type: 3}
   Boss_Casts_Spell: {fileID: 8300000, guid: 4cd0ddd1df107514c97be4d517028a94, type: 3}
