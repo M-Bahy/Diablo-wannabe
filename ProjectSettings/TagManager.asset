@@ -16,6 +16,9 @@ TagManager:
   - potion
   - Axe
   - Boss
+  - Minion
+  - Fireball
+  - Clone
   layers:
   - Default
   - TransparentFX

@@ -34,6 +34,12 @@ public class BossMech : MonoBehaviour
     public bool gameOver = false;
 
     public bool auraActivated = false;
+
+    AudioManagerScript audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +64,7 @@ public class BossMech : MonoBehaviour
         if(phaseOne){
             phaseOneHealth -= damageAmount;
              animator.Play("GetDamage");
+             audioManager.PlaySFX(audioManager.Boss_Getting_Damaged);
         }
         else{
 
@@ -74,12 +81,14 @@ public class BossMech : MonoBehaviour
                     shield.SetActive(false);
                     shieldHealthSlider.gameObject.SetActive(false); 
                     shieldDestroyed = true;
-                    animator.Play("GetDamage2"); 
+                    animator.Play("GetDamage2");
+                    audioManager.PlaySFX(audioManager.Boss_Getting_Damaged); 
                 }
             }
             else{
                 phaseTwoHealth -= damageAmount;
                 animator.Play("GetDamage2");
+                audioManager.PlaySFX(audioManager.Boss_Getting_Damaged);
             }
             }
             else{
@@ -101,6 +110,7 @@ public class BossMech : MonoBehaviour
         if(phaseOne){
             if(phaseOneHealth <= 0){
                 animator.Play("Death");
+                audioManager.PlaySFX(audioManager.Boss_Dies);
                 //animator.Play("Resurrection");
                 startPhaseTwo();
         }
@@ -109,6 +119,7 @@ public class BossMech : MonoBehaviour
         else{
             if(phaseTwoHealth <= 0){
                 animator.Play("END");
+                audioManager.PlaySFX(audioManager.Boss_Dies);
                 phaseTwoHealth = 0;
                 bosshealthSlider.value = phaseTwoHealth;
                 bosshealthText.text = $"{phaseTwoHealth:F0}";
@@ -126,6 +137,7 @@ public class BossMech : MonoBehaviour
         bosshealthSlider.value = phaseTwoHealth;
 
         shield.SetActive(true);
+       // audioManager.PlaySFX(audioManager.Shield_Activated);
         shieldHealthSlider.gameObject.SetActive(true);
 
         shieldHealthSlider.maxValue= shieldHealth;
@@ -158,6 +170,7 @@ public class BossMech : MonoBehaviour
               //  shieldHealthSlider.value = shieldHealth;
                 shieldDestroyed = false;
                 shield.SetActive(true);
+               // audioManager.PlaySFX(audioManager.Shield_Activated);
                 shieldHealthSlider.gameObject.SetActive(true);
                 generationDelay = ogGenerationDelay;
                 updateHUDUI();

@@ -296,7 +296,7 @@ AnimatorStateMachine:
     m_Position: {x: 465, y: 415, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4286814280214643895}
-    m_Position: {x: 200, y: 280, z: 0}
+    m_Position: {x: 740, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1141759378259828863}
     m_Position: {x: 550, y: 130, z: 0}
@@ -506,7 +506,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Resurrection
-  m_Speed: 1
+  m_Speed: -2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6847004616267857479}
@@ -561,7 +561,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Death
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4440884466224186001}
