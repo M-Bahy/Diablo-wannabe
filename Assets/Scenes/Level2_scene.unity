@@ -4558,7 +4558,7 @@ MonoBehaviour:
   SFXSource: {fileID: 18956505}
   Menus: {fileID: 8300000, guid: a9a15fc52bf6b467a8c2eb096ee54393, type: 3}
   Level1: {fileID: 8300000, guid: d802cd0fc5a06ca1fa62027e8f38c3d4, type: 3}
-  Level2: {fileID: 0}
+  Level2: {fileID: 8300000, guid: 6184273b574cf2181a78b5ecc61caea1, type: 3}
   Shield_Activated: {fileID: 8300000, guid: cf10a1318cf6b05cdbf43587c2233f55, type: 3}
   Inferno_Activated: {fileID: 8300000, guid: 0346c6a8bc393c052a50f38bbe5217f4, type: 3}
   Clone_Activated: {fileID: 8300000, guid: d3a729bd274644a00ac03c4139082189, type: 3}
