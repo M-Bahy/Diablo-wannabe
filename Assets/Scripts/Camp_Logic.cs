@@ -196,13 +196,13 @@ public class Camp_Logic : MonoBehaviour
         if (demonsArray.Count > 0)
         {
             GameObject selectedDemon = demonsArray
-                .Where(d => d != null && !d.GetComponent<Minion_Logic>().isDead)
+                .Where(d => d != null && !d.GetComponent<DemonLogic>().isDead)
                 .OrderBy(_ => Random.value)
                 .FirstOrDefault();
 
             if (selectedDemon != null)
             {
-                Minion_Logic demonLogic = selectedDemon.GetComponent<Minion_Logic>();
+                DemonLogic demonLogic = selectedDemon.GetComponent<DemonLogic>();
                 demonLogic.player = player;
                 demonLogic?.goAggresive(true);
                 aggroedDemons.Add(selectedDemon);
@@ -230,7 +230,7 @@ public class Camp_Logic : MonoBehaviour
         foreach (GameObject demon in demonsArray)
         {
             if (demon == null) continue;
-            Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
+            DemonLogic demonLogic = demon.GetComponent<DemonLogic>();
             demonLogic?.goAggresive(false);
             aggroedDemons.Remove(demon);
         }

@@ -658,6 +658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maw J Laygo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7fbb2d599cbc38c41818c42ffbb5d905, type: 3}
+      propertyPath: m_TagString
+      value: Minion
+      objectReference: {fileID: 0}
     - target: {fileID: 3667946887678727147, guid: 7fbb2d599cbc38c41818c42ffbb5d905, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.6398102
