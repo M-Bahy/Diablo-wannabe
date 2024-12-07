@@ -94,18 +94,7 @@ public class Camp_Logic : MonoBehaviour
             // check if the player is within the camp, if yes then aggro the enemies in the aggroed to the clone, if no then deaggro them
             if (player.transform.position.x >= minX && player.transform.position.x <= maxX && player.transform.position.z >= minZ && player.transform.position.z <= maxZ)
             {
-                GameObject selectedDemon = demonsArray
-                    .Where(d => d != null && !d.GetComponent<DemonLogic>().isDead)
-                    .OrderBy(_ => Random.value)
-                    .FirstOrDefault();
-
-                if (selectedDemon != null)
-                {
-                    DemonLogic demonLogic = selectedDemon.GetComponent<DemonLogic>();
-                    demonLogic.player = player;
-                    demonLogic?.goAggresive(true);
-                    aggroedDemons.Add(selectedDemon);
-                }
+               
 
             }
             else
