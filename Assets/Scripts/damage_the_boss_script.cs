@@ -20,7 +20,7 @@ public class damage_the_boss_script : MonoBehaviour
 
      private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
+      //  Debug.Log("Triggered");
         if (other.CompareTag("Inferno") && !isInInferno)
         {
             // damage by  10

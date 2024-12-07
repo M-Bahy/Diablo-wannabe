@@ -79,11 +79,11 @@ public class PlayerMechanics : MonoBehaviour
     void Update()
     {
 
-        if (animator.GetBool("isSprint"))
+        if (tag == "Barbarian" && animator.GetBool("isSprint"))
         {
             collider.isTrigger = true;
         }
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) < 4f && animator.GetBool("isSprint"))
+        if (tag == "Barbarian" && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) < 4f && animator.GetBool("isSprint"))
             
         {   
             collider.isTrigger = false;
@@ -92,7 +92,7 @@ public class PlayerMechanics : MonoBehaviour
             animator.SetBool("isSprint", false);
             animator.SetBool("isWalking", true);
         }
-       if(transform.position.x >= 27 && transform.position.x <= 50 && transform.position.z >= 22 && transform.position.z <= 27)
+       if(tag == "Barbarian" && transform.position.x >= 27 && transform.position.x <= 50 && transform.position.z >= 22 && transform.position.z <= 27)
         {
             agent.SetDestination(agent.transform.position);
        }
