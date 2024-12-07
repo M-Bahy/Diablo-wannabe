@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class PlayerMechanics : MonoBehaviour
@@ -76,6 +77,7 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Remaining Distance: " + agent.remainingDistance);
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -182,8 +184,13 @@ public class PlayerMechanics : MonoBehaviour
         }
         if (ultimateButtonClicked && Input.GetMouseButtonDown(1))
         {
-
-            UltimateAttack();
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                UltimateAttack(hit.point); 
+            }
+          
 
         }
         if (defenseButtonClicked && Input.GetMouseButtonDown(1))
@@ -285,7 +292,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
     }
-    void UltimateAttack()
+    void UltimateAttack(Vector3 pos)
     {
 
 
@@ -293,18 +300,25 @@ public class PlayerMechanics : MonoBehaviour
         {
 
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                Vector3 spawnPosition = hit.point;
+          
+                Vector3 spawnPosition = pos;
                 if (!isLevel1)
                     spawnPosition.y += 5.0f;
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(2, 15f));
                 Destroy(infernoInstance, 5f);
 
-            }
+            
+        }
+        else if(tag == "Barbarian")
+        {
+            animator.SetBool("isSprint", true);
+            agent.SetDestination(pos);
+            StartCoroutine(AbilityCooldown(2, 10f));
+
+            StartCoroutine(ChargeToPosition(pos));
+
+
         }
         ultimateButtonClicked = false;
         buttonCliked = false;
@@ -334,6 +348,49 @@ public class PlayerMechanics : MonoBehaviour
 
      
     }
+
+
+    IEnumerator ChargeToPosition(Vector3 targetPosition)
+    {
+        // Set the movement speed for the charge (faster than normal movement)
+      //  agent.speed = 15f; // Adjust speed for charging
+
+        // Ensure the character is moving
+        while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) > 5f)
+
+        {
+            // Move towards the target position while checking for obstacles/enemies
+            agent.SetDestination(targetPosition);
+
+            // Check for collisions along the way
+            //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+            //foreach (var collider in hitColliders)
+            //{
+            //    if (collider.CompareTag("Enemy"))
+            //    {
+            //        // Damage the enemy or apply effects
+            //        collider.GetComponent<Enemy>().TakeDamage(20); // Example damage to enemy
+            //    }
+            //    else if (collider.CompareTag("DestructibleObject"))
+            //    {
+            //        // Destroy any destructible objects in the way
+            //        Destroy(collider.gameObject);
+            //    }
+            //}
+
+            // Wait for a frame before checking again
+            yield return null;
+        }
+
+        // End the charge and stop the running animation
+        animator.SetBool("isSprint", false);
+
+        // Reset speed after charge
+
+     
+    }
+
+
 
 
     IEnumerator ResetAfterAttack()
