@@ -22,6 +22,9 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip invalidAction;
 
 
+    private void Start() {
+        PlayBackground(background);
+    }
 
     public void PlaySFX (AudioClip clip)
     {
@@ -33,4 +36,29 @@ public class AudioManagerScript : MonoBehaviour
         musicSource.clip = clip;
         musicSource.Play();
     }
+
+    public void SetMusicVolume (float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public void SetSFXVolume (float volume)
+    {
+        SFXSource.volume = volume;
+    }
+
+    private void Update() {
+        // when the user presses + or - on the keyboard, the volume of the music will increase or decrease
+        if (Input.GetKeyDown(KeyCode.Plus))
+        {
+            musicSource.volume = Mathf.Clamp(musicSource.volume + 0.1f, 0.0f, 1.0f);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            float volume = Mathf.Clamp(musicSource.volume - 0.1f, 0.0f, 1.0f);
+            SetMusicVolume(volume);
+        }
+        Debug.Log(musicSource.volume);
+    }
+
 }

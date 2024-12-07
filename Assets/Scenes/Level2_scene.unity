@@ -4550,9 +4550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfd7cdb1c346a05687b57de0cd7c13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
-  SFXSource: {fileID: 0}
-  background: {fileID: 0}
+  musicSource: {fileID: 404746294}
+  SFXSource: {fileID: 18956505}
+  background: {fileID: 8300000, guid: f6e0fe903fc766d4b8ad7a6bdc4fb580, type: 3}
   menu: {fileID: 0}
   boostTile: {fileID: 0}
   stickyTile: {fileID: 0}
