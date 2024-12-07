@@ -25,12 +25,15 @@ public class DemonLogic : MonoBehaviour
 
     public GameObject player;
 
+    private Animator animator;
+
     
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         startingPos = transform.position;
+        animator = GetComponent<Animator>();
 
 
         healthSlider.maxValue = demonMaxHealth;
@@ -38,6 +41,8 @@ public class DemonLogic : MonoBehaviour
     }
 
     public void damageDemon(int dmg){
+        animator.SetBool("Hit", true);
+
         demonCurrentHealth -= dmg;
 
 
@@ -55,7 +60,10 @@ public class DemonLogic : MonoBehaviour
 
     private void Die()
     {
-        StartCoroutine(WaitAndDestroy(1.4f));
+        animator.SetBool("Hit", false);
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);;
+        animator.SetBool("Death", true);
+        StartCoroutine(WaitAndDestroy(4f));
     }
 
     public void goAggresive(bool yes)
@@ -110,7 +118,16 @@ public class DemonLogic : MonoBehaviour
     void Update()
     {
 
-                if (isAggro)
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
+        }
+
+        if (isAggro)
         {
             if (wizardClone == null) 
                 agent.SetDestination(player.transform.position);
