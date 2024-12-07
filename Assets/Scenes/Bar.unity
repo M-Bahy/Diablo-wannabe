@@ -3994,7 +3994,7 @@ MonoBehaviour:
   portal: {fileID: 0}
   telepoertCircle: {fileID: 0}
   wizardClone: {fileID: 0}
-  _maincamera: {fileID: 0}
+  _maincamera: {fileID: 678672493}
 --- !u!195 &1838318131
 NavMeshAgent:
   m_ObjectHideFlags: 0

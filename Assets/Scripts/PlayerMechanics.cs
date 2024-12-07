@@ -145,7 +145,14 @@ public class PlayerMechanics : MonoBehaviour
 
         if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
         {
-            BasicAttack();
+
+            //  BasicAttack();
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                BasicAttack(hit.point);
+            }
         }
 
         if (tag == "Sorcerer" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
@@ -203,7 +210,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-    void BasicAttack()
+    void BasicAttack(Vector3 pos)
     {
         animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
@@ -214,11 +221,23 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
-          
-          //  isAttacking = true;
-            animator.SetBool("Attack", true);
-            barAttacking = true;
-            StartCoroutine(ResetAfterBarbarianAttack());
+            Collider[] hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
+            bool enemyFound = false;
+            foreach (var collider in hitColliders)
+            {
+                if (collider.CompareTag("Summoned_Minions"))
+                {
+                    enemyFound = true;
+                    break;
+                }
+            }
+            if (enemyFound)
+            {
+                animator.SetBool("Attack", true);
+                barAttacking = true;
+                StartCoroutine(ResetAfterBarbarianAttack());
+                StartCoroutine(AbilityCooldown(0, 1f));
+            }
 
 
 
