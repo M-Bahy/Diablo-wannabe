@@ -1,10 +1,8 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioManagerScript : MonoBehaviour
 {
-
     [Header("------------ Are we in the main menu ------------")]
     [SerializeField] bool isMainMenu;
 
@@ -17,9 +15,10 @@ public class AudioManagerScript : MonoBehaviour
     [SerializeField] AudioSource SFXSource;
 
     [Header("------------ Music Clips ------------]")]
-    public AudioClip Menus ;
-    public AudioClip Level1 ;
-    public AudioClip Level2 ;
+    public AudioClip Menus;
+    public AudioClip Level1;
+    public AudioClip Level2;
+
     [Header("------------ SFX Clips ------------]")]
     public AudioClip Shield_Inferno_Clone_Activated;
     public AudioClip Charging_Dashing;
@@ -38,54 +37,52 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip Boss_Getting_Damaged;
     public AudioClip Boss_Dies;
 
-
     public static float musicVolume = 0.5f;
     public static float SFXVolume = 0.5f;
 
-    private void Start() {
-
-        //PlayBackground(background);
-        if ( isMainMenu)
+    private void Start()
+    {
+        if (isMainMenu)
         {
-            musicSlider.value = 0.5f;
-            SFXSlider.value = 0.5f;
+            musicSlider.value = musicVolume;
+            SFXSlider.value = SFXVolume;
         }
         else
         {
             SetMusicVolume(musicVolume);
             SetSFXVolume(SFXVolume);
         }
-        
     }
 
-    public void PlaySFX (AudioClip clip)
+    public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
     }
 
-     public void PlayBackground (AudioClip clip)
+    public void PlayBackground(AudioClip clip)
     {
         musicSource.clip = clip;
         musicSource.Play();
     }
 
-    public void SetMusicVolume (float volume)
+    public void SetMusicVolume(float volume)
     {
+        musicVolume = volume;
         musicSource.volume = volume;
     }
 
-    public void SetSFXVolume (float volume)
+    public void SetSFXVolume(float volume)
     {
+        SFXVolume = volume;
         SFXSource.volume = volume;
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (isMainMenu)
         {
-           SetMusicVolume(musicSlider.value);
-           SetSFXVolume(SFXSlider.value);
+            SetMusicVolume(musicSlider.value);
+            SetSFXVolume(SFXSlider.value);
         }
-        
     }
-
 }
