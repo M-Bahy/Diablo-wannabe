@@ -4551,19 +4551,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMainMenu: 0
-  musicSource: {fileID: 404746294}
-  SFXSource: {fileID: 18956505}
-  menus: {fileID: 0}
-  menu: {fileID: 0}
-  boostTile: {fileID: 0}
-  stickyTile: {fileID: 0}
-  suppliesTile: {fileID: 0}
-  burningTile: {fileID: 0}
-  obstacleTile: {fileID: 0}
-  emptyTile: {fileID: 0}
-  invalidAction: {fileID: 0}
   musicSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
+  musicSource: {fileID: 404746294}
+  SFXSource: {fileID: 18956505}
+  Menus: {fileID: 0}
+  Level1: {fileID: 0}
+  Level2: {fileID: 0}
+  Shield_Inferno_Clone_Activated: {fileID: 0}
+  Charging_Dashing: {fileID: 0}
+  Arrow_Fired: {fileID: 0}
+  Explosive_Detonates: {fileID: 0}
+  Fireball_Shot: {fileID: 0}
+  Item_Picked_Up: {fileID: 0}
+  Wanderer_Damaged: {fileID: 0}
+  Wanderer_Healing_Potion: {fileID: 0}
+  Wanderer_Dies: {fileID: 0}
+  Enemy_Dies: {fileID: 0}
+  Boss_Summons_Minions: {fileID: 0}
+  Boss_Stomps_Down: {fileID: 0}
+  Boss_Casts_Spell: {fileID: 0}
+  Boss_Swings_Hands: {fileID: 0}
+  Boss_Getting_Damaged: {fileID: 0}
+  Boss_Dies: {fileID: 0}
 --- !u!4 &1896187819
 Transform:
   m_ObjectHideFlags: 0
