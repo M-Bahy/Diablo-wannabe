@@ -20,8 +20,11 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip Level2;
 
     [Header("------------ SFX Clips ------------]")]
-    public AudioClip Shield_Inferno_Clone_Activated;
-    public AudioClip Charging_Dashing;
+    public AudioClip Shield_Activated;
+    public AudioClip Inferno_Activated;
+    public AudioClip Clone_Activated;
+    public AudioClip Charging;
+    public AudioClip Dashing;
     public AudioClip Arrow_Fired;
     public AudioClip Explosive_Detonates;
     public AudioClip Fireball_Shot;

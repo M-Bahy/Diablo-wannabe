@@ -137,6 +137,7 @@ public class BossMech : MonoBehaviour
         bosshealthSlider.value = phaseTwoHealth;
 
         shield.SetActive(true);
+        audioManager.PlaySFX(audioManager.Shield_Activated);
         shieldHealthSlider.gameObject.SetActive(true);
 
         shieldHealthSlider.maxValue= shieldHealth;
@@ -169,6 +170,7 @@ public class BossMech : MonoBehaviour
               //  shieldHealthSlider.value = shieldHealth;
                 shieldDestroyed = false;
                 shield.SetActive(true);
+                audioManager.PlaySFX(audioManager.Shield_Activated);
                 shieldHealthSlider.gameObject.SetActive(true);
                 generationDelay = ogGenerationDelay;
                 updateHUDUI();

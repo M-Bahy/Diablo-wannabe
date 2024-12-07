@@ -4559,8 +4559,11 @@ MonoBehaviour:
   Menus: {fileID: 0}
   Level1: {fileID: 0}
   Level2: {fileID: 0}
-  Shield_Inferno_Clone_Activated: {fileID: 0}
-  Charging_Dashing: {fileID: 0}
+  Shield_Activated: {fileID: 8300000, guid: cf10a1318cf6b05cdbf43587c2233f55, type: 3}
+  Inferno_Activated: {fileID: 0}
+  Clone_Activated: {fileID: 0}
+  Charging: {fileID: 0}
+  Dashing: {fileID: 0}
   Arrow_Fired: {fileID: 0}
   Explosive_Detonates: {fileID: 0}
   Fireball_Shot: {fileID: 0}
