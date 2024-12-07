@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -84,62 +85,54 @@ public class Camp_Logic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Aggro");
         if (other.CompareTag("Sorcerer") || other.CompareTag("Barbarian"))
         {
-            // Randomly select one demon (if available)
-            if (demonsArray.Count > 0)
+            aggroEnemies();
+        }
+        else if (other.CompareTag("Clone"))
+        {
+            // check if the player is within the camp, if yes then aggro the enemies in the aggroed to the clone, if no then deaggro them
+            if (player.transform.position.x >= minX && player.transform.position.x <= maxX && player.transform.position.z >= minZ && player.transform.position.z <= maxZ)
             {
-                GameObject selectedDemon = demonsArray
-                    .Where(d => d != null && !d.GetComponent<Minion_Logic>().isDead)
-                    .OrderBy(_ => Random.value)
-                    .FirstOrDefault();
 
-                if (selectedDemon != null)
-                {
-                    Minion_Logic demonLogic = selectedDemon.GetComponent<Minion_Logic>();
-                    demonLogic.player = player;
-                    demonLogic?.goAggresive(true);
-                    aggroedDemons.Add(selectedDemon);
-                }
             }
-
-            // Randomly select up to five minions (if available)
-            List<GameObject> availableMinions = minionsArray
-                .Where(m => m != null && !m.GetComponent<Minion_Logic>().isDead)
-                .OrderBy(_ => Random.value)
-                .Take(5)
-                .ToList();
-
-            foreach (GameObject minion in availableMinions)
+            else
             {
-                Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
-                minionLogic.player = player;
-                minionLogic?.goAggresive(true);
-                aggroedMinions.Add(minion);
+                aggroEnemies();
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Deaggro");
         if (other.CompareTag("Sorcerer") || other.CompareTag("Barbarian"))
         {
-            foreach (GameObject demon in demonsArray)
+            deAggroEnemies();
+        }
+        else if (other.CompareTag("Clone"))
+        {
+            // check if the player is within the camp coordinates, if yes then aggro the enemies in the aggroed list to him, if no then deaggro them
+            if (player.transform.position.x >= minX && player.transform.position.x <= maxX && player.transform.position.z >= minZ && player.transform.position.z <= maxZ)
             {
-                if (demon == null) continue;
-                Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
-                demonLogic?.goAggresive(false);
-                aggroedDemons.Remove(demon);
-            }
+                foreach (GameObject demon in aggroedDemons)
+                {
+                    if (demon == null) continue;
+                    Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
+                    demonLogic.player = player;
+                    demonLogic?.goAggresive(true);
+                }
 
-            foreach (GameObject minion in minionsArray)
+                foreach (GameObject minion in aggroedMinions)
+                {
+                    if (minion == null) continue;
+                    Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
+                    minionLogic.player = player;
+                    minionLogic?.goAggresive(true);
+                }
+            }
+            else
             {
-                if (minion == null) continue;
-                Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
-                minionLogic?.goAggresive(false);
-                aggroedMinions.Remove(minion);
+                deAggroEnemies();
             }
         }
     }
@@ -148,7 +141,7 @@ public class Camp_Logic : MonoBehaviour
     {
         while (true)
         {
-            ReplaceDeadEntities(); // Call your method here
+            ReplaceDeadEntities();
             yield return new WaitForSeconds(3f); // Wait for 3 seconds before calling again
         }
     }
@@ -171,7 +164,6 @@ public class Camp_Logic : MonoBehaviour
 
                     // Replace null with the available demon
                     aggroedDemons[i] = availableDemon;
-                    Debug.Log("Replaced a demon in aggroed list");
                 }
             }
         }
@@ -192,13 +184,64 @@ public class Camp_Logic : MonoBehaviour
 
                     // Replace null with the available minion
                     aggroedMinions[i] = availableMinion;
-                    Debug.Log("Replaced a minion in aggroed list");
                 }
             }
         }
     }
 
+    private void aggroEnemies()
+    {
+        // Randomly select one demon (if available)
+        if (demonsArray.Count > 0)
+        {
+            GameObject selectedDemon = demonsArray
+                .Where(d => d != null && !d.GetComponent<Minion_Logic>().isDead)
+                .OrderBy(_ => Random.value)
+                .FirstOrDefault();
 
+            if (selectedDemon != null)
+            {
+                Minion_Logic demonLogic = selectedDemon.GetComponent<Minion_Logic>();
+                demonLogic.player = player;
+                demonLogic?.goAggresive(true);
+                aggroedDemons.Add(selectedDemon);
+            }
+        }
+
+        // Randomly select up to five minions (if available)
+        List<GameObject> availableMinions = minionsArray
+            .Where(m => m != null && !m.GetComponent<Minion_Logic>().isDead)
+            .OrderBy(_ => Random.value)
+            .Take(5)
+            .ToList();
+
+        foreach (GameObject minion in availableMinions)
+        {
+            Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
+            minionLogic.player = player;
+            minionLogic?.goAggresive(true);
+            aggroedMinions.Add(minion);
+        }
+    }
+
+    private void deAggroEnemies()
+    {
+        foreach (GameObject demon in demonsArray)
+        {
+            if (demon == null) continue;
+            Minion_Logic demonLogic = demon.GetComponent<Minion_Logic>();
+            demonLogic?.goAggresive(false);
+            aggroedDemons.Remove(demon);
+        }
+
+        foreach (GameObject minion in minionsArray)
+        {
+            if (minion == null) continue;
+            Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
+            minionLogic?.goAggresive(false);
+            aggroedMinions.Remove(minion);
+        }
+    }
 
 
 }

@@ -54,12 +54,14 @@ public class PlayerMechanics : MonoBehaviour
 
     [SerializeField] GameObject wizardClone;
     [SerializeField] Camera _maincamera;
+    [SerializeField] GameObject Fireball;
     // Start is called before the first frame update
     void Start()
     {
         ///////
         animator = GetComponent<Animator>();
         
+
         agent = GetComponent<NavMeshAgent>();
         tag = gameObject.tag;
         ///////
@@ -143,7 +145,13 @@ public class PlayerMechanics : MonoBehaviour
 
         if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
         {
-            BasicAttack();
+            //BasicAttack();
+            Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                BasicAttack(hit.point);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && !buttonCliked)
@@ -194,14 +202,13 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-    void BasicAttack()
+    void BasicAttack(Vector3 pos)
     {
-        animator.ResetTrigger("Attack");
+        //animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
-            isAttacking = true;
-            animator.Play("attack_short_001", 0, 0f);
-            StartCoroutine(ResetAfterAttack());
+            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
+            StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
         }
         else if(tag == "Barbarian")
         {
@@ -219,6 +226,66 @@ public class PlayerMechanics : MonoBehaviour
 
         }
     }
+
+    private IEnumerator SpawnFireballWithDelay(float delay, Vector3 pos)
+    {
+        // Check if there's an enemy at the specified position
+        Collider[] hitColliders = Physics.OverlapBox(pos, new Vector3(5.0f, 5.0f, 5.0f)); // Adjust radius as needed
+        bool enemyFound = false;
+        foreach (var collider in hitColliders)
+        {
+            if (collider.CompareTag("Minion"))
+            {
+                enemyFound = true;
+                break;
+            }
+        }
+
+        if (enemyFound)
+        {
+            /////////////////////
+            // Calculate the target direction, keeping rotation limited to the Y-axis
+            Vector3 direction = pos - transform.position;
+            direction.y = 0; // Ignore vertical difference
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            float rotationSpeed = 5f; // Adjust rotation speed as needed
+
+            while (true)
+            {
+                // Gradually rotate towards the target on the Y-axis
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 360);
+
+                // Exit loop when close enough to target rotation
+                if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
+                {
+                    break;
+                }
+
+                yield return null; // Wait for the next frame
+            }
+
+            // Ensure exact final alignment
+            transform.rotation = targetRotation;
+            /////////////////////
+            animator.SetBool("isAttacking", true);
+            yield return new WaitForSeconds(delay);
+
+
+            //transform.LookAt(pos); LINE BEING REPLACED
+            //rb.isKinematic = true;
+            GameObject fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x+1, 1, transform.position.z+1), Quaternion.identity);
+
+            FbScript fireballLogic = fireballInstance.GetComponent<FbScript>();
+            if (fireballLogic != null)
+            {
+                fireballLogic.SetTarget(pos);
+            }
+        }
+        yield return new WaitForSeconds(delay);
+        //rb.isKinematic = false;
+        animator.SetBool("isAttacking", false);
+    }
+
 
     void DefensiveAttack()
     {
@@ -279,8 +346,6 @@ public class PlayerMechanics : MonoBehaviour
         {
             GameObject clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
             Minion_Logic.wizardClone = clone;
-            // make the clone explode after 5 seconds, dealing 10 damage within a radius
-            // make it disappear
             StartCoroutine(AbilityCooldown(3, 10f));
         }
         else if (tag == "Barbarian")
@@ -396,19 +461,19 @@ public class PlayerMechanics : MonoBehaviour
     
     
     private void OnCollisionEnter(Collision collision)
-{
-    if (collision.gameObject.tag == "Fragment")
     {
-        numberOfFragments++;
-        Destroy(collision.gameObject);
-        OpenPortal();
-    }
+        if (collision.gameObject.tag == "Fragment")
+        {
+            numberOfFragments++;
+            Destroy(collision.gameObject);
+            OpenPortal();
+        }
 
-    if (collision.gameObject.tag == "portal")
-    {
-        SceneManager.LoadScene("Level2_scene");
+        if (collision.gameObject.tag == "portal")
+        {
+            SceneManager.LoadScene("Level2_scene");
+        }
     }
-}
 
     private void OpenPortal()
     {

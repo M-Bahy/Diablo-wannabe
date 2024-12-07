@@ -14,6 +14,9 @@ TagManager:
   - spikes
   - portal
   - potion
+  - Minion
+  - Fireball
+  - Clone
   layers:
   - Default
   - TransparentFX

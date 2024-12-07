@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        if(agent.remainingDistance <= 1.5){
+        if (agent.remainingDistance <= 1.5){
             
             anim.SetBool("isWalking", false);
         
