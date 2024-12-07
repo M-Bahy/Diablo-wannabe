@@ -4560,8 +4560,8 @@ MonoBehaviour:
   Level1: {fileID: 0}
   Level2: {fileID: 0}
   Shield_Activated: {fileID: 8300000, guid: cf10a1318cf6b05cdbf43587c2233f55, type: 3}
-  Inferno_Activated: {fileID: 0}
-  Clone_Activated: {fileID: 0}
+  Inferno_Activated: {fileID: 8300000, guid: 0346c6a8bc393c052a50f38bbe5217f4, type: 3}
+  Clone_Activated: {fileID: 8300000, guid: d3a729bd274644a00ac03c4139082189, type: 3}
   Charging: {fileID: 8300000, guid: f8c372d048ac53bb584bce9e4522d0f0, type: 3}
   Explosive_Detonates: {fileID: 8300000, guid: 47bf7e6ee528c66989f3db8fed8f1a7e, type: 3}
   Fireball_Shot: {fileID: 8300000, guid: 9f2d2e97a1fc1ac0fad263bf9aec3de6, type: 3}
