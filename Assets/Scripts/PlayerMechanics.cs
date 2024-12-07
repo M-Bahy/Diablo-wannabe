@@ -461,19 +461,19 @@ public class PlayerMechanics : MonoBehaviour
     
     
     private void OnCollisionEnter(Collision collision)
-{
-    if (collision.gameObject.tag == "Fragment")
     {
-        numberOfFragments++;
-        Destroy(collision.gameObject);
-        OpenPortal();
-    }
+        if (collision.gameObject.tag == "Fragment")
+        {
+            numberOfFragments++;
+            Destroy(collision.gameObject);
+            OpenPortal();
+        }
 
-    if (collision.gameObject.tag == "portal")
-    {
-        SceneManager.LoadScene("Level2_scene");
+        if (collision.gameObject.tag == "portal")
+        {
+            SceneManager.LoadScene("Level2_scene");
+        }
     }
-}
 
     private void OpenPortal()
     {
