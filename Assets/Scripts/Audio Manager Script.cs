@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class AudioManagerScript : MonoBehaviour
 {
 
+    [Header("------------ Are we in the main menu ------------")]
+    [SerializeField] bool isMainMenu;
+
     [Header("------------ Audio Source ------------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
@@ -21,12 +24,26 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip obstacleTile;
     public AudioClip emptyTile;
     public AudioClip invalidAction;
+   public Slider musicSlider;
+    public Slider SFXSlider;
 
-    public Slider musicSlider;
+    public static float musicVolume = 0.0f;
+    public static float SFXVolume = 0.0f;
 
     private void Start() {
-        PlayBackground(background);
-        musicSlider.value = 1.0f;
+
+        //PlayBackground(background);
+        if ( isMainMenu)
+        {
+            musicSlider.value = 0.5f;
+            SFXSlider.value = 0.5f;
+        }
+        else
+        {
+            SetMusicVolume(musicVolume);
+            SetSFXVolume(SFXVolume);
+        }
+        
     }
 
     public void PlaySFX (AudioClip clip)
@@ -51,19 +68,12 @@ public class AudioManagerScript : MonoBehaviour
     }
 
     private void Update() {
-       // Debug.Log(musicSlider.value);
-        // when the user presses + or - on the keyboard, the volume of the music will increase or decrease
-        // if (Input.GetKeyDown(KeyCode.Plus))
-        // {
-        //     musicSource.volume = Mathf.Clamp(musicSource.volume + 0.1f, 0.0f, 1.0f);
-        // }
-        // if (Input.GetKeyDown(KeyCode.B))
-        // {
-        //     float volume = Mathf.Clamp(musicSource.volume - 0.1f, 0.0f, 1.0f);
-        //     SetMusicVolume(volume);
-        // }
-        SetMusicVolume(musicSlider.value);
-      //  Debug.Log(musicSource.volume);
+        if (isMainMenu)
+        {
+           SetMusicVolume(musicSlider.value);
+           SetSFXVolume(SFXSlider.value);
+        }
+        
     }
 
 }
