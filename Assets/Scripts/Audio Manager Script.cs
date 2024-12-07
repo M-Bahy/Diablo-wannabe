@@ -11,7 +11,7 @@ public class AudioManagerScript : MonoBehaviour
     [Header("------------ Volume Sliders ------------]")]
     public Slider musicSlider;
     public Slider SFXSlider;
-    
+
     [Header("------------ Audio Source ------------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
@@ -39,8 +39,8 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip Boss_Dies;
 
 
-    public static float musicVolume = 0.0f;
-    public static float SFXVolume = 0.0f;
+    public static float musicVolume = 0.5f;
+    public static float SFXVolume = 0.5f;
 
     private void Start() {
 
