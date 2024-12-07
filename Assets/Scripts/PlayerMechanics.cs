@@ -25,7 +25,7 @@ public class PlayerMechanics : MonoBehaviour
     int level = 1;
     int exp = 0;
     int requiredExp = 100;
-    int playerMaxHealth = 100;
+    public int playerMaxHealth = 100;
     public int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 0;
     int abilityPoints = 0;
