@@ -16,6 +16,12 @@ public class Healing_Script : MonoBehaviour
     int collectedHealingPotionsLimit = 3; 
 
     public GameObject healParticle; 
+
+    AudioManagerScript audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +48,7 @@ public class Healing_Script : MonoBehaviour
                     player.playerCurrenttHealth = player.playerMaxHealth;
                 }
                 collectedHealingPotions.RemoveAt(0);
+                audioManager.PlaySFX(audioManager.Wanderer_Healing_Potion);
                 bottleCountText.text = "X " + collectedHealingPotions.Count;
                 GameObject healEffect = Instantiate(healParticle, gameObject.transform.position, Quaternion.identity);
                 healEffect.transform.parent = gameObject.transform;
@@ -83,6 +90,7 @@ public class Healing_Script : MonoBehaviour
                 collectedHealingPotions.Add(availableHealingPotions[0]);
                 availableHealingPotions.RemoveAt(0);
                 Destroy(other.gameObject);
+                audioManager.PlaySFX(audioManager.Item_Picked_Up);
                 int count = collectedHealingPotions.Count;
                 bottleCountText.text = "X " + count;
             }
