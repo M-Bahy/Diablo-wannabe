@@ -19,6 +19,7 @@ TagManager:
   - Minion
   - Fireball
   - Clone
+  - Demon
   layers:
   - Default
   - TransparentFX

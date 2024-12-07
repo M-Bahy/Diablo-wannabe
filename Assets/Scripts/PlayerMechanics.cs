@@ -277,7 +277,7 @@ public class PlayerMechanics : MonoBehaviour
         bool enemyFound = false;
         foreach (var collider in hitColliders)
         {
-            if (collider.CompareTag("Minion"))
+            if (collider.CompareTag("Minion") || collider.CompareTag("Demon"))
             {
                 enemyFound = true;
                 break;

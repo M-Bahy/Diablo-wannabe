@@ -28,7 +28,7 @@ public class FbScript : MonoBehaviour
                 GameObject minion = new GameObject();
                 foreach (var collider in hitColliders)
                 {
-                    if (collider.CompareTag("Minion"))
+                    if (collider.CompareTag("Minion") || collider.CompareTag("Demon"))
                     {
                         minion = collider.gameObject;
                         break;
@@ -37,6 +37,10 @@ public class FbScript : MonoBehaviour
                 if (minion.CompareTag("Minion"))
                 {
                     minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                }
+                else if (minion.CompareTag("Demon"))
+                {
+                    minion.GetComponent<DemonLogic>().damageDemon(5);
                 }
                 Destroy(gameObject);
             }
@@ -54,6 +58,11 @@ public class FbScript : MonoBehaviour
             collision.gameObject.GetComponent<Minion_Logic>().TakeDamage(5);
             Destroy(gameObject);
         }
-        
+        else if (collision.gameObject.CompareTag("Demon"))
+        {
+            collision.gameObject.GetComponent<DemonLogic>().damageDemon(5);
+            Destroy(gameObject);
+        }
+
     }
 }
