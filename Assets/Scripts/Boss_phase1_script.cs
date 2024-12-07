@@ -85,11 +85,11 @@ public class Boss_phase1_script : MonoBehaviour
             else{
                 // phase 2
                 if (!bm.auraActivated){
-                    if (initialCast)
+                    if (false)
                     {
-                        initialCast = false;
-                        castAura();
-                        bm.activateAura();
+                        // initialCast = false;
+                        // castAura();
+                        // bm.activateAura();
                     }
                     else
                     {
