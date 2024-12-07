@@ -92,7 +92,10 @@ public class PlayerMechanics : MonoBehaviour
             animator.SetBool("isSprint", false);
             animator.SetBool("isWalking", true);
         }
-       
+       if(transform.position.x >= 27 && transform.position.x <= 50 && transform.position.z >= 22 && transform.position.z <= 27)
+        {
+            agent.SetDestination(agent.transform.position);
+       }
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -328,8 +331,7 @@ public class PlayerMechanics : MonoBehaviour
         else if(tag == "Barbarian")
         {
             animator.SetBool("isSprint", true);
-            // agent.SetDestination(pos);
-            MoveInStraightLine(pos);
+            agent.SetDestination(pos);
 
             StartCoroutine(AbilityCooldown(2, 10f));
 
@@ -341,28 +343,7 @@ public class PlayerMechanics : MonoBehaviour
         buttonCliked = false;
     }
 
-    private void MoveInStraightLine(Vector3 destination)
-    {
-        // Get the direction vector from the Barbarian to the target position
-        Vector3 direction = (destination - transform.position).normalized;
 
-        // Cast a ray in the direction of movement to check for obstacles
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit, 1f)) // 1f is the detection range
-        {
-            // If the ray hits a solid object, stop the movement
-            if (hit.collider.CompareTag("Boss")) // Assuming solid objects are tagged as "SolidObject"
-            {
-                Debug.Log("HITTT");
-                agent.SetDestination(agent.transform.position);
-
-                return; // Stops moving if there's an obstacle in front
-            }
-        }
-
-        // Move the Barbarian using the NavMeshAgent
-        agent.SetDestination(destination);
-    }
     void WildAttack(Vector3 pos)
     {
         if (tag == "Sorcerer")
