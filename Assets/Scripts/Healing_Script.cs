@@ -37,7 +37,7 @@ public class Healing_Script : MonoBehaviour
             if(collectedHealingPotions.Count > 0)
             {
                 PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
-                if (player.playerCurrenttHealth == player.playerMaxHealth)
+                if (player.playerCurrenttHealth >= player.playerMaxHealth)
                 {
                     return;
                 }
