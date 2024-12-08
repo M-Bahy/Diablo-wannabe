@@ -114,11 +114,11 @@ public class Healing_Script : MonoBehaviour
             // pick a random z value
             float z = up ? Random.Range(minZ, maxZ) : Random.Range(minZ, maxZ);
 
-            float y = gameObject.transform.position.y - 2.5f;
+            float y = gameObject.transform.position.y - 2f;
             GameObject healingPotion = Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity);
             bool isNull = healingPotion == null;
-            Debug.Log("healing potion is null: " + isNull);
-            healingPotion.transform.localScale = new Vector3(5, 5, 5);
+            //Debug.Log("healing potion is null: " + isNull);
+            healingPotion.transform.localScale = new Vector3(3, 3, 3);
             availableHealingPotions.Add(healingPotion);
         }
     }
