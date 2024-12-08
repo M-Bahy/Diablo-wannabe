@@ -88,7 +88,7 @@ public class Camp_Logic : MonoBehaviour
 
             if (keyFlag)
             {
-                Instantiate(key, new Vector3((minX + maxX) / 2, 1.0f, (minZ + maxZ) / 2), Quaternion.identity);
+                Instantiate(key, new Vector3((minX + maxX) / 2, 2.0f, (minZ + maxZ) / 2), Quaternion.identity);
                 doneFlag = true;
             }
         }
