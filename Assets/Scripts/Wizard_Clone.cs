@@ -6,6 +6,12 @@ public class Wizard_Clone : MonoBehaviour
 {
     public int damageAmount = 10; // Amount of damage to inflict
     private List<GameObject> targets = new List<GameObject>(); // To store overlapping enemies
+    AudioManagerScript audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +64,7 @@ public class Wizard_Clone : MonoBehaviour
                 }
             }
         }
+        audioManager.PlaySFX(audioManager.Explosive_Detonates);
         transform.position = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
