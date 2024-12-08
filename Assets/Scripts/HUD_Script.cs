@@ -26,6 +26,7 @@ public class HUD_Script : MonoBehaviour
            abilitiesCoolDown = new bool[4];
         
         pm = player.GetComponent<PlayerMechanics>();
+        Debug.Log(pm==null);
         abilityPoints = pm.abilityPoints;
 
         for (int i = 1; i < abilityButtons.Length; i++)

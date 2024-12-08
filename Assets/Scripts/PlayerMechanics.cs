@@ -86,23 +86,23 @@ public class PlayerMechanics : MonoBehaviour
     void Update()
     {
 
-        if (tag == "Barbarian" && animator.GetBool("isSprint"))
-        {
-            collider.isTrigger = true;
-        }
-        if (tag == "Barbarian" && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) < 4f && animator.GetBool("isSprint"))
-            
-        {   
-            collider.isTrigger = false;
-            //Vector3 newPosition = transform.position;
-            // agent.SetDestination(newPosition);
-            animator.SetBool("isSprint", false);
-            animator.SetBool("isWalking", true);
-        }
-       if(tag == "Barbarian" && transform.position.x >= 27 && transform.position.x <= 50 && transform.position.z >= 22 && transform.position.z <= 27)
-        {
-            agent.SetDestination(agent.transform.position);
-       }
+        //if (tag == "Barbarian" && animator.GetBool("isSprint"))
+        //{
+        //    collider.isTrigger = true;
+        //}
+        //if (tag == "Barbarian" && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) < 4f && animator.GetBool("isSprint"))
+
+        //{
+        //    //collider.isTrigger = false;
+        //    //Vector3 newPosition = transform.position;
+        //    // agent.SetDestination(newPosition);
+        //    animator.SetBool("isSprint", false);
+        //    //animator.SetBool("isWalking", true);
+        //}
+        //if(tag == "Barbarian" && transform.position.x >= 27 && transform.position.x <= 50 && transform.position.z >= 22 && transform.position.z <= 27)
+        // {
+        //     agent.SetDestination(agent.transform.position);
+        //}
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -258,17 +258,21 @@ public class PlayerMechanics : MonoBehaviour
             }
             if (enemyFound)
             {
+                Vector3 attackDirection = (pos - transform.position).normalized; // Calculate direction
+                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+                transform.rotation = targetRotation;
                 animator.SetBool("Attack", true);
                 barAttacking = true;
                 StartCoroutine(ResetAfterBarbarianAttack());
                 StartCoroutine(AbilityCooldown(0, 1f));
+               
+
             }
 
 
 
-            //animator.Play("Normal_Attack", 0, 0f);
-            //StartCoroutine(ResetAfterAttack());
-            //animator.SetBool("Attack", false);
+
+        
 
         }
     }
@@ -410,11 +414,16 @@ public class PlayerMechanics : MonoBehaviour
         else if(tag == "Barbarian")
         {
             animator.SetBool("isSprint", true);
-            agent.SetDestination(pos);
+            //agent.SetDestination(pos);
 
             StartCoroutine(AbilityCooldown(2, 10f));
+            //agent.enabled = false;
+            StartCoroutine(MoveInStraightLine(pos));
+            //agent.enabled = true;
+            //
 
-           // ChargeToPosition(pos);
+
+
 
 
         }
@@ -496,8 +505,37 @@ public class PlayerMechanics : MonoBehaviour
 
     //    // Reset speed after charge
 
-     
+
     //}
+
+
+
+    private IEnumerator MoveInStraightLine(Vector3 targetPosition)
+    {
+        //targetPosition.y = transform.position.y;
+        //Debug.Log("position: "+ transform.position.y);
+        float speed = 10f; // Adjust movement speed
+        Vector3 startPosition = transform.position;
+        Vector3 direction = (targetPosition - startPosition).normalized; // Get the straight-line direction
+        //direction.y = transform.position.y;
+        while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
+                          new Vector3(targetPosition.x, 0, targetPosition.z)) > 5f) // Check distance ignoring y
+        {
+            // Move toward the target position
+            transform.position += direction * speed * Time.deltaTime;
+            agent.SetDestination(agent.transform.position);
+            // Keep facing the target position
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+
+            yield return null;
+        }
+        Debug.Log("Enabled aagain");
+        animator.SetBool("isSprint", false);
+        
+        // Stop sprinting animation when the target is reached
+    }
+
 
 
 
@@ -524,7 +562,7 @@ public class PlayerMechanics : MonoBehaviour
 
     IEnumerator ResetAfterBarbarianAttack()
     {
-        yield return new WaitForSeconds(1.9f); // Wait for the animation duration
+        yield return new WaitForSeconds(1.2f); // Wait for the animation duration
         animator.SetBool("Attack", false); // Reset the attack animation state
         barAttacking = false;
     }
@@ -647,6 +685,15 @@ public class PlayerMechanics : MonoBehaviour
         {
             SceneManager.LoadScene("Level2_scene");
         }
+
+
+        //if (collision.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint"))
+        //{
+        //    //Debug.Log("Collision");
+        //    GameObject minion = collision.gameObject;
+        //    audioManager.PlaySFX(audioManager.Enemy_Dies);
+        //    minion.GetComponent<Minion_Logic>().Die();
+        //}
     }
     //if(collision.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint") )
     // {
@@ -665,10 +712,10 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Enemy_Dies);
             minion.GetComponent<Minion_Logic>().Die();
         }
-    }
+        }
 
 
-    private void OpenPortal()
+        private void OpenPortal()
     {
         if(numberOfFragments >= 3){
             leftDoor.SetActive(false);
