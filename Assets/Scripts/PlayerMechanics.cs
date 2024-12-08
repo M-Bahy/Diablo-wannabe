@@ -725,7 +725,12 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Enemy_Dies);
             minion.GetComponent<Minion_Logic>().Die();
         }
+        if (other.gameObject.tag == "Turtle_Stop" && animator.GetBool("isSprint"))
+        {
+            agent.SetDestination(agent.transform.position);
         }
+
+    }
 
 
         private void OpenPortal()
