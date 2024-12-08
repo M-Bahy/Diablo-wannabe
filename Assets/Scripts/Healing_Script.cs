@@ -116,7 +116,8 @@ public class Healing_Script : MonoBehaviour
 
             float y = gameObject.transform.position.y - 2.5f;
             GameObject healingPotion = Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity);
-            // scale the potion down
+            bool isNull = healingPotion == null;
+            Debug.Log("healing potion is null: " + isNull);
             healingPotion.transform.localScale = new Vector3(5, 5, 5);
             availableHealingPotions.Add(healingPotion);
         }

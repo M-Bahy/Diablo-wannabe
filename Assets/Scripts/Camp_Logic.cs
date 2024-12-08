@@ -32,6 +32,8 @@ public class Camp_Logic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Healing_Script hs = player.GetComponent<Healing_Script>();
+        hs.spawnHealingPotionsInCamps(minX, maxX, minZ, maxZ);
         minion.GetComponent<Minion_Logic>().player = player;
         demon.GetComponent<DemonLogic>().player = player;
         minX = this.transform.position.x - 20;
