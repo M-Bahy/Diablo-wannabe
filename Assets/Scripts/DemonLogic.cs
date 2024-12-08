@@ -27,7 +27,11 @@ public class DemonLogic : MonoBehaviour
 
     private Animator animator;
 
-    
+    AudioManagerScript audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +64,7 @@ public class DemonLogic : MonoBehaviour
 
     private void Die()
     {
+        audioManager.PlaySFX(audioManager.Enemy_Dies);
         animator.SetBool("Hit", false);
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);;
         animator.SetBool("Death", true);

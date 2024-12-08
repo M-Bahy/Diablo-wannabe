@@ -59,6 +59,12 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] GameObject wizardClone;
     [SerializeField] Camera _maincamera;
     [SerializeField] GameObject Fireball;
+
+    AudioManagerScript audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -234,6 +240,7 @@ public class PlayerMechanics : MonoBehaviour
         //animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
+            audioManager.PlaySFX(audioManager.Fireball_Shot);
             StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
             StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
         }
@@ -370,6 +377,7 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
+            audioManager.PlaySFX(audioManager.Shield_Activated);
            activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
            activeShield.transform.parent = transform;
            StartCoroutine(AbilityCooldown(1, 10f));
@@ -392,6 +400,7 @@ public class PlayerMechanics : MonoBehaviour
                 Vector3 spawnPosition = pos;
                 if (!isLevel1)
                     spawnPosition.y += 5.0f;
+                audioManager.PlaySFX(audioManager.Inferno_Activated);
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(2, 15f));
                 Destroy(infernoInstance, 5f);
@@ -418,6 +427,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         if (tag == "Sorcerer")
         {
+            audioManager.PlaySFX(audioManager.Clone_Activated);
             GameObject clone = new GameObject();
             if (isLevel1)
                 clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
@@ -434,6 +444,7 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if (tag == "Barbarian")
         {
+            audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
             barAttacking = true;
             StartCoroutine(AbilityCooldown(3, 5f));
@@ -604,9 +615,11 @@ public class PlayerMechanics : MonoBehaviour
             return;
         }
         playerCurrenttHealth -= damage;
+        audioManager.PlaySFX(audioManager.Wanderer_Damaged);
         if(playerCurrenttHealth <= 0){
             playerCurrenttHealth = 0;
            animator.Play("dead");
+           audioManager.PlaySFX(audioManager.Wanderer_Dies);
            // here we should display the end game screen
            if(!isLevel1){
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -625,6 +638,7 @@ public class PlayerMechanics : MonoBehaviour
         if (collision.gameObject.tag == "Fragment")
         {
             numberOfFragments++;
+            audioManager.PlaySFX(audioManager.Item_Picked_Up);
             Destroy(collision.gameObject);
             OpenPortal();
         }
@@ -648,6 +662,7 @@ public class PlayerMechanics : MonoBehaviour
         {
             Debug.Log("Collision");
             GameObject minion = other.gameObject;
+            audioManager.PlaySFX(audioManager.Enemy_Dies);
             minion.GetComponent<Minion_Logic>().Die();
         }
     }

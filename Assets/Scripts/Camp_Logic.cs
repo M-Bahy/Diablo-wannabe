@@ -29,9 +29,15 @@ public class Camp_Logic : MonoBehaviour
     bool keyFlag = false;
     bool doneFlag = false;
 
+    AudioManagerScript audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+    }
     // Start is called before the first frame update
     void Start()
     {
+        audioManager.PlayBackground(audioManager.Level1);
         minion.GetComponent<Minion_Logic>().player = player;
         demon.GetComponent<DemonLogic>().player = player;
         minX = this.transform.position.x - 20;
