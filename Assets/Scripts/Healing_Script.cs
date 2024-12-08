@@ -58,16 +58,35 @@ public class Healing_Script : MonoBehaviour
     }
 
     void spawnHealingPotions()
-    {
+    { 
+        if(PlayerMechanics.isLevel1){
+            // region 1 :
+            // X : 108.7  ,   330.79
+            // Z :    12    ,   233.2
 
-         // up (Z) :
-        // -80 , -20
-      // -52 , 52      --------> X
-        // down (z) :
-        // 30 , 102
-          // -30 , 30      --------> X
-      
+            // region 2 :
+            // X : 108.7  ,   330.79
+            // Z :    313.2    ,   485.2
 
+            // spawn half of the potions in region 1 and the other half in region 2
+            for (int i = 0; i < numberOfHealingPotions; i++)
+            {
+                // pick up or down
+                bool up = Random.Range(0, 2) == 0;
+                // pick a random x value
+                float x =  up ? Random.Range(108.7f, 330.79f) : Random.Range(108.7f, 330.79f);
+                // pick a random z value
+                float z = up ? Random.Range(12, 233.2f) : Random.Range(313.2f, 485.2f);
+
+                float y = gameObject.transform.position.y;
+                GameObject healingPotion = Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity);
+                // scale the potion down
+                healingPotion.transform.localScale = new Vector3(2, 2, 2);
+                availableHealingPotions.Add(healingPotion);
+            }
+
+        }
+        else{
         for (int i = 0; i < numberOfHealingPotions; i++)
         {
            // pick up or down
@@ -80,6 +99,8 @@ public class Healing_Script : MonoBehaviour
             float y = gameObject.transform.position.y;
             availableHealingPotions.Add(Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity));
         }
+        }
+       
     }
 
     private void OnTriggerEnter(Collider other) {
