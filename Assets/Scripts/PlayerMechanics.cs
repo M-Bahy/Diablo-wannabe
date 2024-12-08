@@ -517,6 +517,8 @@ public class PlayerMechanics : MonoBehaviour
         float speed = 10f; // Adjust movement speed
         Vector3 startPosition = transform.position;
         Vector3 direction = (targetPosition - startPosition).normalized; // Get the straight-line direction
+        float timeElapsed = 0f; // Track the elapsed time
+        float timeLimit = 3.5f;
         //direction.y = transform.position.y;
         while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
                           new Vector3(targetPosition.x, 0, targetPosition.z)) > 5f) // Check distance ignoring y
@@ -527,6 +529,17 @@ public class PlayerMechanics : MonoBehaviour
             // Keep facing the target position
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+
+            timeElapsed += Time.deltaTime;
+
+            // If the time exceeds the limit, stop the movement
+            if (timeElapsed >= timeLimit)
+            {
+                Debug.Log("Time limit reached, stopping movement");
+                animator.SetBool("isSprint", false); // Stop the sprinting animation
+                yield break; // Exit the coroutine
+            }
+
 
             yield return null;
         }
