@@ -43,7 +43,7 @@ public class Wizard_Clone : MonoBehaviour
                 if (targetLogic != null)
                 {
                     // Check for TakeDamage method and invoke it
-                    if (target.CompareTag("Minion"))
+                    if (target.CompareTag("Minion") || target.CompareTag("Summoned_Minions"))
                     {
                         var takeDamageMethod = targetLogic.GetType().GetMethod("TakeDamage");
                         if (takeDamageMethod != null)

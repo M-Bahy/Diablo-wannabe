@@ -273,7 +273,7 @@ public class PlayerMechanics : MonoBehaviour
         bool enemyFound = false;
         foreach (var collider in hitColliders)
         {
-            if (collider.CompareTag("Minion") || collider.CompareTag("Demon"))
+            if (collider.CompareTag("Minion") || collider.CompareTag("Demon") || collider.CompareTag("Summoned_Minions"))
             {
                 enemyFound = true;
                 break;
@@ -312,7 +312,14 @@ public class PlayerMechanics : MonoBehaviour
 
             //transform.LookAt(pos); LINE BEING REPLACED
             //rb.isKinematic = true;
-            GameObject fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x+1, 1, transform.position.z+1), Quaternion.identity);
+            GameObject fireballInstance = new GameObject();
+            if (isLevel1)
+                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x+1, 1, transform.position.z+1), Quaternion.identity);
+            else
+            {
+                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x + 1, 8, transform.position.z + 1), Quaternion.identity);
+                fireballInstance.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Adjust the scale values as needed
+            }
 
             FbScript fireballLogic = fireballInstance.GetComponent<FbScript>();
             if (fireballLogic != null)
