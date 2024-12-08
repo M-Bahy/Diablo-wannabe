@@ -103,6 +103,25 @@ public class Healing_Script : MonoBehaviour
        
     }
 
+    public void spawnHealingPotionsInCamps (float minX, float maxX, float minZ, float maxZ)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            // pick up or down
+            bool up = Random.Range(0, 2) == 0;
+            // pick a random x value
+            float x =  up ? Random.Range(minX, maxX) : Random.Range(minX, maxX);
+            // pick a random z value
+            float z = up ? Random.Range(minZ, maxZ) : Random.Range(minZ, maxZ);
+
+            float y = gameObject.transform.position.y - 2.5f;
+            GameObject healingPotion = Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity);
+            // scale the potion down
+            healingPotion.transform.localScale = new Vector3(5, 5, 5);
+            availableHealingPotions.Add(healingPotion);
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "potion")
         {
