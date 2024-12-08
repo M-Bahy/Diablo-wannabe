@@ -31,7 +31,7 @@ public class PlayerMechanics : MonoBehaviour
     public int playerMaxHealth = 100;
     public int playerCurrenttHealth = 90;
     int numberOfHealingPortions = 0;
-    int abilityPoints = 0;
+    public int abilityPoints = 0;
     int numberOfFragments = 0;
     private Animator animator;
     private Collider collider;
@@ -47,6 +47,7 @@ public class PlayerMechanics : MonoBehaviour
 
     public TMP_Text levelText ;
 
+    [SerializeField] TMP_Text abilityPointsText;
 
     public GameObject leftDoor;
     public GameObject rightDoor;
@@ -120,11 +121,6 @@ public class PlayerMechanics : MonoBehaviour
                     playerCurrenttHealth = playerMaxHealth;
                 }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-           exp+=30;
-
         }
       
         if (exp >= requiredExp  && level < 4){
@@ -548,8 +544,12 @@ public class PlayerMechanics : MonoBehaviour
 
         levelText.text = $"{level:F0}";
 
+        if (abilityPointsText != null)
+        {
+            abilityPointsText.text = $"{abilityPoints:F0}";
+        }
 
-        
+
     }
     private void levelUp(){
 
@@ -636,5 +636,9 @@ public class PlayerMechanics : MonoBehaviour
             portal.SetActive(true);
             telepoertCircle.SetActive(true);
         }
+    }
+    public void AddExp(int expToAdd)
+    {
+        exp += expToAdd;
     }
 }

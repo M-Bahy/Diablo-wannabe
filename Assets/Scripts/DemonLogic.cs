@@ -74,6 +74,7 @@ public class DemonLogic : MonoBehaviour
     private IEnumerator WaitAndDestroy(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
+        player.GetComponent<PlayerMechanics>().AddExp(30);
         Destroy(gameObject); // Destroy the GameObject
     }
 

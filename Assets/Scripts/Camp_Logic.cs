@@ -32,6 +32,8 @@ public class Camp_Logic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        minion.GetComponent<Minion_Logic>().player = player;
+        demon.GetComponent<DemonLogic>().player = player;
         minX = this.transform.position.x - 20;
         minZ = this.transform.position.z - 20;
         maxX = this.transform.position.x + 20;
@@ -45,6 +47,7 @@ public class Camp_Logic : MonoBehaviour
         {
             Vector3 randomPosition = GetRandomPosition(demonY);
             tmp = Instantiate(demon, randomPosition, Quaternion.identity);
+            //tmp.GetComponent<DemonLogic>().player = player;
             demonsArray.Add(tmp);
         }
 
@@ -52,6 +55,7 @@ public class Camp_Logic : MonoBehaviour
         {
             Vector3 randomPosition = GetRandomPosition(minionY);
             tmp = Instantiate(minion, randomPosition, Quaternion.identity);
+            //tmp.GetComponent<Minion_Logic>().player = player;
             minionsArray.Add(tmp);
         }
 

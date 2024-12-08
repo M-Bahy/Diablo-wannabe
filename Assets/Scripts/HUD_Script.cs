@@ -8,12 +8,15 @@ using UnityEngine.UI;
 public class HUD_Script : MonoBehaviour
 {
 
-    public int abilityPoints = 0; 
+    public int abilityPoints; 
     public Button[] abilityButtons; 
     public TMP_Text[] buttonTexts;
 
     public static bool[] abilitiesUnlocked;
     public static bool[] abilitiesCoolDown;
+
+    [SerializeField] private GameObject player;
+    PlayerMechanics pm;
 
     void Start()
     {
@@ -21,9 +24,9 @@ public class HUD_Script : MonoBehaviour
            abilitiesUnlocked = new bool[4];
            abilitiesUnlocked[0] = true;
            abilitiesCoolDown = new bool[4];
-           
-
-
+        
+        pm = player.GetComponent<PlayerMechanics>();
+        abilityPoints = pm.abilityPoints;
 
         for (int i = 1; i < abilityButtons.Length; i++)
         {
@@ -37,7 +40,7 @@ public class HUD_Script : MonoBehaviour
         if (!abilitiesUnlocked[index] && abilityPoints > 0)
         {
             abilitiesUnlocked[index] = true;
-            abilityPoints--;
+            pm.abilityPoints--;
             UnlockAbility(index);
         }
     }
@@ -62,5 +65,6 @@ public class HUD_Script : MonoBehaviour
                 buttonTexts[i].color = Color.green;
             }
         }
+        abilityPoints = pm.abilityPoints;
     }
 }

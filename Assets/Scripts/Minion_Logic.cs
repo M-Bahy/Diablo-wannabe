@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -103,6 +104,7 @@ public class Minion_Logic : MonoBehaviour
     private IEnumerator WaitAndDestroy(float delay)
     {
         yield return new WaitForSeconds(delay); // Wait for the specified delay
+        player.GetComponent<PlayerMechanics>().AddExp(10);
         Destroy(gameObject); // Destroy the GameObject
     }
 
