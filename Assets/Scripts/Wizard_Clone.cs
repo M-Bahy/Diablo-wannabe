@@ -45,11 +45,7 @@ public class Wizard_Clone : MonoBehaviour
                     // Check for TakeDamage method and invoke it
                     if (target.CompareTag("Minion") || target.CompareTag("Summoned_Minions"))
                     {
-                        var takeDamageMethod = targetLogic.GetType().GetMethod("TakeDamage");
-                        if (takeDamageMethod != null)
-                        {
-                            takeDamageMethod.Invoke(targetLogic, new object[] { damageAmount });
-                        }
+                        target.GetComponent<Minion_Logic>().TakeDamage(damageAmount);
                     }
                     else if (target.CompareTag("Demon"))
                     {

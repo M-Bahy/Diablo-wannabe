@@ -346,9 +346,19 @@ public class PlayerMechanics : MonoBehaviour
                 // add one two seconds delay
                 //StartCoroutine(TeleportAfterDelay(hit.point));
                 agent.enabled = false;
-                transform.position = hit.point;
-                agent.enabled = true;
-                agent.SetDestination(hit.point);
+                if (isLevel1)
+                {
+                    transform.position = hit.point;
+                    agent.enabled = true;
+                    agent.SetDestination(hit.point);
+                }
+                else
+                {
+                    transform.position = new Vector3(hit.point.x, 4.119328f, hit.point.z);
+                    agent.enabled = true;
+                    agent.SetDestination(transform.position);
+                }
+                
 
 
                 StartCoroutine(AbilityCooldown(1, 10f)); // Cooldown for 10 seconds
@@ -408,8 +418,16 @@ public class PlayerMechanics : MonoBehaviour
     {
         if (tag == "Sorcerer")
         {
-            GameObject clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
+            GameObject clone = new GameObject();
+            if (isLevel1)
+                clone = Instantiate(wizardClone, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
+            else
+            {
+                clone = Instantiate(wizardClone, new Vector3(pos.x, 4.119328f, pos.z), Quaternion.identity);
+                clone.transform.localScale = new Vector3(1f, 1f, 1f); // Adjust the scale values as needed
+            }
             Minion_Logic.wizardClone = clone;
+            DemonLogic.wizardClone = clone;
             StartCoroutine(AbilityCooldown(3, 10f));
             wildButtonClicked = false;
             buttonCliked = false;
