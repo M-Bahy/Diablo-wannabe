@@ -78,10 +78,10 @@ public class Healing_Script : MonoBehaviour
                 // pick a random z value
                 float z = up ? Random.Range(12, 233.2f) : Random.Range(313.2f, 485.2f);
 
-                float y = gameObject.transform.position.y;
+                float y = gameObject.transform.position.y - 2.5f;
                 GameObject healingPotion = Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity);
                 // scale the potion down
-                healingPotion.transform.localScale = new Vector3(2, 2, 2);
+                healingPotion.transform.localScale = new Vector3(5, 5, 5);
                 availableHealingPotions.Add(healingPotion);
             }
 
