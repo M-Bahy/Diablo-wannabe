@@ -23,6 +23,7 @@ public class PlayerMechanics : MonoBehaviour
     private bool wildButtonClicked = false;
     private GameObject activeShield;
     public GameObject shieldPrefab;
+    public GameObject axePrefab;
     //////////////
 
     int level = 1;
@@ -533,6 +534,7 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
             barAttacking = true;
+            Instantiate(axePrefab, transform.position, Quaternion.identity);
             StartCoroutine(AbilityCooldown(3, 5f));
             StartCoroutine(ResetAfterBarbarianSpecialAttack());
 
