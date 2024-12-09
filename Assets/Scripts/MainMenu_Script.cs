@@ -40,8 +40,9 @@ public class MainMenu_Script : MonoBehaviour
 
 
     public static int goToLevel = 1 ;
+    public static bool isWizard = true;
     AudioManagerScript audioManager;
-    String iCameFrom = "MainMenu";
+    bool cameFromLevelSelect = false;
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -108,12 +109,13 @@ public class MainMenu_Script : MonoBehaviour
     }
     public void NewGameButton(){
         playPanel.SetActive(false);
-        iCameFrom = "Play";
+        cameFromLevelSelect = false;
+        goToLevel = 1;
         characterSelectPanel.SetActive(true);
     }
     public void LevelSelectButton(){
         playPanel.SetActive(false);
-        iCameFrom = "levelSelect";
+        cameFromLevelSelect = true;
         levelSelectPanel.SetActive(true);
     }
     public void Level1Button(){
@@ -128,12 +130,12 @@ public class MainMenu_Script : MonoBehaviour
     }
     public void WizardButton(){
         // some code to select wizard
-
+        isWizard = true;
         GoToLevel();
     }
     public void BarbarianButton(){
         // some code to select barbarian
-
+        isWizard = false;
         GoToLevel();
     }
     public void TeamCreditsButton(){
@@ -150,10 +152,10 @@ public class MainMenu_Script : MonoBehaviour
     }
     public void CharacterSelectBackButton(){
         characterSelectPanel.SetActive(false);
-        if(iCameFrom == "Play"){
-            playPanel.SetActive(true);
-        }else{
+        if(cameFromLevelSelect){
             levelSelectPanel.SetActive(true);
+        }else{
+            playPanel.SetActive(true);
         }
     }
     public void LevelSelectBackButton(){
