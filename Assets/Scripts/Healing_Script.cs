@@ -59,7 +59,8 @@ public class Healing_Script : MonoBehaviour
 
     void spawnHealingPotions()
     { 
-        if(PlayerMechanics.isLevel1){
+        Debug.Log("is level 1: " + PlayerMechanics.isLevel1);
+        if (PlayerMechanics.isLevel1){
             // region 1 :
             // X : 108.7  ,   330.79
             // Z :    12    ,   233.2

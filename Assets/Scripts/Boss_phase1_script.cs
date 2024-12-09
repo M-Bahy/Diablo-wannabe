@@ -27,6 +27,8 @@ public class Boss_phase1_script : MonoBehaviour
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
+        PlayerMechanics.isLevel1 = false;
+
     }
 
     // Start is called before the first frame update
@@ -36,7 +38,6 @@ public class Boss_phase1_script : MonoBehaviour
         ogSummonDelay = summonDelay;
         ogDiveBoomDelay = diveBoomDelay;
        // PlayerMechanics playerMechanics = player.GetComponent<PlayerMechanics>();
-        PlayerMechanics.isLevel1 = false;
         ogCastDelay = castDelay;
         ogSpikesBoomDelay = spikesDelay;
         audioManager.PlayBackground(audioManager.Level2);

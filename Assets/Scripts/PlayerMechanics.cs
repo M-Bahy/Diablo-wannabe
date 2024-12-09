@@ -248,33 +248,110 @@ public class PlayerMechanics : MonoBehaviour
         {
             Collider[] hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
             bool enemyFound = false;
+            Transform nearestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+
             foreach (var collider in hitColliders)
             {
                 if (collider.CompareTag("Summoned_Minions"))
                 {
-                    enemyFound = true;
-                    break;
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        nearestEnemy = collider.transform;
+                    }
                 }
             }
-            if (enemyFound)
+            if (nearestEnemy!= null)
             {
-                Vector3 attackDirection = (pos - transform.position).normalized; // Calculate direction
-                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
-                transform.rotation = targetRotation;
-                animator.SetBool("Attack", true);
-                barAttacking = true;
-                StartCoroutine(ResetAfterBarbarianAttack());
-                StartCoroutine(AbilityCooldown(0, 1f));
-               
+
+
+                StartCoroutine(MoveAndAttack(nearestEnemy, pos));
+
+                // float attackRange = 2.0f; // Define the attack range
+                // float distanceToEnemy = Vector3.Distance(transform.position, nearestEnemy.position-new Vector3(0.5f, 0.5f, 0.5f));
+                // agent.updateRotation = true;
+                //// Set destination to the enemy's position
+                //// animator.SetBool("isWalking", true);
+
+                // while (distanceToEnemy > attackRange)
+                // {
+                //     agent.SetDestination(nearestEnemy.position - new Vector3(0.5f, 0.5f, 0.5f));
+                //     // Move towards the enemy
+                //     // Allow NavMeshAgent to handle rotation while moving
+                //     distanceToEnemy = Vector3.Distance(transform.position, nearestEnemy.position - new Vector3(0.5f, 0.5f, 0.5f));
+                // }
+
+
+                //     agent.updateRotation = false;
+
+                //     Vector3 attackDirection = new Vector3(pos.x - transform.position.x, 0, pos.z - transform.position.z).normalized;
+                //     Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+                //     transform.rotation = targetRotation;
+                //     //agent.SetDestination(agent.transform.position);
+                //     animator.SetBool("Attack", true);
+                //     barAttacking = true;
+                //     StartCoroutine(ResetAfterBarbarianAttack());
+                //     StartCoroutine(AbilityCooldown(0, 1f));
+
+
+
+
 
             }
 
 
 
 
-        
+
 
         }
+    }
+
+
+
+
+    private IEnumerator MoveAndAttack(Transform nearestEnemy, Vector3 pos)
+    {
+        float attackRange = 5.0f; // Define the attack range
+        agent.updateRotation = true; // Allow rotation
+        //animator.SetBool("isWalking", true); // Start walking animation
+
+        // Continuously move towards the enemy and update the target position
+        while (true)
+        {
+            // Update the target position based on the enemy's current position
+            Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
+            float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
+
+            // Set destination to the enemy's updated position
+            agent.SetDestination(targetPosition);
+          //  Debug.Log("Distance to enemy: " + distanceToEnemy);
+            // If within attack range, stop moving and attack
+            if (distanceToEnemy <= attackRange)
+            {
+                break;
+            }
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Once within range, stop moving and perform the attack
+        agent.updateRotation = false; // Stop NavMeshAgent rotation
+
+        // Rotate the Barbarian to face the enemy
+        Vector3 attackDirection = (pos - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+        transform.rotation = targetRotation;
+
+        // Trigger the attack animation
+        animator.SetBool("Attack", true);
+        barAttacking = true;
+
+        // Start the attack cooldown and reset
+        StartCoroutine(ResetAfterBarbarianAttack());
+        StartCoroutine(AbilityCooldown(0, 1f));
     }
 
     private IEnumerator SpawnFireballWithDelay(float delay, Vector3 pos)
@@ -518,7 +595,7 @@ public class PlayerMechanics : MonoBehaviour
         Vector3 startPosition = transform.position;
         Vector3 direction = (targetPosition - startPosition).normalized; // Get the straight-line direction
         float timeElapsed = 0f; // Track the elapsed time
-        float timeLimit = 3.5f;
+        float timeLimit = 2.0f;
         //direction.y = transform.position.y;
         while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
                           new Vector3(targetPosition.x, 0, targetPosition.z)) > 5f) // Check distance ignoring y
@@ -535,7 +612,7 @@ public class PlayerMechanics : MonoBehaviour
             // If the time exceeds the limit, stop the movement
             if (timeElapsed >= timeLimit)
             {
-                Debug.Log("Time limit reached, stopping movement");
+               // Debug.Log("Time limit reached, stopping movement");
                 animator.SetBool("isSprint", false); // Stop the sprinting animation
                 yield break; // Exit the coroutine
             }
@@ -543,7 +620,7 @@ public class PlayerMechanics : MonoBehaviour
 
             yield return null;
         }
-        Debug.Log("Enabled aagain");
+      //  Debug.Log("Enabled aagain");
         animator.SetBool("isSprint", false);
         
         // Stop sprinting animation when the target is reached
@@ -578,6 +655,8 @@ public class PlayerMechanics : MonoBehaviour
         yield return new WaitForSeconds(1.2f); // Wait for the animation duration
         animator.SetBool("Attack", false); // Reset the attack animation state
         barAttacking = false;
+        agent.updateRotation = true;
+
     }
 
     IEnumerator ResetAfterBarbarianSpecialAttack()
@@ -720,7 +799,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         if (other.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint"))
         {
-            Debug.Log("Collision");
+           // Debug.Log("Collision");
             GameObject minion = other.gameObject;
             audioManager.PlaySFX(audioManager.Enemy_Dies);
             minion.GetComponent<Minion_Logic>().Die();
