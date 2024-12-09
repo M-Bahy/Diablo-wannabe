@@ -165,7 +165,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0])
         {
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -333,7 +333,7 @@ public class PlayerMechanics : MonoBehaviour
                 fireballLogic.SetTarget(pos);
             }
         }
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay-0.1f);
         //rb.isKinematic = false;
         animator.SetBool("isAttacking", false);
     }
