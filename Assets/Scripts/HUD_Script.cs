@@ -11,9 +11,11 @@ public class HUD_Script : MonoBehaviour
     public int abilityPoints; 
     public Button[] abilityButtons; 
     public TMP_Text[] buttonTexts;
+    public TMP_Text[] coolDownTimerTexts;
 
     public static bool[] abilitiesUnlocked;
     public static bool[] abilitiesCoolDown;
+    public static float[] coolDownTimer;
 
     [SerializeField] private GameObject player;
     PlayerMechanics pm;
@@ -21,10 +23,12 @@ public class HUD_Script : MonoBehaviour
     void Start()
     {
         
-           abilitiesUnlocked = new bool[4];
-           abilitiesUnlocked[0] = true;
-           abilitiesCoolDown = new bool[4];
-        
+        abilitiesUnlocked = new bool[4];
+        abilitiesUnlocked[0] = true;
+        abilitiesCoolDown = new bool[4];
+        coolDownTimer = new float[4];
+        coolDownTimer[0] = 0.0f;
+
         pm = player.GetComponent<PlayerMechanics>();
         abilityPoints = pm.abilityPoints;
 
@@ -32,6 +36,7 @@ public class HUD_Script : MonoBehaviour
         {
             int index = i; // Capture index for the lambda expression
             abilityButtons[i].onClick.AddListener(() => TryUnlockAbility(index));
+            coolDownTimer[i] = 0.0f;
         }
     }
 
@@ -66,5 +71,19 @@ public class HUD_Script : MonoBehaviour
             }
         }
         abilityPoints = pm.abilityPoints;
+
+        for (int i = 0; i < coolDownTimer.Length; i++)
+        {
+            if (coolDownTimer[i] > 0)
+            {
+                coolDownTimerTexts[i].transform.parent.gameObject.SetActive(true);
+                coolDownTimer[i] -= Time.deltaTime;
+                coolDownTimerTexts[i].text = coolDownTimer[i].ToString("F1");
+            }
+            else
+            {
+                coolDownTimerTexts[i].transform.parent.gameObject.SetActive(false);
+            }
+        }
     }
 }

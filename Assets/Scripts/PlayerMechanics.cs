@@ -240,8 +240,6 @@ public class PlayerMechanics : MonoBehaviour
         //animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
-            audioManager.PlaySFX(audioManager.Fireball_Shot);
-            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
             StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
         }
         else if(tag == "Barbarian")
@@ -314,8 +312,9 @@ public class PlayerMechanics : MonoBehaviour
             transform.rotation = targetRotation;
             /////////////////////
             animator.SetBool("isAttacking", true);
+            audioManager.PlaySFX(audioManager.Fireball_Shot);
+            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
             yield return new WaitForSeconds(delay);
-
 
             //transform.LookAt(pos); LINE BEING REPLACED
             //rb.isKinematic = true;
@@ -548,6 +547,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         // Set the ability cooldown to true
         HUD_Script.abilitiesCoolDown[abilityIndex] = true;
+        HUD_Script.coolDownTimer[abilityIndex] = cooldownTime;
 
         // Wait for the cooldown duration
         yield return new WaitForSeconds(cooldownTime);
