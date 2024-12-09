@@ -113,6 +113,8 @@ public class Camp_Logic : MonoBehaviour
              increaseTargetInt();
         }
         demonsArray[0].transform.position = Vector3.MoveTowards(demonsArray[0].transform.position , patrollPoints[targetPoint].position , patrollSpeed*Time.deltaTime);
+         demonsArray[0].transform.LookAt(patrollPoints[targetPoint].position);
+
     }
 
     void increaseTargetInt(){
