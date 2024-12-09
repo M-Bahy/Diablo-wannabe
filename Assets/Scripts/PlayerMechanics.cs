@@ -396,9 +396,9 @@ public class PlayerMechanics : MonoBehaviour
 
 
           
-                Vector3 spawnPosition = pos;
+                Vector3 spawnPosition = new Vector3 (pos.x, 1, pos.z);
                 if (!isLevel1)
-                    spawnPosition.y += 5.0f;
+                    spawnPosition.y = 5.0f;
                 audioManager.PlaySFX(audioManager.Inferno_Activated);
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(2, 15f));
