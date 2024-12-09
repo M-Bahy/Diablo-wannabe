@@ -143,6 +143,11 @@ MonoBehaviour:
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
   player: {fileID: 7693997212503393795}
+  patrollPoints:
+  - {fileID: 1981469815}
+  - {fileID: 666120157}
+  - {fileID: 1111197922}
+  - {fileID: 1206087385}
 --- !u!65 &756866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -806,6 +811,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 45.80166, y: 2.6144764, z: 0.5763091}
   m_Center: {x: -21.051846, y: 12.629023, z: 29.57399}
+--- !u!1 &231675976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231675977}
+  m_Layer: 0
+  m_Name: PatrolOneCamp1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231675977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231675976}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 198.65, y: 0.20000191, z: 293.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268547699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1082,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 45.80166, y: 2.6144764, z: 0.5763091}
   m_Center: {x: -21.051846, y: 12.629023, z: 29.57399}
+--- !u!1 &410259353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410259354}
+  m_Layer: 0
+  m_Name: PatrolOneCamp3 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410259354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410259353}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 387.1, y: 0.20000191, z: 431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &439562567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1402,6 +1469,37 @@ RectTransform:
   m_AnchoredPosition: {x: 86, y: -7.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &468493603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468493604}
+  m_Layer: 0
+  m_Name: PatrolOneCamp4 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &468493604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468493603}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 50.199997, y: 0.20000191, z: 431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &479743430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,6 +1805,37 @@ RectTransform:
   m_AnchoredPosition: {x: -161, y: 76}
   m_SizeDelta: {x: 281, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &554777503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554777504}
+  m_Layer: 0
+  m_Name: PatrolOneCamp1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &554777504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554777503}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 238.65, y: 0.1999981, z: 253.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560648475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2320,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &600703306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600703307}
+  m_Layer: 0
+  m_Name: PatrolOneCamp2 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600703307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600703306}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 387.1, y: 0.1999981, z: 116.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &611047005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8359865500804193989, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -2361,6 +2521,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630864436}
   m_CullTransparentMesh: 1
+--- !u!1 &649510967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649510968}
+  m_Layer: 0
+  m_Name: PatrolOneCamp2 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &649510968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649510967}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 387.1, y: 0.20000191, z: 156.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &660078310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,6 +2618,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 45.80166, y: 2.6144764, z: 0.5763091}
   m_Center: {x: -21.051846, y: 12.629023, z: 29.57399}
+--- !u!1 &666120156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 666120157}
+  m_Layer: 0
+  m_Name: PatrolOneCamp (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &666120157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666120156}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 90.2, y: 0.1999981, z: 116.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724901561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,6 +2915,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728154091}
   m_CullTransparentMesh: 1
+--- !u!1 &738616653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738616654}
+  m_Layer: 0
+  m_Name: PatrolOneCamp4 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738616654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738616653}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 90.2, y: 0.1999981, z: 391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746867289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6179408264452434852, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -3761,6 +4014,42 @@ MonoBehaviour:
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
   player: {fileID: 7693997212503393795}
+  patrollPoints:
+  - {fileID: 2055726724}
+  - {fileID: 554777504}
+  - {fileID: 1582865643}
+  - {fileID: 231675977}
+--- !u!1 &1111197921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1111197922}
+  m_Layer: 0
+  m_Name: PatrolOneCamp (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1111197922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111197921}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 90.2, y: 0.20000191, z: 156.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128971002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8005603781508084976, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -3911,6 +4200,37 @@ RectTransform:
   m_AnchoredPosition: {x: 36.244102, y: -0.87267303}
   m_SizeDelta: {x: 276.59564, y: 39.414547}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1206087384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1206087385}
+  m_Layer: 0
+  m_Name: PatrolOneCamp (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1206087385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206087384}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 50.199997, y: 0.20000191, z: 156.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227376752
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,6 +4441,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439, type: 3}
   m_PrefabInstance: {fileID: 1245695226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1283010691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283010692}
+  m_Layer: 0
+  m_Name: PatrolOneCamp3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1283010692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283010691}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 347.1, y: 0.1999981, z: 391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1298423979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,6 +4640,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397137837}
   m_CullTransparentMesh: 1
+--- !u!1 &1411584888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411584889}
+  m_Layer: 0
+  m_Name: PatrolOneCamp3 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1411584889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411584888}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 387.1, y: 0.1999981, z: 391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1417806996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417806997}
+  m_Layer: 0
+  m_Name: PatrolOneCamp4 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417806997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417806996}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 90.2, y: 0.20000191, z: 431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1420540274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4326,6 +4739,11 @@ MonoBehaviour:
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
   player: {fileID: 7693997212503393795}
+  patrollPoints:
+  - {fileID: 1659087541}
+  - {fileID: 600703307}
+  - {fileID: 649510968}
+  - {fileID: 1791141573}
 --- !u!114 &1420617345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4359,6 +4777,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 45.80166, y: 2.6144764, z: 0.5763091}
   m_Center: {x: -21.051846, y: 12.629023, z: 29.57399}
+--- !u!1 &1422372605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422372606}
+  m_Layer: 0
+  m_Name: PatrolOneCamp4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1422372606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422372605}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 50.199997, y: 0.1999981, z: 391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456936479
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,6 +4979,11 @@ MonoBehaviour:
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
   player: {fileID: 7693997212503393795}
+  patrollPoints:
+  - {fileID: 1422372606}
+  - {fileID: 738616654}
+  - {fileID: 1417806997}
+  - {fileID: 468493604}
 --- !u!1 &1470007327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,6 +5410,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551773736}
   m_CullTransparentMesh: 1
+--- !u!1 &1582865642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1582865643}
+  m_Layer: 0
+  m_Name: PatrolOneCamp1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1582865643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582865642}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 238.65, y: 0.20000191, z: 293.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1585810729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 676852230516712474, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -5116,6 +5601,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1659087540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659087541}
+  m_Layer: 0
+  m_Name: PatrolOneCamp2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659087541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659087540}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 347.1, y: 0.1999981, z: 116.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690380124
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,6 +6001,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 45.80166, y: 2.6144764, z: 0.5763091}
   m_Center: {x: -21.051846, y: 12.629023, z: 29.57399}
+--- !u!1 &1791141572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791141573}
+  m_Layer: 0
+  m_Name: PatrolOneCamp2 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1791141573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791141572}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 347.1, y: 0.20000191, z: 156.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1800639140
 GameObject:
   m_ObjectHideFlags: 0
@@ -5961,6 +6508,37 @@ MonoBehaviour:
   - {fileID: 2059599039}
   - {fileID: 1800639141}
   player: {fileID: 7693997212503393795}
+--- !u!1 &1898837767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898837768}
+  m_Layer: 0
+  m_Name: PatrolOneCamp3 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898837768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898837767}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 347.1, y: 0.20000191, z: 431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1911445298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5998,6 +6576,11 @@ MonoBehaviour:
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
   player: {fileID: 7693997212503393795}
+  patrollPoints:
+  - {fileID: 1283010692}
+  - {fileID: 1411584889}
+  - {fileID: 410259354}
+  - {fileID: 1898837768}
 --- !u!1 &1918948583
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,6 +6821,37 @@ MonoBehaviour:
   Boss_Swings_Hands: {fileID: 8300000, guid: f4599d87167bc164495fa5caced6fd7a, type: 3}
   Boss_Getting_Damaged: {fileID: 8300000, guid: 2820b171b1b5104abb0ec0bde043cbe7, type: 3}
   Boss_Dies: {fileID: 8300000, guid: f6e0fe903fc766d4b8ad7a6bdc4fb580, type: 3}
+--- !u!1 &1981469814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981469815}
+  m_Layer: 0
+  m_Name: PatrolOneCamp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981469815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981469814}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 50.199997, y: 0.1999981, z: 116.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1993948071
 GameObject:
   m_ObjectHideFlags: 0
@@ -6275,6 +6889,37 @@ RectTransform:
   m_AnchoredPosition: {x: 36.244102, y: -0.87267303}
   m_SizeDelta: {x: 276.59564, y: 39.414547}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2055726723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055726724}
+  m_Layer: 0
+  m_Name: PatrolOneCamp1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2055726724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055726723}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 198.65, y: 0.1999981, z: 253.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2057175758
 GameObject:
   m_ObjectHideFlags: 0
@@ -6916,10 +7561,30 @@ SceneRoots:
   m_Roots:
   - {fileID: 1918948585}
   - {fileID: 1298423982}
+  - {fileID: 1981469815}
+  - {fileID: 666120157}
+  - {fileID: 1111197922}
+  - {fileID: 1206087385}
   - {fileID: 6708590021095094055}
+  - {fileID: 2055726724}
+  - {fileID: 554777504}
+  - {fileID: 1582865643}
+  - {fileID: 231675977}
   - {fileID: 573197126}
+  - {fileID: 1659087541}
+  - {fileID: 600703307}
+  - {fileID: 649510968}
+  - {fileID: 1791141573}
   - {fileID: 149667713}
+  - {fileID: 1283010692}
+  - {fileID: 1411584889}
+  - {fileID: 410259354}
+  - {fileID: 1898837768}
   - {fileID: 439562567}
+  - {fileID: 1422372606}
+  - {fileID: 738616654}
+  - {fileID: 1417806997}
+  - {fileID: 468493604}
   - {fileID: 43969252}
   - {fileID: 746955542}
   - {fileID: 6287153913485589992}

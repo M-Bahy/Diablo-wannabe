@@ -29,6 +29,11 @@ public class Camp_Logic : MonoBehaviour
     bool keyFlag = false;
     bool doneFlag = false;
 
+    public Transform[] patrollPoints ; 
+    int targetPoint ;
+
+    float patrollSpeed ;
+
     AudioManagerScript audioManager;
 
     private void Awake() {
@@ -50,6 +55,9 @@ public class Camp_Logic : MonoBehaviour
         int demonCount = Random.Range(1, 3);
         int minionCount = Random.Range(8, 11);
         GameObject tmp;
+
+        targetPoint = 0;
+        patrollSpeed = 4.0f ; 
 
         for (int i = 0; i < demonCount; i++)
         {
@@ -93,6 +101,29 @@ public class Camp_Logic : MonoBehaviour
             }
         }
 
+        patroll();
+
+    }
+
+    private void patroll()
+    {
+         if(patrollPoints[targetPoint].position.x-0.05 <=demonsArray[0].transform.position.x  &&  demonsArray[0].transform.position.x <= patrollPoints[targetPoint].position.x+0.05 
+         && patrollPoints[targetPoint].position.z-0.05 <=demonsArray[0].transform.position.z &&  demonsArray[0].transform.position.z <= patrollPoints[targetPoint].position.z+0.05 ){
+        //if(patrollPoints[targetPoint].position ==demonsArray[0].transform.position  && patrollPoints[targetPoint].position == demonsArray[0].transform.position ){
+             increaseTargetInt();
+        }
+        demonsArray[0].transform.position = Vector3.MoveTowards(demonsArray[0].transform.position , patrollPoints[targetPoint].position , patrollSpeed*Time.deltaTime);
+    }
+
+    void increaseTargetInt(){
+        
+        targetPoint++;
+        // Debug.Log("targetPoint " + targetPoint);
+        // Debug.Log("partorll points length  " + patrollPoints.Length);
+
+        if(targetPoint >= patrollPoints.Length ){
+            targetPoint = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
