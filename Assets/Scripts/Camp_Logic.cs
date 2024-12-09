@@ -136,20 +136,23 @@ public class Camp_Logic : MonoBehaviour
 
         }
 
+ 
         if(demonsArray.Count >= 2){
-            if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
-                && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
-                    
-                    
-                    targetPoint2++;
-                    if(targetPoint2 >= patrollPoints2.Length ){
-                        targetPoint2 = 0;
-                     
+            if(!demonsArray[1].GetComponent<DemonLogic>().isAggro){
+                if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
+                    && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
+                        
+                        
+                        targetPoint2++;
+                        if(targetPoint2 >= patrollPoints2.Length ){
+                            targetPoint2 = 0;
+                        
+                    }
                 }
+                demonsArray[1].transform.position = Vector3.MoveTowards(demonsArray[1].transform.position , patrollPoints2[targetPoint2] , patrollSpeed*Time.deltaTime);
+                demonsArray[1].transform.LookAt(patrollPoints2[targetPoint2]);
+                
             }
-            demonsArray[1].transform.position = Vector3.MoveTowards(demonsArray[1].transform.position , patrollPoints2[targetPoint2] , patrollSpeed*Time.deltaTime);
-            demonsArray[1].transform.LookAt(patrollPoints2[targetPoint2]);
-             
         }
 
 
