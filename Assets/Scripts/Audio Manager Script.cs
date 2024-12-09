@@ -6,20 +6,20 @@ public class AudioManagerScript : MonoBehaviour
     [Header("------------ Are we in the main menu ------------")]
     [SerializeField] bool isMainMenu;
 
-    [Header("------------ Volume Sliders ------------]")]
-    public Slider musicSlider;
-    public Slider SFXSlider;
+    // [Header("------------ Volume Sliders ------------")]
+    // public Slider musicSlider;
+    // public Slider SFXSlider;
 
     [Header("------------ Audio Source ------------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
-    [Header("------------ Music Clips ------------]")]
+    [Header("------------ Music Clips ------------")]
     public AudioClip Menus;
     public AudioClip Level1;
     public AudioClip Level2;
 
-    [Header("------------ SFX Clips ------------]")]
+    [Header("------------ SFX Clips ------------")]
     public AudioClip Shield_Activated;
     public AudioClip Inferno_Activated;
     public AudioClip Clone_Activated;
@@ -45,16 +45,16 @@ public class AudioManagerScript : MonoBehaviour
 
     private void Start()
     {
-        if (isMainMenu)
-        {
-            musicSlider.value = musicVolume;
-            SFXSlider.value = SFXVolume;
-        }
-        else
-        {
+        // if (isMainMenu)
+        // {
+        //     musicSlider.value = musicVolume;
+        //     SFXSlider.value = SFXVolume;
+        // }
+        // else
+        // {
             SetMusicVolume(musicVolume);
             SetSFXVolume(SFXVolume);
-        }
+        // }
     }
 
     public void PlaySFX(AudioClip clip)
@@ -82,10 +82,10 @@ public class AudioManagerScript : MonoBehaviour
 
     private void Update()
     {
-        if (isMainMenu)
-        {
-            SetMusicVolume(musicSlider.value);
-            SetSFXVolume(SFXSlider.value);
-        }
+        // if (isMainMenu)
+        // {
+        //     SetMusicVolume(musicSlider.value);
+        //     SetSFXVolume(SFXSlider.value);
+        // }
     }
 }
