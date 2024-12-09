@@ -82,10 +82,10 @@ public class AudioManagerScript : MonoBehaviour
 
     private void Update()
     {
-        // if (isMainMenu)
-        // {
-        //     SetMusicVolume(musicSlider.value);
-        //     SetSFXVolume(SFXSlider.value);
-        // }
+        if (isMainMenu)
+        {
+            SetMusicVolume(musicVolume);
+            SetSFXVolume(SFXVolume);
+        }
     }
 }

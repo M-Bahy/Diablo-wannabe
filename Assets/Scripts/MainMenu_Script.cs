@@ -43,6 +43,9 @@ public class MainMenu_Script : MonoBehaviour
         playButton.onClick.AddListener(PlayButton);
         optionsButton.onClick.AddListener(OptionsButton);
         quitButton.onClick.AddListener(QuitButton);
+        // set slider values
+        musicSlider.value = AudioManagerScript.musicVolume;
+        SFXSlider.value = AudioManagerScript.SFXVolume;
         
     }
 
