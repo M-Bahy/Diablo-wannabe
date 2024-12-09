@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,9 +22,26 @@ public class MainMenu_Script : MonoBehaviour
     public Button playButton;
     public Button optionsButton;
     public Button quitButton;
-    public static int goToLevel = 1 ;
+    public Button newGameButton;
+    public Button levelSelectButton;
+    public Button level1Button;
+    public Button level2Button;
+    public Button wizardButton;
+    public Button barbarianButton;
+    public Button teamCreditsButton;
+    public Button assetsCreditsButton;
+    public Button playBackButton;
+    public Button characterSelectBackButton;
+    public Button levelSelectBackButton;
+    public Button optionsBackButton;
+    public Button teamCreditsBackButton;
+    public Button assetsCreditsBackButton;
+    
 
+
+    public static int goToLevel = 1 ;
     AudioManagerScript audioManager;
+    String iCameFrom = "MainMenu";
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -43,6 +61,20 @@ public class MainMenu_Script : MonoBehaviour
         playButton.onClick.AddListener(PlayButton);
         optionsButton.onClick.AddListener(OptionsButton);
         quitButton.onClick.AddListener(QuitButton);
+        newGameButton.onClick.AddListener(NewGameButton);
+        levelSelectButton.onClick.AddListener(LevelSelectButton);
+        level1Button.onClick.AddListener(Level1Button);
+        level2Button.onClick.AddListener(Level2Button);
+        wizardButton.onClick.AddListener(WizardButton);
+        barbarianButton.onClick.AddListener(BarbarianButton);
+        teamCreditsButton.onClick.AddListener(TeamCreditsButton);
+        assetsCreditsButton.onClick.AddListener(AssetsCreditsButton);
+        playBackButton.onClick.AddListener(PlayBackButton);
+        characterSelectBackButton.onClick.AddListener(CharacterSelectBackButton);
+        levelSelectBackButton.onClick.AddListener(LevelSelectBackButton);
+        optionsBackButton.onClick.AddListener(OptionsBackButton);
+        teamCreditsBackButton.onClick.AddListener(TeamCreditsBackButton);
+        assetsCreditsBackButton.onClick.AddListener(AssetsCreditsBackButton);
         // set slider values
         musicSlider.value = AudioManagerScript.musicVolume;
         SFXSlider.value = AudioManagerScript.SFXVolume;
@@ -73,5 +105,71 @@ public class MainMenu_Script : MonoBehaviour
     void QuitButton()
     {
         Application.Quit();
+    }
+    public void NewGameButton(){
+        playPanel.SetActive(false);
+        iCameFrom = "Play";
+        characterSelectPanel.SetActive(true);
+    }
+    public void LevelSelectButton(){
+        playPanel.SetActive(false);
+        iCameFrom = "levelSelect";
+        levelSelectPanel.SetActive(true);
+    }
+    public void Level1Button(){
+        goToLevel = 1;
+        levelSelectPanel.SetActive(false);
+        characterSelectPanel.SetActive(true);
+    }
+    public void Level2Button(){
+        goToLevel = 2;
+        levelSelectPanel.SetActive(false);
+        characterSelectPanel.SetActive(true);
+    }
+    public void WizardButton(){
+        // some code to select wizard
+
+        GoToLevel();
+    }
+    public void BarbarianButton(){
+        // some code to select barbarian
+
+        GoToLevel();
+    }
+    public void TeamCreditsButton(){
+        mainMenuPanel.SetActive(false);
+        teamCreditsPanel.SetActive(true);
+    }
+    public void AssetsCreditsButton(){
+        mainMenuPanel.SetActive(false);
+        assetsCreditsPanel.SetActive(true);
+    }
+    public void PlayBackButton(){
+        playPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
+    public void CharacterSelectBackButton(){
+        characterSelectPanel.SetActive(false);
+        if(iCameFrom == "Play"){
+            playPanel.SetActive(true);
+        }else{
+            levelSelectPanel.SetActive(true);
+        }
+    }
+    public void LevelSelectBackButton(){
+        levelSelectPanel.SetActive(false);
+        playPanel.SetActive(true);
+    }
+    public void OptionsBackButton(){
+        optionsPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
+    public void TeamCreditsBackButton(){
+        teamCreditsPanel.SetActive(false);
+        optionsPanel.SetActive(true);
+    }
+    public void AssetsCreditsBackButton(){
+        assetsCreditsPanel.SetActive(false);
+        optionsPanel.SetActive(true);
     }
 }
