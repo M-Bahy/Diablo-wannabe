@@ -590,6 +590,7 @@ public class PlayerMechanics : MonoBehaviour
     private void levelUp(){
 
         level += 1;
+        abilityPoints++;
         exp = exp - requiredExp;
         requiredExp +=100;
         
