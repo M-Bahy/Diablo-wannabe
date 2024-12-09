@@ -8,7 +8,7 @@ public class damage_the_boss_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        FbScript.boss = gameObject;
     }
 
     // Update is called once per frame
@@ -30,6 +30,11 @@ public class damage_the_boss_script : MonoBehaviour
         if (other.CompareTag("Axe"))
         {
             gameObject.GetComponent<BossMech>().damageBoss(5);
+        }
+        if (other.CompareTag("Fireball"))
+        {
+            gameObject.GetComponent<BossMech>().damageBoss(5);
+            Destroy(other.gameObject);
         }
     }
 

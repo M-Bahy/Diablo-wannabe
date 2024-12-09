@@ -20,6 +20,8 @@ TagManager:
   - Fireball
   - Clone
   - Demon
+  - Aura
+  - Boss_Shield
   layers:
   - Default
   - TransparentFX

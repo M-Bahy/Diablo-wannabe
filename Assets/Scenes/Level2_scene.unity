@@ -1455,7 +1455,7 @@ GameObject:
   - component: {fileID: 350379038}
   m_Layer: 0
   m_Name: aura
-  m_TagString: Untagged
+  m_TagString: Aura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3483,7 +3483,7 @@ GameObject:
   - component: {fileID: 1028078506}
   m_Layer: 0
   m_Name: shield
-  m_TagString: Untagged
+  m_TagString: Boss_Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

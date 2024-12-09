@@ -61,6 +61,10 @@ public class Wizard_Clone : MonoBehaviour
                             takeDamageMethod.Invoke(targetLogic, new object[] { damageAmount });
                         }
                     }
+                    else if (target.CompareTag("Boss"))
+                    {
+                        target.GetComponent<BossMech>().damageBoss(damageAmount);
+                    }
                 }
             }
         }
