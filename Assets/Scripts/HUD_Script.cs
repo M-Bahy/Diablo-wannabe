@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.UI;
+using System;
+using System.Reflection;
 
 
 public class HUD_Script : MonoBehaviour
@@ -65,9 +67,17 @@ public class HUD_Script : MonoBehaviour
             {
                 buttonTexts[i].color = Color.white;
             }
-            else if(!abilitiesCoolDown[i] && abilitiesUnlocked[i])
+            else if (!abilitiesCoolDown[i] && abilitiesUnlocked[i])
             {
                 buttonTexts[i].color = Color.green;
+            }
+            else
+            {
+                Color hexColor;
+                if (ColorUtility.TryParseHtmlString("#766E6E", out hexColor))
+                {
+                    abilityButtons[i].GetComponent<Image>().color = hexColor;
+                }
             }
         }
         abilityPoints = pm.abilityPoints;
@@ -76,13 +86,39 @@ public class HUD_Script : MonoBehaviour
         {
             if (coolDownTimer[i] > 0)
             {
-                coolDownTimerTexts[i].transform.parent.gameObject.SetActive(true);
+                if (!coolDownTimerTexts[i].transform.parent.gameObject.active)
+                    coolDownTimerTexts[i].transform.parent.gameObject.SetActive(true);
                 coolDownTimer[i] -= Time.deltaTime;
                 coolDownTimerTexts[i].text = coolDownTimer[i].ToString("F1");
             }
             else
             {
-                coolDownTimerTexts[i].transform.parent.gameObject.SetActive(false);
+                if (coolDownTimerTexts[i].transform.parent.gameObject.active)
+                    coolDownTimerTexts[i].transform.parent.gameObject.SetActive(false);
+            }
+        }
+
+        if (abilityPoints > 0)
+        {
+            //loop over the button array, if the ability is unlocked, then change the color to show that the player can click to unlock the ability
+            for (int i = 1; i < abilityButtons.Length; i++)
+            {
+                if (!abilitiesUnlocked[i])
+                {
+                    //abilityButtons[i].GetComponent<Image>().color = Color.black;
+                    //animate the color of the button to show the user that they can unlock the ability
+                    //abilityButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, Mathf.PingPong(Time.time, 1));
+                    Color startColor = Color.red; // Locked state color (e.g., red)
+                    Color endColor = Color.yellow; // "Unlockable" highlight color (e.g., yellow)
+
+                    // PingPong creates a smooth transition between 0 and 1
+                    float t = Mathf.PingPong(Time.time * 2f, 1f); // Speed up the transition with a multiplier
+
+                    abilityButtons[i].GetComponent<Image>().color = Color.Lerp(startColor, endColor, t);
+
+
+
+                }
             }
         }
     }
