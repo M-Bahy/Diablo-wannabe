@@ -11,7 +11,7 @@ public class DemonLogic : MonoBehaviour
     int demonCurrentHealth = 40;  
     
     public bool isDead = false;
-    private bool isAggro = false;
+    public bool isAggro = false;
 
     public Slider healthSlider;
 
@@ -29,6 +29,8 @@ public class DemonLogic : MonoBehaviour
 
     AudioManagerScript audioManager;
 
+    public Rigidbody rb;
+
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
     }
@@ -38,6 +40,7 @@ public class DemonLogic : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         startingPos = transform.position;
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
 
 
         healthSlider.maxValue = demonMaxHealth;
