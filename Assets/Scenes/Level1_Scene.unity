@@ -6214,8 +6214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMainMenu: 0
-  musicSlider: {fileID: 0}
-  SFXSlider: {fileID: 0}
   musicSource: {fileID: 83145299}
   SFXSource: {fileID: 595942344}
   Menus: {fileID: 8300000, guid: a9a15fc52bf6b467a8c2eb096ee54393, type: 3}
@@ -7099,6 +7097,10 @@ PrefabInstance:
       propertyPath: abilityPointsText
       value: 
       objectReference: {fileID: 1498185749}
+    - target: {fileID: 2788275103010519035, guid: 3eb7d2be8f7444d49a7527cfbac46a31, type: 3}
+      propertyPath: playerCurrenttHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3345784339421481449, guid: 3eb7d2be8f7444d49a7527cfbac46a31, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.78203976
