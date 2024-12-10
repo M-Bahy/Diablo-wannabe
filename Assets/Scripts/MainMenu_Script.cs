@@ -28,14 +28,14 @@ public class MainMenu_Script : MonoBehaviour
     public Button level2Button;
     // public Button wizardButton;
     // public Button barbarianButton;
-    public Button teamCreditsButton;
-    public Button assetsCreditsButton;
+    public Button editCameraButton;
+    public Button creditsButton;
     public Button playBackButton;
     public Button characterSelectBackButton;
     public Button levelSelectBackButton;
     public Button optionsBackButton;
-    public Button teamCreditsBackButton;
-    public Button assetsCreditsBackButton;
+    public Button editCameraBackButton;
+    public Button creditsBackButton;
     public Button iconWizard;
     public Button iconBarbarian;
     public static int goToLevel = 1 ;
@@ -67,14 +67,14 @@ public class MainMenu_Script : MonoBehaviour
         level2Button.onClick.AddListener(Level2Button);
         iconWizard.onClick.AddListener(WizardButton);
         iconBarbarian.onClick.AddListener(BarbarianButton);
-        teamCreditsButton.onClick.AddListener(TeamCreditsButton);
-        assetsCreditsButton.onClick.AddListener(AssetsCreditsButton);
+        editCameraButton.onClick.AddListener(EditCameraButton);
+        creditsButton.onClick.AddListener(CreditsButton);
         playBackButton.onClick.AddListener(PlayBackButton);
         characterSelectBackButton.onClick.AddListener(CharacterSelectBackButton);
         levelSelectBackButton.onClick.AddListener(LevelSelectBackButton);
         optionsBackButton.onClick.AddListener(OptionsBackButton);
-        teamCreditsBackButton.onClick.AddListener(TeamCreditsBackButton);
-        assetsCreditsBackButton.onClick.AddListener(AssetsCreditsBackButton);
+        editCameraBackButton.onClick.AddListener(EditCameraBackButton);
+        creditsBackButton.onClick.AddListener(CreditsBackButton);
         // set slider values
         musicSlider.value = AudioManagerScript.musicVolume;
         SFXSlider.value = AudioManagerScript.SFXVolume;
@@ -141,12 +141,12 @@ public class MainMenu_Script : MonoBehaviour
         isWizard = false;
         GoToLevel();
     }
-    public void TeamCreditsButton(){
-        mainMenuPanel.SetActive(false);
+    public void EditCameraButton(){
+        optionsPanel.SetActive(false);
         teamCreditsPanel.SetActive(true);
     }
-    public void AssetsCreditsButton(){
-        mainMenuPanel.SetActive(false);
+    public void CreditsButton(){
+        optionsPanel.SetActive(false);
         assetsCreditsPanel.SetActive(true);
     }
     public void PlayBackButton(){
@@ -173,11 +173,11 @@ public class MainMenu_Script : MonoBehaviour
         optionsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
     }
-    public void TeamCreditsBackButton(){
+    public void EditCameraBackButton(){
         teamCreditsPanel.SetActive(false);
         optionsPanel.SetActive(true);
     }
-    public void AssetsCreditsBackButton(){
+    public void CreditsBackButton(){
         assetsCreditsPanel.SetActive(false);
         optionsPanel.SetActive(true);
     }

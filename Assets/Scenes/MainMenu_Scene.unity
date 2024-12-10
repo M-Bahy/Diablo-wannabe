@@ -334,14 +334,14 @@ MonoBehaviour:
   levelSelectButton: {fileID: 847647521}
   level1Button: {fileID: 82496046}
   level2Button: {fileID: 1911876261}
-  teamCreditsButton: {fileID: 1622887708}
-  assetsCreditsButton: {fileID: 1991225738}
+  editCameraButton: {fileID: 1622887708}
+  creditsButton: {fileID: 1991225738}
   playBackButton: {fileID: 1359711766}
   characterSelectBackButton: {fileID: 1714061790}
   levelSelectBackButton: {fileID: 606500851}
   optionsBackButton: {fileID: 1496645465}
-  teamCreditsBackButton: {fileID: 722195262}
-  assetsCreditsBackButton: {fileID: 726901760}
+  editCameraBackButton: {fileID: 722195262}
+  creditsBackButton: {fileID: 726901760}
   iconWizard: {fileID: 1777551742}
   iconBarbarian: {fileID: 1617538827}
 --- !u!1 &82496044
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Team Credits
+  m_text: Edit Camera
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fa84463eb63cb5c5bd82e8f8ff017a3, type: 2}
   m_sharedMaterial: {fileID: -921335930582713533, guid: 3fa84463eb63cb5c5bd82e8f8ff017a3, type: 2}
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Asset Credits
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fa84463eb63cb5c5bd82e8f8ff017a3, type: 2}
   m_sharedMaterial: {fileID: -921335930582713533, guid: 3fa84463eb63cb5c5bd82e8f8ff017a3, type: 2}
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 289681634}
   - component: {fileID: 289681633}
   m_Layer: 5
-  m_Name: Team_Credits_Panel
+  m_Name: Edit_Camera_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1612,7 +1612,7 @@ GameObject:
   - component: {fileID: 722195263}
   - component: {fileID: 722195262}
   m_Layer: 5
-  m_Name: Team_Credits_Back_Button
+  m_Name: Edit_Camera_Back_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1733,7 +1733,7 @@ GameObject:
   - component: {fileID: 726901761}
   - component: {fileID: 726901760}
   m_Layer: 5
-  m_Name: Asset_Credits_Back_Button
+  m_Name: Credits_Back_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2516,7 +2516,7 @@ GameObject:
   - component: {fileID: 983752277}
   - component: {fileID: 983752276}
   m_Layer: 5
-  m_Name: Asset_Credits_Panel
+  m_Name: Credits_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4476,7 +4476,7 @@ GameObject:
   - component: {fileID: 1622887709}
   - component: {fileID: 1622887708}
   m_Layer: 5
-  m_Name: Team_Credits_Button
+  m_Name: Edit_Camera_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5927,7 +5927,7 @@ GameObject:
   - component: {fileID: 1991225739}
   - component: {fileID: 1991225738}
   m_Layer: 5
-  m_Name: Asset_Credits_Button
+  m_Name: Credits_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
