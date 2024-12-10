@@ -4,6 +4,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Camp_Logic : MonoBehaviour
 {
@@ -29,6 +31,15 @@ public class Camp_Logic : MonoBehaviour
     bool keyFlag = false;
     bool doneFlag = false;
 
+    public Transform[] patrollPoints ; 
+    int targetPoint ;
+
+
+    Vector3[] patrollPoints2;
+    int targetPoint2 ;
+
+    float patrollSpeed ;
+
     AudioManagerScript audioManager;
 
     private void Awake() {
@@ -50,6 +61,18 @@ public class Camp_Logic : MonoBehaviour
         int demonCount = Random.Range(1, 3);
         int minionCount = Random.Range(8, 11);
         GameObject tmp;
+
+        targetPoint = 0;
+        patrollSpeed = 4.0f ; 
+        targetPoint2 = 0 ;
+        
+        patrollPoints2 = new Vector3[]
+        {
+            new Vector3(minX, transform.position.y, minZ),
+            new Vector3(maxX, transform.position.y, minZ),
+            new Vector3(maxX, transform.position.y, maxZ),
+            new Vector3(minX, transform.position.y, maxZ)
+        };
 
         for (int i = 0; i < demonCount; i++)
         {
@@ -88,11 +111,67 @@ public class Camp_Logic : MonoBehaviour
 
             if (keyFlag)
             {
-                Instantiate(key, new Vector3((minX + maxX) / 2, 1.0f, (minZ + maxZ) / 2), Quaternion.identity);
+                Instantiate(key, new Vector3((minX + maxX) / 2, 2.0f, (minZ + maxZ) / 2), Quaternion.identity);
                 doneFlag = true;
             }
         }
 
+        patroll();
+
+    }
+
+    private void patroll()
+    {
+
+        if(demonsArray[0] != null){
+            if(!demonsArray[0].GetComponent<DemonLogic>().isAggro){
+
+                demonsArray[0].GetComponent<Rigidbody>().isKinematic = true;
+
+                if(patrollPoints[targetPoint].position.x-0.05 <=demonsArray[0].transform.position.x  &&  demonsArray[0].transform.position.x <= patrollPoints[targetPoint].position.x+0.05 
+                    && patrollPoints[targetPoint].position.z-0.05 <=demonsArray[0].transform.position.z &&  demonsArray[0].transform.position.z <= patrollPoints[targetPoint].position.z+0.05 ){
+                    //if(patrollPoints[targetPoint].position ==demonsArray[0].transform.position  && patrollPoints[targetPoint].position == demonsArray[0].transform.position ){
+                        increaseTargetInt();
+                    }
+                    demonsArray[0].transform.position = Vector3.MoveTowards(demonsArray[0].transform.position , patrollPoints[targetPoint].position , patrollSpeed*Time.deltaTime);
+                    demonsArray[0].transform.LookAt(patrollPoints[targetPoint].position);
+
+            }
+        }
+
+       
+        if(demonsArray.Count >= 2){
+             if(demonsArray[1] != null){
+                if(!demonsArray[1].GetComponent<DemonLogic>().isAggro){
+                    if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
+                        && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
+                            
+                            
+                            targetPoint2++;
+                            if(targetPoint2 >= patrollPoints2.Length ){
+                                targetPoint2 = 0;
+                            
+                        }
+                    }
+                    demonsArray[1].transform.position = Vector3.MoveTowards(demonsArray[1].transform.position , patrollPoints2[targetPoint2] , patrollSpeed*Time.deltaTime);
+                    demonsArray[1].transform.LookAt(patrollPoints2[targetPoint2]);
+                    
+                }
+            }
+        }
+
+
+    }
+
+    void increaseTargetInt(){
+        
+        targetPoint++;
+        // Debug.Log("targetPoint " + targetPoint);
+        // Debug.Log("partorll points length  " + patrollPoints.Length);
+
+        if(targetPoint >= patrollPoints.Length ){
+            targetPoint = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -172,6 +251,7 @@ public class Camp_Logic : MonoBehaviour
                 {
                     // Aggro the demon
                     DemonLogic demonLogic = availableDemon.GetComponent<DemonLogic>();
+                    availableDemon.GetComponent<Rigidbody>().isKinematic = false;
                     demonLogic.player = player;
                     demonLogic?.goAggresive(true);
 
@@ -216,6 +296,7 @@ public class Camp_Logic : MonoBehaviour
             {
                 DemonLogic demonLogic = selectedDemon.GetComponent<DemonLogic>();
                 demonLogic.player = player;
+                selectedDemon.GetComponent<Rigidbody>().isKinematic = false;
                 demonLogic?.goAggresive(true);
                 aggroedDemons.Add(selectedDemon);
             }

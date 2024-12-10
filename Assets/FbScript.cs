@@ -7,10 +7,11 @@ public class FbScript : MonoBehaviour
 {
     public float speed = 10f;
     private Vector3 target;
+    public static GameObject boss;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,7 +29,8 @@ public class FbScript : MonoBehaviour
                 GameObject minion = new GameObject();
                 foreach (var collider in hitColliders)
                 {
-                    if (collider.CompareTag("Minion") || collider.CompareTag("Demon") || collider.CompareTag("Summoned_Minions"))
+                    if (collider.CompareTag("Minion") || collider.CompareTag("Demon") || collider.CompareTag("Summoned_Minions")
+                        || collider.CompareTag("Boss"))
                     {
                         minion = collider.gameObject;
                         break;
@@ -41,6 +43,10 @@ public class FbScript : MonoBehaviour
                 else if (minion.CompareTag("Demon"))
                 {
                     minion.GetComponent<DemonLogic>().damageDemon(5);
+                }
+                else if (minion.CompareTag("Boss"))
+                {
+                    minion.GetComponent<BossMech>().damageBoss(5);
                 }
                 Destroy(gameObject);
             }
@@ -63,6 +69,10 @@ public class FbScript : MonoBehaviour
             collision.gameObject.GetComponent<DemonLogic>().damageDemon(5);
             Destroy(gameObject);
         }
-
+        else if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("Aura") || collision.gameObject.CompareTag("Boss_Shield"))
+        {
+            boss.GetComponent<BossMech>().damageBoss(5);
+            Destroy(gameObject);
+        }
     }
 }

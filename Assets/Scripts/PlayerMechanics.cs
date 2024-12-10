@@ -34,7 +34,7 @@ public class PlayerMechanics : MonoBehaviour
     int exp = 0;
     int requiredExp = 100;
     public int playerMaxHealth = 100;
-    public int playerCurrenttHealth = 90;
+    public int playerCurrenttHealth = 100;
     int numberOfHealingPortions = 0;
     public int abilityPoints = 0;
     int numberOfFragments = 0;
@@ -171,7 +171,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking)
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0])
         {
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -246,8 +246,6 @@ public class PlayerMechanics : MonoBehaviour
         //animator.ResetTrigger("Attack");
         if (tag == "Sorcerer")
         {
-            audioManager.PlaySFX(audioManager.Fireball_Shot);
-            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
             StartCoroutine(SpawnFireballWithDelay(0.5f, pos));
         }
         else if(tag == "Barbarian")
@@ -356,7 +354,7 @@ public class PlayerMechanics : MonoBehaviour
         bool enemyFound = false;
         foreach (var collider in hitColliders)
         {
-            if (collider.CompareTag("Minion") || collider.CompareTag("Demon") || collider.CompareTag("Summoned_Minions"))
+            if (collider.CompareTag("Minion") || collider.CompareTag("Demon") || collider.CompareTag("Summoned_Minions") || collider.CompareTag("Boss"))
             {
                 enemyFound = true;
                 break;
@@ -390,8 +388,9 @@ public class PlayerMechanics : MonoBehaviour
             transform.rotation = targetRotation;
             /////////////////////
             animator.SetBool("isAttacking", true);
+            audioManager.PlaySFX(audioManager.Fireball_Shot);
+            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
             yield return new WaitForSeconds(delay);
-
 
             //transform.LookAt(pos); LINE BEING REPLACED
             //rb.isKinematic = true;
@@ -410,7 +409,7 @@ public class PlayerMechanics : MonoBehaviour
                 fireballLogic.SetTarget(pos);
             }
         }
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay-0.1f);
         //rb.isKinematic = false;
         animator.SetBool("isAttacking", false);
     }
@@ -473,9 +472,9 @@ public class PlayerMechanics : MonoBehaviour
 
 
           
-                Vector3 spawnPosition = pos;
+                Vector3 spawnPosition = new Vector3 (pos.x, 1, pos.z);
                 if (!isLevel1)
-                    spawnPosition.y += 5.0f;
+                    spawnPosition.y = 5.0f;
                 audioManager.PlaySFX(audioManager.Inferno_Activated);
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(2, 15f));
@@ -639,6 +638,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         // Set the ability cooldown to true
         HUD_Script.abilitiesCoolDown[abilityIndex] = true;
+        HUD_Script.coolDownTimer[abilityIndex] = cooldownTime;
 
         // Wait for the cooldown duration
         yield return new WaitForSeconds(cooldownTime);
@@ -681,6 +681,7 @@ public class PlayerMechanics : MonoBehaviour
     private void levelUp(){
 
         level += 1;
+        abilityPoints++;
         exp = exp - requiredExp;
         requiredExp +=100;
         

@@ -11,7 +11,7 @@ public class DemonLogic : MonoBehaviour
     int demonCurrentHealth = 40;  
     
     public bool isDead = false;
-    private bool isAggro = false;
+    public bool isAggro = false;
 
     public Slider healthSlider;
 
@@ -29,6 +29,8 @@ public class DemonLogic : MonoBehaviour
 
     AudioManagerScript audioManager;
 
+    public Rigidbody rb;
+
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
     }
@@ -38,6 +40,7 @@ public class DemonLogic : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         startingPos = transform.position;
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
 
 
         healthSlider.maxValue = demonMaxHealth;
@@ -124,28 +127,33 @@ public class DemonLogic : MonoBehaviour
     void Update()
     {
 
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            animator.SetBool("isWalking", false);
-        }
-        else
-        {
-            animator.SetBool("isWalking", true);
-        }
+    
 
-        if (isAggro)
-        {
-            if (wizardClone == null) 
-                agent.SetDestination(player.transform.position);
-            else
-                agent.SetDestination(wizardClone.transform.position);
-        }
-        else
-        {
-            if (agent.remainingDistance > 0.1f)
+            if (isAggro)
             {
-                agent.SetDestination(startingPos);
+                    agent.enabled = true;
+
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    animator.SetBool("isWalking", true);
+                }
+
+                if (wizardClone == null) 
+                    agent.SetDestination(player.transform.position);
+                else
+                    agent.SetDestination(wizardClone.transform.position);
             }
+            else
+            {
+            // if (agent.remainingDistance > 0.1f)
+            // {
+            //     agent.SetDestination(startingPos);
+            // }
+            agent.enabled = false;
         }
         
     }

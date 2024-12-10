@@ -21,6 +21,8 @@ TagManager:
   - Clone
   - Demon
   - Turtle_Stop
+  - Aura
+  - Boss_Shield
   layers:
   - Default
   - TransparentFX

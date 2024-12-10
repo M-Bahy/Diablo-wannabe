@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class Minion_Logic : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Minion_Logic : MonoBehaviour
     private bool isInInferno = false;
     public static GameObject wizardClone;
     AudioManagerScript audioManager;
+
+    private bool isAttacking = false; // To track if the minion is attacking
+    private float attackCooldown = 3.0f; // Cooldown between attacks
 
     private void Awake()
     {
@@ -57,29 +61,58 @@ public class Minion_Logic : MonoBehaviour
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            animator.SetBool("isWalking", false);
+            
+            if (isAggro)
+            {
+                if (wizardClone == null)
+                    agent.SetDestination(player.transform.position);
+                else
+                    agent.SetDestination(wizardClone.transform.position);
+
+                StartCoroutine(delay(0.2f));
+               
+                animator.SetBool("isWalking", false);
+            }
+            else
+            {
+                if (agent.remainingDistance > agent.stoppingDistance + 0.1f)
+                {
+                    agent.SetDestination(startingPos);
+                }
+                else
+                    animator.SetBool("isWalking", false);
+            }
         }
         else
         {
+            if (isAggro)
+            {
+                if (wizardClone == null)
+                    agent.SetDestination(player.transform.position);
+                else
+                    agent.SetDestination(wizardClone.transform.position);
+            }
+            else
+            {
+                if (agent.remainingDistance > 0.1f)
+                {
+                    agent.SetDestination(startingPos);
+                }
+            }
             animator.SetBool("isWalking", true);
         }
 
-        if (isAggro)
-        {
-            if (wizardClone == null) 
-                agent.SetDestination(player.transform.position);
-            else
-                agent.SetDestination(wizardClone.transform.position);
-        }
-        else
-        {
-            if (agent.remainingDistance > 0.1f)
-            {
-                agent.SetDestination(startingPos);
-            }
-        }
+        
 
 
+    }
+    IEnumerator delay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (!isAttacking && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            StartCoroutine(AttackPlayer());
+        }
     }
 
     public void TakeDamage(int damage)
@@ -154,5 +187,47 @@ public class Minion_Logic : MonoBehaviour
             yield return new WaitForSeconds(interval); // Wait for the specified interval
             TakeDamage(damage); // Apply periodic damage
         }
+    }
+    private IEnumerator AttackPlayer()
+    {
+        isAttacking = true;
+        animator.SetBool("isAttacking", true);
+        ///////////////////// code for looking at player before damaging
+        // Calculate the target direction, keeping rotation limited to the Y-axis
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0; // Ignore vertical difference
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        float rotationSpeed = 5f; // Adjust rotation speed as needed
+
+        while (true)
+        {
+            // Gradually rotate towards the target on the Y-axis
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 360);
+
+            // Exit loop when close enough to target rotation
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
+            {
+                break;
+            }
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure exact final alignment
+        transform.rotation = targetRotation;
+        /////////////////////
+
+
+        yield return new WaitForSeconds(0.7f); // Delay to sync with attack animation
+
+        if (!isDead && isAggro && agent.remainingDistance <= agent.stoppingDistance) // Ensure the minion is still alive and aggressive
+        {
+            player.GetComponent<PlayerMechanics>().takeDamage(5); // Damage the player (adjust value as needed)
+        }
+
+        animator.SetBool("isAttacking", false);
+
+        yield return new WaitForSeconds(attackCooldown); // Wait for cooldown
+        isAttacking = false; // Allow attacking again
     }
 }
