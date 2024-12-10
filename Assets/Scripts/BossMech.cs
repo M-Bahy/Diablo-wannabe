@@ -124,6 +124,7 @@ public class BossMech : MonoBehaviour
                 bosshealthSlider.value = phaseTwoHealth;
                 bosshealthText.text = $"{phaseTwoHealth:F0}";
                 gameOver = true;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
         }
         }
  

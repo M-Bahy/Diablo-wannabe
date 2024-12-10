@@ -179,9 +179,16 @@ public class PlayerMechanics : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)){
             if(pausePanel.activeSelf){
                 pausePanel.SetActive(false);
+                if(isLevel1){
+                    audioManager.PlayBackground(audioManager.Level1);
+                }
+                else{
+                    audioManager.PlayBackground(audioManager.Level2);
+                }
                 Time.timeScale = 1;
             }else{
                 pausePanel.SetActive(true);
+                audioManager.PlayBackground(audioManager.Menus);
                 Time.timeScale = 0;
             }
         }
@@ -750,7 +757,7 @@ public class PlayerMechanics : MonoBehaviour
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
            boss.gameOver = true;
            }
-           
+           UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
 
         }else{
             animator.Play("damage");

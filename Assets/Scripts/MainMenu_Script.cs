@@ -90,6 +90,7 @@ public class MainMenu_Script : MonoBehaviour
 
      void GoToLevel()
     {
+        PlayerMechanics.isLevel1 = goToLevel == 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + goToLevel+"_scene");
     }
     void PlayButton()
