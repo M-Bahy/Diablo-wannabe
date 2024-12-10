@@ -29,8 +29,9 @@ public class damage_the_boss_script : MonoBehaviour
             gameObject.GetComponent<BossMech>().damageBoss(10);
             StartCoroutine(InfernoDamageOverTime(2, 1f, other.gameObject)); // Periodic damage
         }
-        if (other.CompareTag("Axe") || PlayerMechanics.barAttacking)
+        if (other.CompareTag("Axe") && PlayerMechanics.barAttacking)
         {
+            Debug.Log("A7la msa");
             if(barAttackedBoss == false)
             {
                 gameObject.GetComponent<BossMech>().damageBoss(5);
