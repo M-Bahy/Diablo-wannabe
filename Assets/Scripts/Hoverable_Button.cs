@@ -52,4 +52,11 @@ public class Hoverable_Button : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         canvasGroup.alpha = 1;
     }
+
+    public void ResetButton()
+    {
+        StopAllCoroutines();
+        buttonImage.sprite = defaultSprite;
+        canvasGroup.alpha = 1;
+    }
 }

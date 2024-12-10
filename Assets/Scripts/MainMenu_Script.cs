@@ -36,7 +36,7 @@ public class MainMenu_Script : MonoBehaviour
     public Button optionsBackButton;
     public Button teamCreditsBackButton;
     public Button assetsCreditsBackButton;
-    
+    public Button iconWizard;
     public static int goToLevel = 1 ;
     public static bool isWizard = true;
     AudioManagerScript audioManager;
@@ -150,6 +150,8 @@ public class MainMenu_Script : MonoBehaviour
     }
     public void CharacterSelectBackButton(){
         characterSelectPanel.SetActive(false);
+        Hoverable_Button hb = iconWizard.GetComponent<Hoverable_Button>();
+        hb.ResetButton();
         if(cameFromLevelSelect){
             levelSelectPanel.SetActive(true);
         }else{

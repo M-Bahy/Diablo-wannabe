@@ -344,6 +344,7 @@ MonoBehaviour:
   optionsBackButton: {fileID: 1496645465}
   teamCreditsBackButton: {fileID: 722195262}
   assetsCreditsBackButton: {fileID: 726901760}
+  iconWizard: {fileID: 1777551742}
 --- !u!1 &82496044
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,6 +5635,7 @@ GameObject:
   - component: {fileID: 1777551743}
   - component: {fileID: 1777551742}
   - component: {fileID: 1777551745}
+  - component: {fileID: 1777551746}
   m_Layer: 5
   m_Name: Wizard_Info
   m_TagString: Untagged
@@ -5756,6 +5758,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 9d10262aa8d2bb620b79f97c816dafbe, type: 3}
   hoverSprite: {fileID: 21300000, guid: 28aa9c0161b9462d2b9076e718c29802, type: 3}
+  fadeDuration: 0.5
+--- !u!225 &1777551746
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777551740}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!1 &1820230582
 GameObject:
   m_ObjectHideFlags: 0
