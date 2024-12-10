@@ -37,8 +37,6 @@ public class MainMenu_Script : MonoBehaviour
     public Button teamCreditsBackButton;
     public Button assetsCreditsBackButton;
     
-
-
     public static int goToLevel = 1 ;
     public static bool isWizard = true;
     AudioManagerScript audioManager;
