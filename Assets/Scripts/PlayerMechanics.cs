@@ -575,14 +575,14 @@ public class PlayerMechanics : MonoBehaviour
     {
         //targetPosition.y = transform.position.y;
         //Debug.Log("position: "+ transform.position.y);
-        float speed = 10f; // Adjust movement speed
+        float speed = 15f; // Adjust movement speed
         Vector3 startPosition = transform.position;
         Vector3 direction = (targetPosition - startPosition).normalized; // Get the straight-line direction
         float timeElapsed = 0f; // Track the elapsed time
-        float timeLimit = 2.0f;
+        float timeLimit = 3.0f;
         //direction.y = transform.position.y;
         while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
-                          new Vector3(targetPosition.x, 0, targetPosition.z)) > 5f) // Check distance ignoring y
+                          new Vector3(targetPosition.x, 0, targetPosition.z)) > 2f) // Check distance ignoring y
         {
             // Move toward the target position
             transform.position += direction * speed * Time.deltaTime;
@@ -596,7 +596,6 @@ public class PlayerMechanics : MonoBehaviour
             // If the time exceeds the limit, stop the movement
             if (timeElapsed >= timeLimit)
             {
-               // Debug.Log("Time limit reached, stopping movement");
                 animator.SetBool("isSprint", false); // Stop the sprinting animation
                 yield break; // Exit the coroutine
             }
@@ -604,10 +603,9 @@ public class PlayerMechanics : MonoBehaviour
 
             yield return null;
         }
-      //  Debug.Log("Enabled aagain");
+        agent.SetDestination(transform.position);
         animator.SetBool("isSprint", false);
         
-        // Stop sprinting animation when the target is reached
     }
 
 
