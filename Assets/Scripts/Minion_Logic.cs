@@ -61,6 +61,7 @@ public class Minion_Logic : MonoBehaviour
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
+            
             if (isAggro)
             {
                 if (wizardClone == null)
@@ -74,7 +75,7 @@ public class Minion_Logic : MonoBehaviour
             }
             else
             {
-                if (agent.remainingDistance > 0.1f)
+                if (agent.remainingDistance > agent.stoppingDistance + 0.1f)
                 {
                     agent.SetDestination(startingPos);
                 }
