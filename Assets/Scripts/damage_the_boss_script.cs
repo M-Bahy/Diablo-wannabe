@@ -31,13 +31,18 @@ public class damage_the_boss_script : MonoBehaviour
         }
         if (other.CompareTag("Axe") && PlayerMechanics.barAttacking)
         {
-            Debug.Log("A7la msa");
+            
             if(barAttackedBoss == false)
             {
-                gameObject.GetComponent<BossMech>().damageBoss(5);
+                StartCoroutine(DelayedDamage(0.3f, 5));
                 barAttackedBoss = true;
             }
         }
+    }
+    private IEnumerator DelayedDamage(float delay, int damage)
+    {
+        yield return new WaitForSeconds(delay);  // Wait for the specified delay
+        gameObject.GetComponent<BossMech>().damageBoss(damage);  // Apply damage after the delay
     }
 
     private void OnTriggerExit(Collider other)
