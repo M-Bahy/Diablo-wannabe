@@ -24,6 +24,7 @@ public class PlayerMechanics : MonoBehaviour
     private GameObject activeShield;
     public GameObject shieldPrefab;
     public GameObject axePrefab;
+    public static GameObject minion;
     //////////////
 
     int level = 1;
@@ -257,11 +258,12 @@ public class PlayerMechanics : MonoBehaviour
             {
                 if (collider.CompareTag("Summoned_Minions"))
                 {
-                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    float distance = Vector3.Distance(pos, collider.transform.position);
                     if (distance < closestDistance)
                     {
                         closestDistance = distance;
                         nearestEnemy = collider.transform;
+                        minion = collider.gameObject;
                     }
                 }
             }

@@ -14,8 +14,11 @@ public class Axe_Script : MonoBehaviour
         if (PlayerMechanics.barAttacking && other.CompareTag("Summoned_Minions"))
         {
             
-                GameObject minion = other.gameObject;
+            GameObject minion = other.gameObject;
+            if (minion == PlayerMechanics.minion)
+            {
                 minion.GetComponent<Minion_Logic>().TakeDamage(5);
+            }
                // Debug.Log("Minion Hit");
 
         }
