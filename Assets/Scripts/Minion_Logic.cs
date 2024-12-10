@@ -111,7 +111,6 @@ public class Minion_Logic : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (!isAttacking && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Debug.Log("The remaining distance is: " + agent.remainingDistance);
             StartCoroutine(AttackPlayer());
         }
     }
@@ -191,7 +190,6 @@ public class Minion_Logic : MonoBehaviour
     }
     private IEnumerator AttackPlayer()
     {
-        Debug.Log("im in ");
         isAttacking = true;
         animator.SetBool("isAttacking", true);
         ///////////////////// code for looking at player before damaging
