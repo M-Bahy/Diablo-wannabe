@@ -54,10 +54,10 @@ public class PlayerMechanics : MonoBehaviour
     public GameObject rightDoor;
     public GameObject portal;
     public GameObject telepoertCircle;
+    Rigidbody rb;
 
 
-
-    [SerializeField] GameObject wizardClone;
+   [SerializeField] GameObject wizardClone;
     [SerializeField] Camera _maincamera;
     [SerializeField] GameObject Fireball;
 
@@ -80,6 +80,7 @@ public class PlayerMechanics : MonoBehaviour
 
         expSlider.value = exp;
         expSlider.maxValue = requiredExp;
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -534,9 +535,14 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
             barAttacking = true;
-            Instantiate(axePrefab, transform.position, Quaternion.identity);
+            if(rb != null)
+            {
+                Debug.Log(rb);
+                Destroy(rb);
+            }
             StartCoroutine(AbilityCooldown(3, 5f));
             StartCoroutine(ResetAfterBarbarianSpecialAttack());
+
 
         }
 
@@ -663,9 +669,11 @@ public class PlayerMechanics : MonoBehaviour
 
     IEnumerator ResetAfterBarbarianSpecialAttack()
     {
-        yield return new WaitForSeconds(1.9f); // Wait for the animation duration
+        yield return new WaitForSeconds(3.167f); // Wait for the animation duration
         animator.SetBool("Special_Attack", false); // Reset the attack animation state
         barAttacking = false;
+       // agent.SetDestination(agent.transform.position);
+        rb= gameObject.AddComponent<Rigidbody>();
     } 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
