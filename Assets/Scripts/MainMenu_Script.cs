@@ -26,8 +26,8 @@ public class MainMenu_Script : MonoBehaviour
     public Button levelSelectButton;
     public Button level1Button;
     public Button level2Button;
-    public Button wizardButton;
-    public Button barbarianButton;
+    // public Button wizardButton;
+    // public Button barbarianButton;
     public Button teamCreditsButton;
     public Button assetsCreditsButton;
     public Button playBackButton;
@@ -65,8 +65,8 @@ public class MainMenu_Script : MonoBehaviour
         levelSelectButton.onClick.AddListener(LevelSelectButton);
         level1Button.onClick.AddListener(Level1Button);
         level2Button.onClick.AddListener(Level2Button);
-        wizardButton.onClick.AddListener(WizardButton);
-        barbarianButton.onClick.AddListener(BarbarianButton);
+        iconWizard.onClick.AddListener(WizardButton);
+        iconBarbarian.onClick.AddListener(BarbarianButton);
         teamCreditsButton.onClick.AddListener(TeamCreditsButton);
         assetsCreditsButton.onClick.AddListener(AssetsCreditsButton);
         playBackButton.onClick.AddListener(PlayBackButton);
