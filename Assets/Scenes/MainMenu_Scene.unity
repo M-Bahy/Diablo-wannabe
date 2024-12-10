@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 952099c2a75b6f1369bcf9f1b884d064, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 28aa9c0161b9462d2b9076e718c29802, type: 3}
+  hoverSprite: {fileID: 21300000, guid: ffe0408e7231c39bbb6f214a1f6f53cc, type: 3}
   fadeDuration: 0.5
 --- !u!114 &1617538827
 MonoBehaviour:
