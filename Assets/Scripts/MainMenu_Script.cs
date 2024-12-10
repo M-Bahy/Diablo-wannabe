@@ -104,7 +104,11 @@ public class MainMenu_Script : MonoBehaviour
     }
     void QuitButton()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
     public void NewGameButton(){
         playPanel.SetActive(false);
