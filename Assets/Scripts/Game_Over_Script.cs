@@ -16,6 +16,8 @@ public class Game_Over_Script : MonoBehaviour
     void Start()
     {
         audioManager.PlayBackground(audioManager.Menus); 
+        restartButton.onClick.AddListener(RestartGame);
+        mainMenuButton.onClick.AddListener(MainMenu);
     }
 
     // Update is called once per frame
