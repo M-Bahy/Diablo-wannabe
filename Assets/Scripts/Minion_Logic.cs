@@ -59,15 +59,17 @@ public class Minion_Logic : MonoBehaviour
             }
         }
 
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance)
         {
             
             if (isAggro)
             {
                 if (wizardClone == null)
-                    agent.SetDestination(player.transform.position);
+                    if (agent.isOnNavMesh)
+                        agent.SetDestination(player.transform.position);
                 else
-                    agent.SetDestination(wizardClone.transform.position);
+                    if (agent.isOnNavMesh)
+                        agent.SetDestination(wizardClone.transform.position);
 
                 StartCoroutine(delay(0.2f));
                

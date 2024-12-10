@@ -2143,7 +2143,7 @@ MonoBehaviour:
   - {fileID: 287434165}
   - {fileID: 1291971645}
   - {fileID: 748816075}
-  player: {fileID: 596993857}
+  player: {fileID: 1842789839}
 --- !u!1 &596993857 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3e5dda09e601642b72da49b743922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 596993857}
+  player: {fileID: 1842789839}
   xOffset: -2.84
   yOffset: 35.3
   zOffset: 22.1
@@ -5978,7 +5978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healingPotionPrefab: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
-  bottleCountText: {fileID: 0}
+  bottleCountText: {fileID: 347413070}
   healParticle: {fileID: 8593464584776411535, guid: b21d155ec7ea5a349a0e36106f913148, type: 3}
 --- !u!114 &1842789843
 MonoBehaviour:
@@ -6025,7 +6025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec778aa5ea78b42a594f6fc5ec7e3a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maincamera: {fileID: 0}
+  _maincamera: {fileID: 678672493}
 --- !u!114 &1842789846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6044,18 +6044,18 @@ MonoBehaviour:
   playerMaxHealth: 100
   playerCurrenttHealth: 90
   abilityPoints: 0
-  healthText: {fileID: 0}
-  healthSlider: {fileID: 0}
-  expText: {fileID: 0}
-  expSlider: {fileID: 0}
-  levelText: {fileID: 0}
-  abilityPointsText: {fileID: 0}
+  healthText: {fileID: 252542978}
+  healthSlider: {fileID: 1502845609}
+  expText: {fileID: 1801215173}
+  expSlider: {fileID: 104758850}
+  levelText: {fileID: 1996766608}
+  abilityPointsText: {fileID: 1726125779}
   leftDoor: {fileID: 0}
   rightDoor: {fileID: 0}
   portal: {fileID: 0}
   telepoertCircle: {fileID: 0}
   wizardClone: {fileID: 0}
-  _maincamera: {fileID: 0}
+  _maincamera: {fileID: 678672493}
   Fireball: {fileID: 0}
 --- !u!195 &1842789847
 NavMeshAgent:
@@ -6703,7 +6703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fdda431f6b9c454a10bcf0ae2865e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 596993857}
+  player: {fileID: 1842789839}
   minionPrefab: {fileID: 961803237283086986, guid: f2e88bd765545024e8e7fd868dca8642, type: 3}
   surface: {fileID: 1582105773}
 --- !u!114 &2085175678
