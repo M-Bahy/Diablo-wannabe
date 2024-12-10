@@ -12,7 +12,7 @@ public class Pause_Script : MonoBehaviour
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -40,6 +40,5 @@ public class Pause_Script : MonoBehaviour
 
     public void ResumeGame() {
         Time.timeScale = 1;
-       // gameObject.SetActive(false);
     }
 }

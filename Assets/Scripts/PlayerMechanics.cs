@@ -66,6 +66,10 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] GameObject Fireball;
 
     AudioManagerScript audioManager;
+    public GameObject pausePanel;
+    public Button restartButton;
+    public Button mainMenuButton;
+    public Button resumeButton;
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -85,6 +89,10 @@ public class PlayerMechanics : MonoBehaviour
         expSlider.value = exp;
         expSlider.maxValue = requiredExp;
         rb = GetComponent<Rigidbody>();
+        restartButton.onClick.AddListener(RestartGame);
+        mainMenuButton.onClick.AddListener(MainMenu);
+        resumeButton.onClick.AddListener(ResumeGame);
+        pausePanel.SetActive(false);
 
     }
 
@@ -168,6 +176,15 @@ public class PlayerMechanics : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D)){
             playerCurrenttHealth -=20;
         }
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            if(pausePanel.activeSelf){
+                pausePanel.SetActive(false);
+                Time.timeScale = 1;
+            }else{
+                pausePanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
 
 
 
@@ -239,6 +256,22 @@ public class PlayerMechanics : MonoBehaviour
 
     }
 
+
+
+    public void RestartGame() {
+        Time.timeScale = 1;
+        int level = PlayerMechanics.isLevel1 ? 1 : 2;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + level+"_scene");
+    }
+
+    public void MainMenu() {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu_Scene");
+    }
+     public void ResumeGame() {
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
+    }
 
 
     void BasicAttack(Vector3 pos)
