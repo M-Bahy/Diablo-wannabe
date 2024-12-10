@@ -5,6 +5,8 @@ using UnityEngine;
 public class damage_the_boss_script : MonoBehaviour
 {
      bool isInInferno = false;
+    public static bool barAttackedBoss = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +29,13 @@ public class damage_the_boss_script : MonoBehaviour
             gameObject.GetComponent<BossMech>().damageBoss(10);
             StartCoroutine(InfernoDamageOverTime(2, 1f, other.gameObject)); // Periodic damage
         }
-        if (other.CompareTag("Axe"))
+        if (other.CompareTag("Axe") || PlayerMechanics.barAttacking)
         {
-            gameObject.GetComponent<BossMech>().damageBoss(5);
+            if(barAttackedBoss == false)
+            {
+                gameObject.GetComponent<BossMech>().damageBoss(5);
+                barAttackedBoss = true;
+            }
         }
     }
 

@@ -27,6 +27,7 @@ public class PlayerMechanics : MonoBehaviour
     public GameObject axePrefab;
     public static GameObject minion;
     public static bool canHitSpecial = false;
+
     //////////////
 
     int level = 1;
@@ -258,7 +259,7 @@ public class PlayerMechanics : MonoBehaviour
 
             foreach (var collider in hitColliders)
             {
-                if (collider.CompareTag("Summoned_Minions"))
+                if (collider.CompareTag("Summoned_Minions") || collider.CompareTag("Boss") || collider.CompareTag("Turtle_Stop"))
                 {
                     float distance = Vector3.Distance(pos, collider.transform.position);
                     if (distance < closestDistance)
@@ -272,9 +273,15 @@ public class PlayerMechanics : MonoBehaviour
             if (nearestEnemy!= null)
             {
 
-
-                StartCoroutine(MoveAndAttack(nearestEnemy, pos));
-
+                if (minion.CompareTag("Boss") || minion.CompareTag("Turtle_Stop"))
+                {
+                    damage_the_boss_script.barAttackedBoss = false;
+                    StartCoroutine(MoveAndAttack(nearestEnemy, pos,"Boss"));
+                }
+                else
+                {
+                    StartCoroutine(MoveAndAttack(nearestEnemy, pos, "minion"));
+                }
             }
 
 
@@ -288,11 +295,14 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-    private IEnumerator MoveAndAttack(Transform nearestEnemy, Vector3 pos)
+    private IEnumerator MoveAndAttack(Transform nearestEnemy, Vector3 pos,String type)
     {
         float attackRange = 5.0f; // Define the attack range
         agent.updateRotation = true; // Allow rotation
-
+        if(type == "Boss")
+        {
+            attackRange = 15.0f;
+        }
         Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
         float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
         if (distanceToEnemy < 30f)
@@ -310,6 +320,11 @@ public class PlayerMechanics : MonoBehaviour
                 // If within attack range, stop moving and attack
                 if (distanceToEnemy <= attackRange)
                 {
+                    if(type == "Boss")
+                    {
+                        agent.SetDestination(transform.position);
+                    }
+
                     break;
                 }
 
@@ -320,7 +335,7 @@ public class PlayerMechanics : MonoBehaviour
             agent.updateRotation = false; // Stop NavMeshAgent rotation
 
             // Rotate the Barbarian to face the enemy
-            Vector3 attackDirection = (pos - transform.position).normalized;
+            Vector3 attackDirection = (nearestEnemy.position - transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
             transform.rotation = targetRotation;
 
@@ -513,6 +528,7 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
             Axe_Script.affectedMinions = new List<GameObject>();
+
             circleAttacking = true;
             if(rb != null)
             {
