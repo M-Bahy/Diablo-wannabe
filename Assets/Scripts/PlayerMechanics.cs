@@ -14,6 +14,7 @@ public class PlayerMechanics : MonoBehaviour
     /////////////   
     public static bool isAttacking = false;
     public static bool barAttacking = false;
+    public static bool circleAttacking = false;
     private bool buttonCliked = false;
     private bool defenseButtonClicked = false;
     private string tag;
@@ -25,6 +26,7 @@ public class PlayerMechanics : MonoBehaviour
     public GameObject shieldPrefab;
     public GameObject axePrefab;
     public static GameObject minion;
+    public static bool canHitSpecial = false;
     //////////////
 
     int level = 1;
@@ -510,10 +512,10 @@ public class PlayerMechanics : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
-            barAttacking = true;
+            Axe_Script.affectedMinions = new List<GameObject>();
+            circleAttacking = true;
             if(rb != null)
             {
-                Debug.Log(rb);
                 Destroy(rb);
             }
             StartCoroutine(AbilityCooldown(3, 5f));
@@ -526,48 +528,7 @@ public class PlayerMechanics : MonoBehaviour
     }
 
 
-    //private void ChargeToPosition(Vector3 targetPosition)
-    //{
-    //    // Set the movement speed for the charge (faster than normal movement)
-    //    agent.speed = 2f; // Adjust speed for charging
-
-    //    // Ensure the character is moving
-    //    while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) > 4f )
-
-    //    {
-    //        // Move towards the target position while checking for obstacles/enemies
-    //        agent.SetDestination(targetPosition);
-
-    //        // Check for collisions along the way
-    //        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
-    //        //foreach (var collider in hitColliders)
-    //        //{
-    //        //    if (collider.CompareTag("Enemy"))
-    //        //    {
-    //        //        // Damage the enemy or apply effects
-    //        //        collider.GetComponent<Enemy>().TakeDamage(20); // Example damage to enemy
-    //        //    }
-    //        //    else if (collider.CompareTag("DestructibleObject"))
-    //        //    {
-    //        //        // Destroy any destructible objects in the way
-    //        //        Destroy(collider.gameObject);
-    //        //    }
-    //        //}
-    //        if (agent.pathStatus == NavMeshPathStatus.PathInvalid || agent.remainingDistance <= agent.stoppingDistance)
-    //        {
-    //            animator.SetBool("isSprint", false); // Stop sprint animation
-    //            break; // Exit the loop as the agent can't reach the position
-    //        }
-    //        // Wait for a frame before checking again
-    //    }
-
-    //    // End the charge and stop the running animation
-    //    animator.SetBool("isSprint", false);
-
-    //    // Reset speed after charge
-
-
-    //}
+  
 
 
 
@@ -645,7 +606,7 @@ public class PlayerMechanics : MonoBehaviour
     {
         yield return new WaitForSeconds(3.167f); // Wait for the animation duration
         animator.SetBool("Special_Attack", false); // Reset the attack animation state
-        barAttacking = false;
+        circleAttacking = false;
        // agent.SetDestination(agent.transform.position);
         rb= gameObject.AddComponent<Rigidbody>();
     } 
@@ -809,4 +770,6 @@ public class PlayerMechanics : MonoBehaviour
     {
         exp += expToAdd;
     }
+
+ 
 }

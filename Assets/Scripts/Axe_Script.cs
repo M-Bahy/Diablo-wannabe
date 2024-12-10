@@ -1,9 +1,9 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class Axe_Script : MonoBehaviour
 {
     private Vector3 previousPosition;
-
+    public static List<GameObject> affectedMinions = new List<GameObject>();
     private void Start()
     {
         
@@ -19,7 +19,21 @@ public class Axe_Script : MonoBehaviour
             {
                 minion.GetComponent<Minion_Logic>().TakeDamage(5);
             }
-               // Debug.Log("Minion Hit");
+            // Debug.Log("Minion Hit");
+            PlayerMechanics.minion = null;    
+        }
+        if (PlayerMechanics.circleAttacking && other.CompareTag("Summoned_Minions"))
+        {
+           
+                if(affectedMinions.Contains(other.gameObject))
+               {
+                return;
+               }
+                GameObject minion = other.gameObject;
+                minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                affectedMinions.Add(minion);
+
+            // Debug.Log("Minion Hit");
 
         }
     }
