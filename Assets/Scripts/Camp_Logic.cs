@@ -122,36 +122,41 @@ public class Camp_Logic : MonoBehaviour
 
     private void patroll()
     {
-        if(!demonsArray[0].GetComponent<DemonLogic>().isAggro){
 
-            demonsArray[0].GetComponent<Rigidbody>().isKinematic = true;
+        if(demonsArray[0] != null){
+            if(!demonsArray[0].GetComponent<DemonLogic>().isAggro){
 
-            if(patrollPoints[targetPoint].position.x-0.05 <=demonsArray[0].transform.position.x  &&  demonsArray[0].transform.position.x <= patrollPoints[targetPoint].position.x+0.05 
-                && patrollPoints[targetPoint].position.z-0.05 <=demonsArray[0].transform.position.z &&  demonsArray[0].transform.position.z <= patrollPoints[targetPoint].position.z+0.05 ){
-                //if(patrollPoints[targetPoint].position ==demonsArray[0].transform.position  && patrollPoints[targetPoint].position == demonsArray[0].transform.position ){
-                    increaseTargetInt();
-                }
-                demonsArray[0].transform.position = Vector3.MoveTowards(demonsArray[0].transform.position , patrollPoints[targetPoint].position , patrollSpeed*Time.deltaTime);
-                demonsArray[0].transform.LookAt(patrollPoints[targetPoint].position);
+                demonsArray[0].GetComponent<Rigidbody>().isKinematic = true;
 
+                if(patrollPoints[targetPoint].position.x-0.05 <=demonsArray[0].transform.position.x  &&  demonsArray[0].transform.position.x <= patrollPoints[targetPoint].position.x+0.05 
+                    && patrollPoints[targetPoint].position.z-0.05 <=demonsArray[0].transform.position.z &&  demonsArray[0].transform.position.z <= patrollPoints[targetPoint].position.z+0.05 ){
+                    //if(patrollPoints[targetPoint].position ==demonsArray[0].transform.position  && patrollPoints[targetPoint].position == demonsArray[0].transform.position ){
+                        increaseTargetInt();
+                    }
+                    demonsArray[0].transform.position = Vector3.MoveTowards(demonsArray[0].transform.position , patrollPoints[targetPoint].position , patrollSpeed*Time.deltaTime);
+                    demonsArray[0].transform.LookAt(patrollPoints[targetPoint].position);
+
+            }
         }
 
- 
+       
         if(demonsArray.Count >= 2){
-            if(!demonsArray[1].GetComponent<DemonLogic>().isAggro){
-                if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
-                    && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
-                        
-                        
-                        targetPoint2++;
-                        if(targetPoint2 >= patrollPoints2.Length ){
-                            targetPoint2 = 0;
-                        
+             if(demonsArray[1] != null){
+                if(!demonsArray[1].GetComponent<DemonLogic>().isAggro){
+                    if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
+                        && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
+                            
+                            
+                            targetPoint2++;
+                            if(targetPoint2 >= patrollPoints2.Length ){
+                                targetPoint2 = 0;
+                            
+                        }
                     }
+                    demonsArray[1].transform.position = Vector3.MoveTowards(demonsArray[1].transform.position , patrollPoints2[targetPoint2] , patrollSpeed*Time.deltaTime);
+                    demonsArray[1].transform.LookAt(patrollPoints2[targetPoint2]);
+                    
                 }
-                demonsArray[1].transform.position = Vector3.MoveTowards(demonsArray[1].transform.position , patrollPoints2[targetPoint2] , patrollSpeed*Time.deltaTime);
-                demonsArray[1].transform.LookAt(patrollPoints2[targetPoint2]);
-                
             }
         }
 
