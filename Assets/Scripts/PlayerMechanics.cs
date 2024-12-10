@@ -271,36 +271,6 @@ public class PlayerMechanics : MonoBehaviour
 
                 StartCoroutine(MoveAndAttack(nearestEnemy, pos));
 
-                // float attackRange = 2.0f; // Define the attack range
-                // float distanceToEnemy = Vector3.Distance(transform.position, nearestEnemy.position-new Vector3(0.5f, 0.5f, 0.5f));
-                // agent.updateRotation = true;
-                //// Set destination to the enemy's position
-                //// animator.SetBool("isWalking", true);
-
-                // while (distanceToEnemy > attackRange)
-                // {
-                //     agent.SetDestination(nearestEnemy.position - new Vector3(0.5f, 0.5f, 0.5f));
-                //     // Move towards the enemy
-                //     // Allow NavMeshAgent to handle rotation while moving
-                //     distanceToEnemy = Vector3.Distance(transform.position, nearestEnemy.position - new Vector3(0.5f, 0.5f, 0.5f));
-                // }
-
-
-                //     agent.updateRotation = false;
-
-                //     Vector3 attackDirection = new Vector3(pos.x - transform.position.x, 0, pos.z - transform.position.z).normalized;
-                //     Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
-                //     transform.rotation = targetRotation;
-                //     //agent.SetDestination(agent.transform.position);
-                //     animator.SetBool("Attack", true);
-                //     barAttacking = true;
-                //     StartCoroutine(ResetAfterBarbarianAttack());
-                //     StartCoroutine(AbilityCooldown(0, 1f));
-
-
-
-
-
             }
 
 
@@ -318,44 +288,48 @@ public class PlayerMechanics : MonoBehaviour
     {
         float attackRange = 5.0f; // Define the attack range
         agent.updateRotation = true; // Allow rotation
-        //animator.SetBool("isWalking", true); // Start walking animation
 
-        // Continuously move towards the enemy and update the target position
-        while (true)
+        Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
+        float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
+        if (distanceToEnemy < 30f)
         {
-            // Update the target position based on the enemy's current position
-            Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
-            float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
 
-            // Set destination to the enemy's updated position
-            agent.SetDestination(targetPosition);
-          //  Debug.Log("Distance to enemy: " + distanceToEnemy);
-            // If within attack range, stop moving and attack
-            if (distanceToEnemy <= attackRange)
+            while (true)
             {
-                break;
+                // Update the target position based on the enemy's current position
+                targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
+                distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
+
+                // Set destination to the enemy's updated position
+                agent.SetDestination(targetPosition);
+                //  Debug.Log("Distance to enemy: " + distanceToEnemy);
+                // If within attack range, stop moving and attack
+                if (distanceToEnemy <= attackRange)
+                {
+                    break;
+                }
+
+                yield return null; // Wait for the next frame
             }
 
-            yield return null; // Wait for the next frame
+            // Once within range, stop moving and perform the attack
+            agent.updateRotation = false; // Stop NavMeshAgent rotation
+
+            // Rotate the Barbarian to face the enemy
+            Vector3 attackDirection = (pos - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+            transform.rotation = targetRotation;
+
+            // Trigger the attack animation
+            animator.SetBool("Attack", true);
+            barAttacking = true;
+            agent.SetDestination(transform.position);
+            // Start the attack cooldown and reset
+            StartCoroutine(ResetAfterBarbarianAttack());
+            StartCoroutine(AbilityCooldown(0, 1f));
         }
-
-        // Once within range, stop moving and perform the attack
-        agent.updateRotation = false; // Stop NavMeshAgent rotation
-
-        // Rotate the Barbarian to face the enemy
-        Vector3 attackDirection = (pos - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
-        transform.rotation = targetRotation;
-
-        // Trigger the attack animation
-        animator.SetBool("Attack", true);
-        barAttacking = true;
-
-        // Start the attack cooldown and reset
-        StartCoroutine(ResetAfterBarbarianAttack());
-        StartCoroutine(AbilityCooldown(0, 1f));
+        
     }
-
     private IEnumerator SpawnFireballWithDelay(float delay, Vector3 pos)
     {
         // Check if there's an enemy at the specified position

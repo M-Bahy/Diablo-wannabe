@@ -62,10 +62,11 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) <= 1.5f)
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(agent.destination.x, 0, agent.destination.z)) <= 0.5f)
         {
 
             anim.SetBool("isWalking", false);
+            agent.SetDestination(agent.transform.position);
         }
         else
         {
