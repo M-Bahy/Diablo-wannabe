@@ -196,7 +196,11 @@ public class Minion_Logic : MonoBehaviour
         animator.SetBool("isAttacking", true);
         ///////////////////// code for looking at player before damaging
         // Calculate the target direction, keeping rotation limited to the Y-axis
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction;
+        if (wizardClone == null)
+            direction = player.transform.position - transform.position;
+        else
+            direction = wizardClone.transform.position - transform.position;
         direction.y = 0; // Ignore vertical difference
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         float rotationSpeed = 5f; // Adjust rotation speed as needed
@@ -224,7 +228,8 @@ public class Minion_Logic : MonoBehaviour
 
         if (!isDead && isAggro && agent.remainingDistance <= agent.stoppingDistance) // Ensure the minion is still alive and aggressive
         {
-            player.GetComponent<PlayerMechanics>().takeDamage(5); // Damage the player (adjust value as needed)
+            if (wizardClone == null)
+                player.GetComponent<PlayerMechanics>().takeDamage(5); // Damage the player (adjust value as needed)
         }
 
         animator.SetBool("isAttacking", false);
