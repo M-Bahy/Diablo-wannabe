@@ -67,7 +67,7 @@ public class DemonLogic : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         audioManager.PlaySFX(audioManager.Enemy_Dies);
         animator.SetBool("Hit", false);

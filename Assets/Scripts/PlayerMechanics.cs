@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -27,7 +28,7 @@ public class PlayerMechanics : MonoBehaviour
     public GameObject axePrefab;
     public static GameObject minion;
     public static bool canHitSpecial = false;
-
+    public  NavMeshSurface NavMeshSurface;
     //////////////
 
     int level = 1;
@@ -795,6 +796,8 @@ public class PlayerMechanics : MonoBehaviour
         //    minion.GetComponent<Minion_Logic>().Die();
         //}
     }
+
+
     //if(collision.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint") )
     // {
     //        Debug.Log("Collision");
@@ -805,7 +808,7 @@ public class PlayerMechanics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Summoned_Minions" && animator.GetBool("isSprint"))
+        if ((other.gameObject.tag == "Summoned_Minions" || other.gameObject.tag =="Minion") && animator.GetBool("isSprint"))
         {
            // Debug.Log("Collision");
             GameObject minion = other.gameObject;
@@ -816,6 +819,38 @@ public class PlayerMechanics : MonoBehaviour
         {
             agent.SetDestination(agent.transform.position);
         }
+        if (other.gameObject.tag == "Demon")
+        {
+            GameObject Demon = other.gameObject;
+            audioManager.PlaySFX(audioManager.Enemy_Dies);
+            Demon.GetComponent<DemonLogic>().Die();
+        }
+        if (other.gameObject.tag == "Fragment")
+        {
+            numberOfFragments++;
+            audioManager.PlaySFX(audioManager.Item_Picked_Up);
+            Destroy(other.gameObject);
+            OpenPortal();
+        }
+
+        if (other.gameObject.tag == "portal")
+        {
+            SceneManager.LoadScene("Level2_scene");
+        }
+        if(tag=="Barbarian"&& other.gameObject.tag == "Wall" && animator.GetBool("isSprint"))
+        {
+           // NavMeshObstacle obstacle = other.gameObject.GetComponent<NavMeshObstacle>();
+            //if (obstacle != null)
+            //{
+            //    Debug.Log("Wall has NavMeshObstacle. Preparing to destroy...");
+            //}
+            Destroy(other.gameObject);
+           // agent.SetDestination(agent.destination);
+            // rebake the navmesh surface
+            NavMeshSurface.BuildNavMesh();
+
+        }
+
 
     }
 

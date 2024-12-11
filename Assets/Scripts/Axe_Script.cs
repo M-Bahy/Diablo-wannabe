@@ -58,5 +58,36 @@ public class Axe_Script : MonoBehaviour
             // Debug.Log("Minion Hit");
             PlayerMechanics.minion = null;
         }
+
+
+        if (PlayerMechanics.circleAttacking && other.CompareTag("Minion"))
+        {
+
+            if (affectedMinions.Contains(other.gameObject))
+            {
+                return;
+            }
+            GameObject minion = other.gameObject;
+            minion.GetComponent<Minion_Logic>().TakeDamage(5);
+            affectedMinions.Add(minion);
+
+            // Debug.Log("Minion Hit");
+
+        }
+        if (PlayerMechanics.circleAttacking && (other.CompareTag("Demon")))
+        {
+
+            if (affectedMinions.Contains(other.gameObject))
+            {
+                return;
+            }
+            GameObject minion = other.gameObject;
+            minion.GetComponent<DemonLogic>().damageDemon(5);
+            affectedMinions.Add(minion);
+
+            // Debug.Log("Minion Hit");
+
+        }
+
     }
 }
