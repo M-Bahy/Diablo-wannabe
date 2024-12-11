@@ -65,11 +65,19 @@ public class Minion_Logic : MonoBehaviour
             if (isAggro)
             {
                 if (wizardClone == null)
+                {
                     if (agent.isOnNavMesh)
+                    {
                         agent.SetDestination(player.transform.position);
+                    }
+                }
                 else
+                {
                     if (agent.isOnNavMesh)
+                    {
                         agent.SetDestination(wizardClone.transform.position);
+                    }
+                }
 
                 StartCoroutine(delay(0.2f));
                

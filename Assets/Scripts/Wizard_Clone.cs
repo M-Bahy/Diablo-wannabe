@@ -69,6 +69,7 @@ public class Wizard_Clone : MonoBehaviour
             }
         }
         audioManager.PlaySFX(audioManager.Explosive_Detonates);
+        yield return new WaitForSeconds(0.2f);
         transform.position = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
