@@ -99,6 +99,7 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(agent.remainingDistance);
 
         //if (tag == "Barbarian" && animator.GetBool("isSprint"))
         //{
@@ -195,7 +196,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0])
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0] && !animator.GetBool("Attack"))
         {
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -651,7 +652,7 @@ public class PlayerMechanics : MonoBehaviour
 
     IEnumerator ResetAfterBarbarianAttack()
     {
-        yield return new WaitForSeconds(1.2f); // Wait for the animation duration
+        yield return new WaitForSeconds(1.3f); // Wait for the animation duration
         animator.SetBool("Attack", false); // Reset the attack animation state
         barAttacking = false;
         agent.updateRotation = true;
