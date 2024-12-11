@@ -31,6 +31,8 @@ public class DemonLogic : MonoBehaviour
 
     public Rigidbody rb;
 
+    bool isAttack = false;
+
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
     }
@@ -122,6 +124,45 @@ public class DemonLogic : MonoBehaviour
         }
     }
 
+    private void demonAttackPlayer(){
+
+        animator.SetBool("Idle" , true);
+        StartCoroutine(AttackSwordOne());
+    }
+    IEnumerator AttackSwordOne()
+    {
+        yield return new WaitForSeconds(5f);
+        animator.SetBool("swordOne" , true);
+        yield return new WaitForSeconds(1);
+        player.GetComponent<PlayerMechanics>().takeDamage(10);
+        StartCoroutine(AttackSwordTwo());
+
+    }
+
+    IEnumerator AttackSwordTwo()
+    {
+        yield return new WaitForSeconds(2);
+        animator.SetBool("swordOne" , true);
+        yield return new WaitForSeconds(1);
+        player.GetComponent<PlayerMechanics>().takeDamage(10);
+        StartCoroutine(attackWithBomb());
+
+    }
+        IEnumerator attackWithBomb()
+    {
+        yield return new WaitForSeconds(2);
+        animator.SetBool("attackBomb" , true);
+        yield return new WaitForSeconds(1);
+        player.GetComponent<PlayerMechanics>().takeDamage(15);
+
+
+        isAttack = false ; 
+
+    }
+
+  
+
+
 
     // Update is called once per frame
     void Update()
@@ -131,21 +172,32 @@ public class DemonLogic : MonoBehaviour
 
             if (isAggro)
             {
-                    agent.enabled = true;
-
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    animator.SetBool("isWalking", false);
-                }
-                else
-                {
-                    animator.SetBool("isWalking", true);
-                }
+                agent.enabled = true;
 
                 if (wizardClone == null) 
                     agent.SetDestination(player.transform.position);
                 else
                     agent.SetDestination(wizardClone.transform.position);
+
+                
+
+                if (agent.remainingDistance <= agent.stoppingDistance && agent.remainingDistance > 0 && !isAttack)
+                {
+                    //animator.SetBool("isWalking", false);
+                    //animator.SetBool("Idle", true);
+                    isAttack = true;
+                    demonAttackPlayer();
+                                
+
+                }
+                if (agent.remainingDistance > agent.stoppingDistance )
+                {
+                    animator.SetBool("Idle", false);
+                }
+
+                
+
+               
             }
             else
             {
