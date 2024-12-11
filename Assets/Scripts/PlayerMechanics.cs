@@ -99,7 +99,7 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(agent.remainingDistance);
+        //Debug.Log(agent.remainingDistance);
 
         //if (tag == "Barbarian" && animator.GetBool("isSprint"))
         //{
@@ -298,7 +298,7 @@ public class PlayerMechanics : MonoBehaviour
 
             foreach (var collider in hitColliders)
             {
-                if (collider.CompareTag("Summoned_Minions") || collider.CompareTag("Boss") || collider.CompareTag("Turtle_Stop"))
+                if (collider.CompareTag("Summoned_Minions") || collider.CompareTag("Boss") || collider.CompareTag("Turtle_Stop") || collider.CompareTag("Minion") || collider.CompareTag("Demon"))
                 {
                     float distance = Vector3.Distance(pos, collider.transform.position);
                     if (distance < closestDistance)
