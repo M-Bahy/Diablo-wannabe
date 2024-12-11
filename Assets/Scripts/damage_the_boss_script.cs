@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class damage_the_boss_script : MonoBehaviour
 {
      bool isInInferno = false;
     public static bool barAttackedBoss = false;
-
+    public static bool specialAttackedBoss = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,18 @@ public class damage_the_boss_script : MonoBehaviour
         {
             gameObject.GetComponent<BossMech>().damageBoss(5);
             Destroy(other.gameObject);
+        }
+        if((other.CompareTag("Barbarian")) && other.GetComponent<Animator>().GetBool("isSprint"))
+        {
+            gameObject.GetComponent<BossMech>().damageBoss(20);
+        }
+        if(other.CompareTag("Axe") && PlayerMechanics.circleAttacking)
+        {
+           if(specialAttackedBoss == false)
+            {
+                StartCoroutine(DelayedDamage(0.3f, 10));
+                specialAttackedBoss = true;
+            }
         }
     }
     private IEnumerator DelayedDamage(float delay, int damage)

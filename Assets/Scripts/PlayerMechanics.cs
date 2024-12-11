@@ -99,6 +99,7 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(agent.remainingDistance);
 
         //if (tag == "Barbarian" && animator.GetBool("isSprint"))
         //{
@@ -195,7 +196,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0])
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0] && !animator.GetBool("Attack"))
         {
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -566,6 +567,7 @@ public class PlayerMechanics : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
+            damage_the_boss_script.specialAttackedBoss = false;
             Axe_Script.affectedMinions = new List<GameObject>();
 
             circleAttacking = true;
@@ -598,7 +600,7 @@ public class PlayerMechanics : MonoBehaviour
         float timeLimit = 3.0f;
         //direction.y = transform.position.y;
         while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
-                          new Vector3(targetPosition.x, 0, targetPosition.z)) > 2f) // Check distance ignoring y
+                          new Vector3(transform.position.x+15f, 0, transform.position.z+15f)) > 0.5f) // Check distance ignoring y
         {
             // Move toward the target position
             transform.position += direction * speed * Time.deltaTime;
@@ -650,7 +652,7 @@ public class PlayerMechanics : MonoBehaviour
 
     IEnumerator ResetAfterBarbarianAttack()
     {
-        yield return new WaitForSeconds(1.2f); // Wait for the animation duration
+        yield return new WaitForSeconds(1.3f); // Wait for the animation duration
         animator.SetBool("Attack", false); // Reset the attack animation state
         barAttacking = false;
         agent.updateRotation = true;
@@ -757,14 +759,18 @@ public class PlayerMechanics : MonoBehaviour
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
            boss.gameOver = true;
            }
-           UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
-
+            // UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
+            StartCoroutine(GameOverWithDelay(5f));
         }else{
             animator.Play("damage");
         }
     }
-    
-    
+
+    private IEnumerator GameOverWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait for the specified delay
+        SceneManager.LoadScene("Game_Over_Scene"); // Load the Game Over scene
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Fragment")

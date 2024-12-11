@@ -269,8 +269,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1344836, y: 0.32694608, z: 1.6410112}
-  m_Center: {x: 0.06724214, y: 0.1982421, z: 0.12086902}
+  m_Size: {x: 1.1980114, y: 0.53176105, z: 1.744588}
+  m_Center: {x: 0.099006794, y: 0.09583441, z: 0.06908164}
 --- !u!114 &28629496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6678,7 +6678,7 @@ MonoBehaviour:
   shieldPrefab: {fileID: 5680894043512127133, guid: 32ed7a5a24279844abc04dc3d2fe0937, type: 3}
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
   playerMaxHealth: 100
-  playerCurrenttHealth: 90
+  playerCurrenttHealth: 100
   abilityPoints: 0
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
