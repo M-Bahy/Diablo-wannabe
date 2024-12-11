@@ -23,6 +23,7 @@ TagManager:
   - Turtle_Stop
   - Aura
   - Boss_Shield
+  - Wall
   layers:
   - Default
   - TransparentFX
