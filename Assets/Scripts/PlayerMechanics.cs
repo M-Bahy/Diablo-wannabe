@@ -566,6 +566,7 @@ public class PlayerMechanics : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.Charging);
             animator.SetBool("Special_Attack", true);
+            damage_the_boss_script.specialAttackedBoss = false;
             Axe_Script.affectedMinions = new List<GameObject>();
 
             circleAttacking = true;
@@ -598,7 +599,7 @@ public class PlayerMechanics : MonoBehaviour
         float timeLimit = 3.0f;
         //direction.y = transform.position.y;
         while (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
-                          new Vector3(targetPosition.x, 0, targetPosition.z)) > 2f) // Check distance ignoring y
+                          new Vector3(transform.position.x+15f, 0, transform.position.z+15f)) > 0.5f) // Check distance ignoring y
         {
             // Move toward the target position
             transform.position += direction * speed * Time.deltaTime;
