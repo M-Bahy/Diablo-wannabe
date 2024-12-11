@@ -758,14 +758,18 @@ public class PlayerMechanics : MonoBehaviour
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
            boss.gameOver = true;
            }
-           UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
-
+            // UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
+            StartCoroutine(GameOverWithDelay(5f));
         }else{
             animator.Play("damage");
         }
     }
-    
-    
+
+    private IEnumerator GameOverWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait for the specified delay
+        SceneManager.LoadScene("Game_Over_Scene"); // Load the Game Over scene
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Fragment")
