@@ -32,6 +32,7 @@ public class Boss_phase1_script : MonoBehaviour
         PlayerMechanics.isLevel1 = false;
         SetPlayer();
         DistributeThePlayer();
+        fightStarted = false;
     }
 
     // Start is called before the first frame update
