@@ -139,6 +139,24 @@ public class MainMenu_Script : MonoBehaviour
         playPanel.SetActive(false);
         cameFromLevelSelect = true;
         levelSelectPanel.SetActive(true);
+        // /         If the level is restarted, or is loaded using cheats, the Wanderer starts the level with
+// character level 4, i.e their HP will be 400, all their abilities unlocked, and healing
+// potions equal to 0.
+
+        PlayerMechanics.level = 4;
+        PlayerMechanics.exp = 0;
+        PlayerMechanics.playerMaxHealth = 400;
+        PlayerMechanics.playerCurrenttHealth = 400;
+
+        PlayerMechanics.numberOfHealingPortions = 0;
+        PlayerMechanics.abilityPoints = 0;
+        HUD_Script.abilitiesUnlocked = new bool[4];
+        HUD_Script.abilitiesUnlocked[0] = true;
+        HUD_Script.abilitiesUnlocked[1] = true;
+        HUD_Script.abilitiesUnlocked[2] = true; 
+        HUD_Script.abilitiesUnlocked[3] = true; 
+        HUD_Script.ResetCoolDowns();
+        Healing_Script.collectedHealingPotions.Clear();
     }
     public void Level1Button(){
         goToLevel = 1;
@@ -187,6 +205,21 @@ public class MainMenu_Script : MonoBehaviour
     public void LevelSelectBackButton(){
         levelSelectPanel.SetActive(false);
         playPanel.SetActive(true);
+        // revert the changes 
+        PlayerMechanics.level = 1;
+        PlayerMechanics.exp = 0;
+        PlayerMechanics.playerMaxHealth = 100;
+        PlayerMechanics.playerCurrenttHealth = 100;
+
+        PlayerMechanics.numberOfHealingPortions = 0;
+        PlayerMechanics.abilityPoints = 0;
+        HUD_Script.abilitiesUnlocked = new bool[4];
+        HUD_Script.abilitiesUnlocked[0] = true;
+        HUD_Script.abilitiesUnlocked[1] = false;
+        HUD_Script.abilitiesUnlocked[2] = false;
+        HUD_Script.abilitiesUnlocked[3] = false;
+        HUD_Script.ResetCoolDowns();
+        
     }
     public void OptionsBackButton(){
         optionsPanel.SetActive(false);

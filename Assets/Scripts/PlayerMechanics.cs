@@ -281,6 +281,21 @@ public class PlayerMechanics : MonoBehaviour
     public void RestartGame() {
         Time.timeScale = 1;
         int level = PlayerMechanics.isLevel1 ? 1 : 2;
+
+        PlayerMechanics.level = 4;
+        PlayerMechanics.exp = 0;
+        PlayerMechanics.playerMaxHealth = 400;
+        PlayerMechanics.playerCurrenttHealth = 400;
+
+        PlayerMechanics.numberOfHealingPortions = 0;
+        PlayerMechanics.abilityPoints = 0;
+        HUD_Script.abilitiesUnlocked = new bool[4];
+        HUD_Script.abilitiesUnlocked[0] = true;
+        HUD_Script.abilitiesUnlocked[1] = true;
+        HUD_Script.abilitiesUnlocked[2] = true; 
+        HUD_Script.abilitiesUnlocked[3] = true; 
+        HUD_Script.ResetCoolDowns();
+        Healing_Script.collectedHealingPotions.Clear();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + level+"_scene");
     }
 
