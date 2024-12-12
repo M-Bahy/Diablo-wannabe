@@ -14735,7 +14735,7 @@ MonoBehaviour:
   infernoPrefab: {fileID: 0}
   shieldPrefab: {fileID: 5680894043512127133, guid: 32ed7a5a24279844abc04dc3d2fe0937, type: 3}
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
-  NavMeshSurface: {fileID: 0}
+  NavMeshSurface: {fileID: 1056249115}
   playerMaxHealth: 100
   playerCurrenttHealth: 100
   abilityPoints: 0
