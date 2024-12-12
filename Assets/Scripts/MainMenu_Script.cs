@@ -116,6 +116,24 @@ public class MainMenu_Script : MonoBehaviour
         cameFromLevelSelect = false;
         goToLevel = 1;
         characterSelectPanel.SetActive(true);
+
+    //         static int level = 1;
+    // static int exp = 0;
+    // static int requiredExp = 100;
+    // public static int playerMaxHealth = 100;
+    // public static int playerCurrenttHealth = 100;
+    // static int numberOfHealingPortions = 0;
+    // public static int abilityPoints = 0;
+    PlayerMechanics.level = 1;
+    PlayerMechanics.exp = 0;
+    PlayerMechanics.requiredExp = 100;
+    PlayerMechanics.playerMaxHealth = 100;
+    PlayerMechanics.playerCurrenttHealth = 100;
+    PlayerMechanics.numberOfHealingPortions = 0;
+    PlayerMechanics.abilityPoints = 0;
+    HUD_Script.abilitiesUnlocked = new bool[4];
+    HUD_Script.abilitiesCoolDown = new bool[4];
+    HUD_Script.coolDownTimer = new float[4];
     }
     public void LevelSelectButton(){
         playPanel.SetActive(false);

@@ -15,9 +15,9 @@ public class HUD_Script : MonoBehaviour
     public TMP_Text[] buttonTexts;
     public TMP_Text[] coolDownTimerTexts;
 
-    public static bool[] abilitiesUnlocked;
-    public static bool[] abilitiesCoolDown;
-    public static float[] coolDownTimer;
+    public static bool[] abilitiesUnlocked = new bool[4];
+    public static bool[] abilitiesCoolDown = new bool[4];
+    public static float[] coolDownTimer = new float[4];
 
     public static GameObject player;
     PlayerMechanics pm;
@@ -25,21 +25,22 @@ public class HUD_Script : MonoBehaviour
     void Start()
     {
         
-        abilitiesUnlocked = new bool[4];
+        // abilitiesUnlocked = new bool[4];
         abilitiesUnlocked[0] = true;
-        abilitiesCoolDown = new bool[4];
-        coolDownTimer = new float[4];
+        // abilitiesCoolDown = new bool[4];
+        // coolDownTimer = new float[4];
         coolDownTimer[0] = 0.0f;
 
-        pm = player.GetComponent<PlayerMechanics>();
+       // pm = player.GetComponent<PlayerMechanics>();
         Debug.Log(pm==null);
-        abilityPoints = pm.abilityPoints;
+        abilityPoints = PlayerMechanics.abilityPoints;
 
         for (int i = 1; i < abilityButtons.Length; i++)
         {
             int index = i; // Capture index for the lambda expression
             abilityButtons[i].onClick.AddListener(() => TryUnlockAbility(index));
             coolDownTimer[i] = 0.0f;
+            coolDownTimerTexts[i].transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -48,7 +49,7 @@ public class HUD_Script : MonoBehaviour
         if (!abilitiesUnlocked[index] && abilityPoints > 0)
         {
             abilitiesUnlocked[index] = true;
-            pm.abilityPoints--;
+            PlayerMechanics.abilityPoints--;
             UnlockAbility(index);
         }
     }
@@ -81,7 +82,7 @@ public class HUD_Script : MonoBehaviour
                 }
             }
         }
-        abilityPoints = pm.abilityPoints;
+        abilityPoints = PlayerMechanics.abilityPoints;
 
         for (int i = 0; i < coolDownTimer.Length; i++)
         {
@@ -121,6 +122,16 @@ public class HUD_Script : MonoBehaviour
 
                 }
             }
+        }
+    }
+
+    // reset all the cooldowns
+    public static void ResetCoolDowns()
+    {
+        for (int i = 0; i < coolDownTimer.Length; i++)
+        {
+            coolDownTimer[i] = 0.0f;
+            abilitiesCoolDown[i] = false;
         }
     }
 }

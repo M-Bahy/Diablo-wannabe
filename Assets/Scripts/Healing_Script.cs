@@ -36,16 +36,16 @@ public class Healing_Script : MonoBehaviour
         {
             if(collectedHealingPotions.Count > 0)
             {
-                PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
-                if (player.playerCurrenttHealth >= player.playerMaxHealth)
+               // PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
+                if (PlayerMechanics.playerCurrenttHealth >= PlayerMechanics.playerMaxHealth)
                 {
                     return;
                 }
-                int healingAmount = player.playerMaxHealth /2;
-                player.playerCurrenttHealth += healingAmount;
-                if (player.playerCurrenttHealth > player.playerMaxHealth)
+                int healingAmount = PlayerMechanics.playerMaxHealth /2;
+                PlayerMechanics.playerCurrenttHealth += healingAmount;
+                if (PlayerMechanics.playerCurrenttHealth > PlayerMechanics.playerMaxHealth)
                 {
-                    player.playerCurrenttHealth = player.playerMaxHealth;
+                    PlayerMechanics.playerCurrenttHealth = PlayerMechanics.playerMaxHealth;
                 }
                 collectedHealingPotions.RemoveAt(0);
                 audioManager.PlaySFX(audioManager.Wanderer_Healing_Potion);

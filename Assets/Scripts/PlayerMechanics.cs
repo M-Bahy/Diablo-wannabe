@@ -31,13 +31,16 @@ public class PlayerMechanics : MonoBehaviour
     public  NavMeshSurface NavMeshSurface;
     //////////////
 
-    int level = 1;
-    int exp = 0;
-    int requiredExp = 100;
-    public int playerMaxHealth = 100;
-    public int playerCurrenttHealth = 100;
-    int numberOfHealingPortions = 0;
-    public int abilityPoints = 0;
+    public static int level = 1;
+    public static int exp = 0;
+    public static int requiredExp = 100;
+    public static int playerMaxHealth = 100;
+    public static int playerCurrenttHealth = 100;
+    public static int numberOfHealingPortions = 0;
+    public static int abilityPoints = 0;
+
+
+
     int numberOfFragments = 0;
     private Animator animator;
     private Collider collider;
@@ -119,6 +122,14 @@ public class PlayerMechanics : MonoBehaviour
         // {
         //     agent.SetDestination(agent.transform.position);
         //}
+        if ( Input.GetKeyDown(KeyCode.V)){
+            // go to level 2
+            // reset all the cooldowns first
+
+            HUD_Script.ResetCoolDowns();
+
+            SceneManager.LoadScene("Level2_scene");
+        }
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
