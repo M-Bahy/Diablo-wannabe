@@ -844,6 +844,7 @@ public class PlayerMechanics : MonoBehaviour
             //{
             //    Debug.Log("Wall has NavMeshObstacle. Preparing to destroy...");
             //}
+            other.gameObject.SetActive(false);
             Destroy(other.gameObject);
            // agent.SetDestination(agent.destination);
             // rebake the navmesh surface
