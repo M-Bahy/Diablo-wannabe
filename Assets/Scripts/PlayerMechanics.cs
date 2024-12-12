@@ -795,6 +795,7 @@ public class PlayerMechanics : MonoBehaviour
 
         if (collision.gameObject.tag == "portal")
         {
+            HUD_Script.ResetCoolDowns();
             SceneManager.LoadScene("Level2_scene");
         }
 
@@ -846,6 +847,7 @@ public class PlayerMechanics : MonoBehaviour
 
         if (other.gameObject.tag == "portal")
         {
+            HUD_Script.ResetCoolDowns();
             SceneManager.LoadScene("Level2_scene");
         }
         if(tag=="Barbarian"&& other.gameObject.tag == "Wall" && animator.GetBool("isSprint"))
