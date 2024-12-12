@@ -9,7 +9,7 @@ public class Healing_Script : MonoBehaviour
     public TMP_Text bottleCountText;
     List<GameObject> availableHealingPotions = new List<GameObject>();
 
-    List<GameObject> collectedHealingPotions = new List<GameObject>();
+    public static List<GameObject> collectedHealingPotions = new List<GameObject>();
     Animator anim;
     int numberOfHealingPotions = 10;
 
@@ -27,6 +27,7 @@ public class Healing_Script : MonoBehaviour
     {
      spawnHealingPotions();   
      anim = gameObject.GetComponent<Animator>();
+     bottleCountText.text = "X " + collectedHealingPotions.Count;
     }
 
     // Update is called once per frame
