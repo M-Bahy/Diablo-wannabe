@@ -14735,6 +14735,7 @@ MonoBehaviour:
   infernoPrefab: {fileID: 0}
   shieldPrefab: {fileID: 5680894043512127133, guid: 32ed7a5a24279844abc04dc3d2fe0937, type: 3}
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
+  NavMeshSurface: {fileID: 0}
   playerMaxHealth: 100
   playerCurrenttHealth: 100
   abilityPoints: 0
@@ -16645,6 +16646,7 @@ GameObject:
   - component: {fileID: 1860999652}
   - component: {fileID: 1860999651}
   - component: {fileID: 1860999655}
+  - component: {fileID: 1860999656}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -16768,7 +16770,20 @@ MonoBehaviour:
   - {fileID: 833883585}
   - {fileID: 2059599039}
   - {fileID: 1800639141}
-  player: {fileID: 1597613615}
+--- !u!114 &1860999656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860999650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a5fc572365410a1835192db216c163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wizard: {fileID: 7693997212503393795}
+  Barbarian: {fileID: 1597613615}
 --- !u!1 &1862510894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5160628890667125989, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -19127,7 +19142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4254923017532828344, guid: 3eb7d2be8f7444d49a7527cfbac46a31, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4534046659873113684, guid: 3eb7d2be8f7444d49a7527cfbac46a31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20441,7 +20456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3e5dda09e601642b72da49b743922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1597613615}
   xOffset: 5.64
   yOffset: 10.68
   zOffset: 5.64
