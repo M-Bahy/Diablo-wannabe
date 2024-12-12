@@ -39,7 +39,7 @@ public class MainMenu_Script : MonoBehaviour
     public Button iconWizard;
     public Button iconBarbarian;
     public static int goToLevel = 1 ;
-    public static bool isWizard = true;
+    public static bool isWizard = false;
     AudioManagerScript audioManager;
     bool cameFromLevelSelect = false;
 
