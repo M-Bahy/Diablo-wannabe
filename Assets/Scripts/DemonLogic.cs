@@ -23,7 +23,7 @@ public class DemonLogic : MonoBehaviour
 
     public static GameObject wizardClone;
 
-    public GameObject player;
+    public static GameObject player;
 
     private Animator animator;
 

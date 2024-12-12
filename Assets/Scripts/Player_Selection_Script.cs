@@ -33,8 +33,13 @@ public class Player_Selection_Script : MonoBehaviour
             Destroy(Wizard);
         }
     }
-    public void DistributeThePlayer(){
+    public  void DistributeThePlayer(){
         HUD_Script.player = player;
         Camera_Movement.player = player;   
+        Minion_Logic.player = player;
+        DemonLogic.player = player;
+        Camp_Logic.player = player;
+        s_m.player = player;  
+        Boss_phase1_script.player = player;
     }
 }

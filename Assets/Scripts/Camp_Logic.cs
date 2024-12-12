@@ -20,7 +20,7 @@ public class Camp_Logic : MonoBehaviour
     [SerializeField] GameObject demon;
     [SerializeField] GameObject key;
 
-    [SerializeField] GameObject player; // THIS IS NOT FINAL, WE NEED A WAY TO PASS THE PLAYER
+    public static GameObject player; // THIS IS NOT FINAL, WE NEED A WAY TO PASS THE PLAYER
 
     List<GameObject> minionsArray = new List<GameObject>();
     List<GameObject> demonsArray = new List<GameObject>();
@@ -49,8 +49,8 @@ public class Camp_Logic : MonoBehaviour
     void Start()
     {
         audioManager.PlayBackground(audioManager.Level1);
-        minion.GetComponent<Minion_Logic>().player = player;
-        demon.GetComponent<DemonLogic>().player = player;
+        //minion.GetComponent<Minion_Logic>().player = player;
+        //demon.GetComponent<DemonLogic>().player = player;
         minX = this.transform.position.x - 20;
         minZ = this.transform.position.z - 20;
         maxX = this.transform.position.x + 20;
@@ -210,7 +210,7 @@ public class Camp_Logic : MonoBehaviour
                 {
                     if (demon == null) continue;
                     DemonLogic demonLogic = demon.GetComponent<DemonLogic>();
-                    demonLogic.player = player;
+                    // demonLogic.player = player;
                     demonLogic?.goAggresive(true);
                 }
 
@@ -218,7 +218,7 @@ public class Camp_Logic : MonoBehaviour
                 {
                     if (minion == null) continue;
                     Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
-                    minionLogic.player = player;
+                   // minionLogic.player = player;
                     minionLogic?.goAggresive(true);
                 }
             }
@@ -252,7 +252,7 @@ public class Camp_Logic : MonoBehaviour
                     // Aggro the demon
                     DemonLogic demonLogic = availableDemon.GetComponent<DemonLogic>();
                     availableDemon.GetComponent<Rigidbody>().isKinematic = false;
-                    demonLogic.player = player;
+                    // demonLogic.player = player;
                     demonLogic?.goAggresive(true);
 
                     // Replace null with the available demon
@@ -272,7 +272,7 @@ public class Camp_Logic : MonoBehaviour
                 {
                     // Aggro the minion
                     Minion_Logic minionLogic = availableMinion.GetComponent<Minion_Logic>();
-                    minionLogic.player = player;
+                    //minionLogic.player = player;
                     minionLogic?.goAggresive(true);
 
                     // Replace null with the available minion
@@ -295,7 +295,7 @@ public class Camp_Logic : MonoBehaviour
             if (selectedDemon != null)
             {
                 DemonLogic demonLogic = selectedDemon.GetComponent<DemonLogic>();
-                demonLogic.player = player;
+                //demonLogic.player = player;
                 selectedDemon.GetComponent<Rigidbody>().isKinematic = false;
                 demonLogic?.goAggresive(true);
                 aggroedDemons.Add(selectedDemon);
@@ -312,7 +312,7 @@ public class Camp_Logic : MonoBehaviour
         foreach (GameObject minion in availableMinions)
         {
             Minion_Logic minionLogic = minion.GetComponent<Minion_Logic>();
-            minionLogic.player = player;
+            //minionLogic.player = player;
             minionLogic?.goAggresive(true);
             aggroedMinions.Add(minion);
         }

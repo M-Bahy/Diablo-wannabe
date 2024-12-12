@@ -15,7 +15,7 @@ public class Minion_Logic : MonoBehaviour
 
     private bool isAggro = false;
 
-    public GameObject player;
+    public static GameObject player;
     NavMeshAgent agent;
     private Vector3 startingPos;
 
