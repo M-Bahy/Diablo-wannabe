@@ -19,7 +19,7 @@ public class HUD_Script : MonoBehaviour
     public static bool[] abilitiesCoolDown;
     public static float[] coolDownTimer;
 
-    [SerializeField] private GameObject player;
+    public static GameObject player;
     PlayerMechanics pm;
 
     void Start()

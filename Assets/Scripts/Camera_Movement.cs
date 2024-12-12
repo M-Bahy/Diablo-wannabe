@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Camera_Movement : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    public static GameObject player;
+
 
     [SerializeField] float xOffset;
     [SerializeField] float yOffset;

@@ -2041,11 +2041,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Wizard
       objectReference: {fileID: 0}
     - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_TagString
@@ -2265,7 +2265,6 @@ MonoBehaviour:
   - {fileID: 287434165}
   - {fileID: 1291971645}
   - {fileID: 748816075}
-  player: {fileID: 1842789839}
 --- !u!1 &542914094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,8 +2453,9 @@ MonoBehaviour:
   infernoPrefab: {fileID: 70345215526028572, guid: 8cec66e215abfe64e9b30caff2e37cd3, type: 3}
   shieldPrefab: {fileID: 0}
   axePrefab: {fileID: 0}
+  NavMeshSurface: {fileID: 0}
   playerMaxHealth: 100
-  playerCurrenttHealth: 90
+  playerCurrenttHealth: 100
   abilityPoints: 0
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
@@ -2470,10 +2470,10 @@ MonoBehaviour:
   wizardClone: {fileID: 514898978616802122, guid: 97106c78134cbe6499109e4034e310dc, type: 3}
   _maincamera: {fileID: 678672493}
   Fireball: {fileID: 1287598617871461836, guid: 2400e81be1649b9449fa5078bad95ffc, type: 3}
-  pausePanel: {fileID: 0}
-  restartButton: {fileID: 0}
-  mainMenuButton: {fileID: 0}
-  resumeButton: {fileID: 0}
+  pausePanel: {fileID: 1902905651}
+  restartButton: {fileID: 542914096}
+  mainMenuButton: {fileID: 1543550509}
+  resumeButton: {fileID: 52782986}
 --- !u!54 &596993864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2958,7 +2958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3e5dda09e601642b72da49b743922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1842789839}
   xOffset: -2.84
   yOffset: 35.3
   zOffset: 22.1
@@ -6522,7 +6521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9282b89b3b7800048a9aa77e78235188, type: 3}
       propertyPath: m_Name
-      value: barbian
+      value: Barbian
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9282b89b3b7800048a9aa77e78235188, type: 3}
       propertyPath: m_TagString
@@ -6677,6 +6676,7 @@ MonoBehaviour:
   infernoPrefab: {fileID: 0}
   shieldPrefab: {fileID: 5680894043512127133, guid: 32ed7a5a24279844abc04dc3d2fe0937, type: 3}
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
+  NavMeshSurface: {fileID: 0}
   playerMaxHealth: 100
   playerCurrenttHealth: 100
   abilityPoints: 0
@@ -7555,7 +7555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fdda431f6b9c454a10bcf0ae2865e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1842789839}
+  Wizard: {fileID: 596993857}
+  Barbarian: {fileID: 1842789839}
   minionPrefab: {fileID: 961803237283086986, guid: f2e88bd765545024e8e7fd868dca8642, type: 3}
   surface: {fileID: 1582105773}
 --- !u!114 &2085175678

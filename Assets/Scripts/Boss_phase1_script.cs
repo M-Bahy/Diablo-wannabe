@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class Boss_phase1_script : MonoBehaviour
 {
-    public static bool fightStarted = true;
-    public GameObject player;
+    public static bool fightStarted = false;
+    public static GameObject player;
+    public GameObject Wizard;
+    public GameObject Barbarian;
     public GameObject minionPrefab;
     Animator anim;
     bool initialSummon = true;
@@ -28,7 +30,8 @@ public class Boss_phase1_script : MonoBehaviour
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
         PlayerMechanics.isLevel1 = false;
-
+        SetPlayer();
+        DistributeThePlayer();
     }
 
     // Start is called before the first frame update
@@ -195,5 +198,21 @@ public class Boss_phase1_script : MonoBehaviour
         // Swinging_Hands
         anim.ResetTrigger("Swinging_Hands");
         anim.SetTrigger("Swinging_Hands");
+    }
+
+    public void SetPlayer()
+    {
+        if(MainMenu_Script.isWizard){
+            player = Wizard;
+            Destroy(Barbarian);
+        }
+        else{
+            player = Barbarian;
+            Destroy(Wizard);
+        }
+    }
+    public void DistributeThePlayer(){
+        HUD_Script.player = player;
+        Camera_Movement.player = player;   
     }
 }

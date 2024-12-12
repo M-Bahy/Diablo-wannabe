@@ -40,7 +40,7 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip Boss_Getting_Damaged;
     public AudioClip Boss_Dies;
 
-    public static float musicVolume = 0.0f;
+    public static float musicVolume = 0.3f;
     public static float SFXVolume = 0.5f;
 
     private void Start()

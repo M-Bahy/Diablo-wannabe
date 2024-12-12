@@ -61,6 +61,9 @@ public class BossMech : MonoBehaviour
         if(!gameObject.GetComponent<Boss_phase1_script>().isAllMinionsDead()){
             return;
         }
+        if(Boss_phase1_script.fightStarted == false){
+            Boss_phase1_script.fightStarted = true;
+        }
         if(phaseOne){
             phaseOneHealth -= damageAmount;
              animator.Play("GetDamage");
@@ -95,8 +98,8 @@ public class BossMech : MonoBehaviour
                 // the player here should take damage equals to the damage amount + 15
                 deactivateAura();
                 
-                Boss_phase1_script bs = gameObject.GetComponent<Boss_phase1_script>();
-                bs.player.GetComponent<PlayerMechanics>().takeDamage(damageAmount + 15);
+               // Boss_phase1_script bs = gameObject.GetComponent<Boss_phase1_script>();
+                Boss_phase1_script.player.GetComponent<PlayerMechanics>().takeDamage(damageAmount + 15);
             }
           
 
