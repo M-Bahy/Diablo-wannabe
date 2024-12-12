@@ -174,7 +174,7 @@ public class Boss_phase1_script : MonoBehaviour
             {
                 z = Random.Range(25.99f, 62.93f);
             }
-            Vector3 pos = new Vector3(x, transform.position.y, z);
+            Vector3 pos = new Vector3(x, 4.05f, z);
             GameObject minion = Instantiate(minionPrefab, pos, Quaternion.identity);
             Minion_Logic m_l = minion.GetComponent<Minion_Logic>();
             m_l.player = player;
