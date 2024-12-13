@@ -72,6 +72,7 @@ public class HUD_Script : MonoBehaviour
             else if (!abilitiesCoolDown[i] && abilitiesUnlocked[i])
             {
                 buttonTexts[i].color = Color.green;
+                abilityButtons[i].GetComponent<Image>().color = Color.black;
             }
             else
             {
