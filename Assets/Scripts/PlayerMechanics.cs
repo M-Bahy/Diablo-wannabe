@@ -58,6 +58,7 @@ public class PlayerMechanics : MonoBehaviour
     public TMP_Text levelText ;
 
     [SerializeField] TMP_Text abilityPointsText;
+    [SerializeField] TMP_Text fragmentText;
 
     public GameObject leftDoor;
     public GameObject rightDoor;
@@ -751,6 +752,11 @@ public class PlayerMechanics : MonoBehaviour
         if (abilityPointsText != null)
         {
             abilityPointsText.text = $"{abilityPoints:F0}";
+        }
+
+        if (fragmentText != null)
+        {
+            fragmentText.text = "X " + $"{numberOfFragments:F0}";
         }
 
 

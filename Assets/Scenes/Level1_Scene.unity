@@ -142,7 +142,6 @@ MonoBehaviour:
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
-  player: {fileID: 1597613615}
   patrollPoints:
   - {fileID: 1981469815}
   - {fileID: 666120157}
@@ -1391,6 +1390,43 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8325958, y: 1, z: 0.19180293}
   m_Center: {x: -0.0038070679, y: 0, z: 0.08604429}
+--- !u!1 &64647821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64647822}
+  m_Layer: 5
+  m_Name: Rune Fragments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &64647822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64647821}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1586949152}
+  - {fileID: 576826141}
+  m_Father: {fileID: 1860999654}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -161, y: 202}
+  m_SizeDelta: {x: 281, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &69053709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8283457473895785514, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -6687,6 +6723,140 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.6838818, y: 1, z: 0.1845652}
   m_Center: {x: -0.4815377, y: -0.0000000145432955, z: -0.023347197}
+--- !u!1 &576826140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 576826141}
+  - component: {fileID: 576826143}
+  - component: {fileID: 576826142}
+  m_Layer: 5
+  m_Name: rune count
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &576826141
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576826140}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 64647822}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 181, y: 42}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &576826142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576826140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: X 0
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: 97690656
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &576826143
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576826140}
+  m_CullTransparentMesh: 1
 --- !u!1 &576897896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6833592924173043643, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -10448,7 +10618,6 @@ MonoBehaviour:
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
-  player: {fileID: 1597613615}
   patrollPoints:
   - {fileID: 2055726724}
   - {fileID: 554777504}
@@ -12897,7 +13066,6 @@ MonoBehaviour:
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
-  player: {fileID: 1597613615}
   patrollPoints:
   - {fileID: 1659087541}
   - {fileID: 600703307}
@@ -13241,7 +13409,6 @@ MonoBehaviour:
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
-  player: {fileID: 1597613615}
   patrollPoints:
   - {fileID: 1422372606}
   - {fileID: 738616654}
@@ -14366,6 +14533,78 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 45.80166, y: 2.6144764, z: 0.5763091}
   m_Center: {x: -21.051846, y: 12.629023, z: 29.57399}
+--- !u!1 &1586949151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1586949152}
+  - component: {fileID: 1586949154}
+  - component: {fileID: 1586949153}
+  m_Layer: 5
+  m_Name: rune image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1586949152
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586949151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 64647822}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1586949153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586949151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 0fd809cacea918542ab39a714cbb8d8a, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1586949154
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586949151}
+  m_CullTransparentMesh: 1
 --- !u!1 &1589550215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 92487744417475353, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -14736,15 +14975,14 @@ MonoBehaviour:
   shieldPrefab: {fileID: 5680894043512127133, guid: 32ed7a5a24279844abc04dc3d2fe0937, type: 3}
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
   NavMeshSurface: {fileID: 1056249115}
-  playerMaxHealth: 100
-  playerCurrenttHealth: 100
-  abilityPoints: 0
+  bossEmptyObj: {fileID: 0}
   healthText: {fileID: 1031188797}
   healthSlider: {fileID: 1492222210}
   expText: {fileID: 728154093}
   expSlider: {fileID: 2068692252}
   levelText: {fileID: 1456936481}
   abilityPointsText: {fileID: 1498185749}
+  fragmentText: {fileID: 576826142}
   leftDoor: {fileID: 746955544}
   rightDoor: {fileID: 746955543}
   portal: {fileID: 1245695227}
@@ -16734,6 +16972,7 @@ RectTransform:
   - {fileID: 1492222209}
   - {fileID: 2068692251}
   - {fileID: 537529577}
+  - {fileID: 64647822}
   - {fileID: 355912957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17033,7 +17272,6 @@ MonoBehaviour:
   minion: {fileID: 8102969495323673366, guid: 5b5d39610ebb2894ea8e05884fc7b807, type: 3}
   demon: {fileID: 8345061602593601145, guid: eb2f4d1771e40524b893d425e294ef29, type: 3}
   key: {fileID: 428567981267426357, guid: 172d68c14406ae7419af88ce8bb7121e, type: 3}
-  player: {fileID: 1597613615}
   patrollPoints:
   - {fileID: 1283010692}
   - {fileID: 1411584889}
@@ -18972,6 +19210,10 @@ PrefabInstance:
       propertyPath: _maincamera
       value: 
       objectReference: {fileID: 314687944667374136}
+    - target: {fileID: 2788275103010519035, guid: 3eb7d2be8f7444d49a7527cfbac46a31, type: 3}
+      propertyPath: fragmentText
+      value: 
+      objectReference: {fileID: 576826142}
     - target: {fileID: 2788275103010519035, guid: 3eb7d2be8f7444d49a7527cfbac46a31, type: 3}
       propertyPath: healthSlider
       value: 
