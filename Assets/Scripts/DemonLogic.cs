@@ -148,6 +148,7 @@ public class DemonLogic : MonoBehaviour
     }
     IEnumerator AttackSwordOne()
     {
+        
         if(animator.GetBool("Idle")){
             yield return new WaitForSeconds(2f);
             animator.SetBool("swordOne" , true);
@@ -169,11 +170,12 @@ public class DemonLogic : MonoBehaviour
 
     IEnumerator AttackSwordTwo()
     {
-         if(animator.GetBool("Idle")){
+        
+        if (animator.GetBool("Idle")){
         yield return new WaitForSeconds(2);
         animator.SetBool("swordOne" , true);
         yield return new WaitForSeconds(1);
-        if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
+            if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
             if (wizardClone == null)
                 player.GetComponent<PlayerMechanics>().takeDamage(10);
         }
@@ -187,7 +189,8 @@ public class DemonLogic : MonoBehaviour
     }
         IEnumerator attackWithBomb()
     {
-        if(animator.GetBool("Idle")){
+        
+        if (animator.GetBool("Idle")){
             yield return new WaitForSeconds(2);
             animator.SetBool("attackBomb" , true);
             yield return new WaitForSeconds(1);
@@ -209,9 +212,12 @@ public class DemonLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    
-
+        if (Minion_Logic.isGameOver)
+        {
+            StopAllCoroutines();
+            return;
+        }
+        
             if (isAggro)
             {
                 agent.enabled = true;
@@ -252,6 +258,7 @@ public class DemonLogic : MonoBehaviour
             StopCoroutine(AttackSwordOne());
             StopCoroutine(AttackSwordTwo());
             StopCoroutine(attackWithBomb());
+            isAttack = false;
         }
         
     }

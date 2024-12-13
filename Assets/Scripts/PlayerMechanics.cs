@@ -36,6 +36,8 @@ public class PlayerMechanics : MonoBehaviour
 
     //////////////
 
+    private bool isDead = false;
+
     public static int level = 1;
     public static int exp = 0;
     public static int requiredExp = 100;
@@ -854,7 +856,11 @@ public class PlayerMechanics : MonoBehaviour
         }
         playerCurrenttHealth -= damage;
         audioManager.PlaySFX(audioManager.Wanderer_Damaged);
-        if(playerCurrenttHealth <= 0){
+        if(playerCurrenttHealth <= 0 && !isDead){
+            playerCurrenttHealth = 0;
+            updateHUDUI();
+            isDead = true;
+            Minion_Logic.isGameOver = true;
             playerCurrenttHealth = 0;
            animator.Play("dead");
            audioManager.PlaySFX(audioManager.Wanderer_Dies);

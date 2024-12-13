@@ -30,6 +30,7 @@ public class Minion_Logic : MonoBehaviour
     private bool isAttacking = false; // To track if the minion is attacking
     private float attackCooldown = 3.0f; // Cooldown between attacks
 
+    public static bool isGameOver = false;
     private void Awake()
     {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -49,6 +50,11 @@ public class Minion_Logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver)
+        {
+            agent.isStopped = true;
+            return;
+        }
         if (!PlayerMechanics.isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
