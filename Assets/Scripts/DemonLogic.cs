@@ -248,6 +248,10 @@ public class DemonLogic : MonoBehaviour
             //     agent.SetDestination(startingPos);
             // }
             agent.enabled = false;
+            animator.SetBool("Idle", false);
+            StopCoroutine(AttackSwordOne());
+            StopCoroutine(AttackSwordTwo());
+            StopCoroutine(attackWithBomb());
         }
         
     }
