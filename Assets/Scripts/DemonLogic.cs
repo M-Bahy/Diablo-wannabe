@@ -135,7 +135,8 @@ public class DemonLogic : MonoBehaviour
         animator.SetBool("swordOne" , true);
         yield return new WaitForSeconds(1);
         if (agent.remainingDistance <= agent.stoppingDistance){
-            player.GetComponent<PlayerMechanics>().takeDamage(10);
+            if (wizardClone == null)
+                player.GetComponent<PlayerMechanics>().takeDamage(10);
         }
         StartCoroutine(AttackSwordTwo());
 
@@ -147,7 +148,8 @@ public class DemonLogic : MonoBehaviour
         animator.SetBool("swordOne" , true);
         yield return new WaitForSeconds(1);
         if (agent.remainingDistance <= agent.stoppingDistance){
-            player.GetComponent<PlayerMechanics>().takeDamage(10);
+            if (wizardClone == null)
+                player.GetComponent<PlayerMechanics>().takeDamage(10);
         }
         StartCoroutine(attackWithBomb());
 
@@ -158,7 +160,8 @@ public class DemonLogic : MonoBehaviour
         animator.SetBool("attackBomb" , true);
         yield return new WaitForSeconds(1);
         if (agent.remainingDistance <= agent.stoppingDistance){
-            player.GetComponent<PlayerMechanics>().takeDamage(15);
+            if (wizardClone == null)
+                player.GetComponent<PlayerMechanics>().takeDamage(15);
         }
 
 
