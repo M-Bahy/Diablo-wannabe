@@ -31,6 +31,7 @@ public class PlayerMechanics : MonoBehaviour
     public  NavMeshSurface NavMeshSurface;
     public GameObject bossEmptyObj;
     public GameObject Boss;
+    private bool noDamageCheat = false;
     //////////////
 
     public static int level = 1;
@@ -197,6 +198,11 @@ public class PlayerMechanics : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D)){
             playerCurrenttHealth -=20;
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+           noDamageCheat = !noDamageCheat;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape)){
             if(pausePanel.activeSelf){
                 pausePanel.SetActive(false);
@@ -819,6 +825,8 @@ public class PlayerMechanics : MonoBehaviour
     
     
     public void takeDamage(int damage){
+        if (noDamageCheat)
+            return;
         if(tag == "Barbarian" && activeShield != null)
         {
             return;
