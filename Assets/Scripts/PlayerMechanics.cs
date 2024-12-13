@@ -213,7 +213,17 @@ public class PlayerMechanics : MonoBehaviour
         {
            noDamageCheat = !noDamageCheat;
         }
-      
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            
+            for (int i = 0; i < HUD_Script.abilitiesCoolDown.Length; i++)
+            {
+                HUD_Script.abilitiesCoolDown[i] = false;
+                HUD_Script.coolDownTimer[i] = 0;
+
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Escape)){
             if(pausePanel.activeSelf){
                 pausePanel.SetActive(false);
