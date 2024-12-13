@@ -2454,9 +2454,7 @@ MonoBehaviour:
   shieldPrefab: {fileID: 0}
   axePrefab: {fileID: 0}
   NavMeshSurface: {fileID: 0}
-  playerMaxHealth: 100
-  playerCurrenttHealth: 100
-  abilityPoints: 0
+  bossEmptyObj: {fileID: 2135351891}
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
   expText: {fileID: 1801215173}
@@ -6677,9 +6675,7 @@ MonoBehaviour:
   shieldPrefab: {fileID: 5680894043512127133, guid: 32ed7a5a24279844abc04dc3d2fe0937, type: 3}
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
   NavMeshSurface: {fileID: 0}
-  playerMaxHealth: 100
-  playerCurrenttHealth: 100
-  abilityPoints: 0
+  bossEmptyObj: {fileID: 0}
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
   expText: {fileID: 1801215173}

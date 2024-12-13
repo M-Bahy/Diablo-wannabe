@@ -29,6 +29,7 @@ public class PlayerMechanics : MonoBehaviour
     public static GameObject minion;
     public static bool canHitSpecial = false;
     public  NavMeshSurface NavMeshSurface;
+    public GameObject bossEmptyObj;
     //////////////
 
     public static int level = 1;
@@ -103,6 +104,11 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(tag == "Sorcerer" && bossEmptyObj != null)
+        {
+            Destroy(bossEmptyObj);
+            bossEmptyObj = null;
+        }
         //Debug.Log(agent.remainingDistance);
 
         //if (tag == "Barbarian" && animator.GetBool("isSprint"))
@@ -208,8 +214,10 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0] && !animator.GetBool("Attack"))
+        if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0] )
         {
+            if (tag == "Barbarian" &&  animator.GetBool("Attack"))
+                return;
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
