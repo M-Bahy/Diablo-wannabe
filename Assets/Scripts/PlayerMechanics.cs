@@ -540,7 +540,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
           
-                Vector3 spawnPosition = new Vector3 (pos.x, 1, pos.z);
+                Vector3 spawnPosition = new Vector3 (pos.x, 0, pos.z);
                 if (!isLevel1)
                     spawnPosition.y = 5.0f;
                 audioManager.PlaySFX(audioManager.Inferno_Activated);
