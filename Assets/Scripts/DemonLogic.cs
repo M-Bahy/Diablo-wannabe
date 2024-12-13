@@ -131,19 +131,28 @@ public class DemonLogic : MonoBehaviour
     }
     IEnumerator AttackSwordOne()
     {
-        yield return new WaitForSeconds(5f);
-        animator.SetBool("swordOne" , true);
-        yield return new WaitForSeconds(1);
-        if (agent.remainingDistance <= agent.stoppingDistance){
-            if (wizardClone == null)
-                player.GetComponent<PlayerMechanics>().takeDamage(10);
+        if(animator.GetBool("Idle")){
+            yield return new WaitForSeconds(2f);
+            animator.SetBool("swordOne" , true);
+            yield return new WaitForSeconds(1);
+            if (agent.remainingDistance <= agent.stoppingDistance){
+                if (wizardClone == null)
+                    player.GetComponent<PlayerMechanics>().takeDamage(10);
+            }
+            StartCoroutine(AttackSwordTwo());
+
         }
-        StartCoroutine(AttackSwordTwo());
+        else{
+            isAttack = false ; 
+
+        }
+        
 
     }
 
     IEnumerator AttackSwordTwo()
     {
+         if(animator.GetBool("Idle")){
         yield return new WaitForSeconds(2);
         animator.SetBool("swordOne" , true);
         yield return new WaitForSeconds(1);
@@ -154,14 +163,21 @@ public class DemonLogic : MonoBehaviour
         StartCoroutine(attackWithBomb());
 
     }
+    else{
+        isAttack = false ; 
+
+    }
+    }
         IEnumerator attackWithBomb()
     {
-        yield return new WaitForSeconds(2);
-        animator.SetBool("attackBomb" , true);
-        yield return new WaitForSeconds(1);
-        if (agent.remainingDistance <= agent.stoppingDistance){
-            if (wizardClone == null)
-                player.GetComponent<PlayerMechanics>().takeDamage(15);
+        if(animator.GetBool("Idle")){
+            yield return new WaitForSeconds(2);
+            animator.SetBool("attackBomb" , true);
+            yield return new WaitForSeconds(1);
+            if (agent.remainingDistance <= agent.stoppingDistance){
+                if (wizardClone == null)
+                    player.GetComponent<PlayerMechanics>().takeDamage(15);
+            }
         }
 
 
