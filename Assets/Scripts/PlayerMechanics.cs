@@ -245,11 +245,11 @@ public class PlayerMechanics : MonoBehaviour
             buttonCliked = true;
             wildButtonClicked = true;
         }
-        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && barAttacking == false)
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && activeShield == null)
         {
             DefensiveAttack();
         }
-        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && barAttacking == false)
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.Q) && HUD_Script.abilitiesUnlocked[3] && !HUD_Script.abilitiesCoolDown[3] && barAttacking == false && !buttonCliked)
         {
             WildAttack( new Vector3());
         }
@@ -377,7 +377,7 @@ public class PlayerMechanics : MonoBehaviour
         agent.updateRotation = true; // Allow rotation
         if(type == "Boss")
         {
-            attackRange = 15.0f;
+            attackRange = 16.5f;
         }
         Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
         float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
@@ -555,8 +555,9 @@ public class PlayerMechanics : MonoBehaviour
                 GameObject infernoInstance =  Instantiate(infernoPrefab, spawnPosition, Quaternion.identity);
                 StartCoroutine(AbilityCooldown(2, 15f));
                 Destroy(infernoInstance, 5f);
+            ultimateButtonClicked = false;
+            buttonCliked = false;
 
-            
         }
         else if(tag == "Barbarian")
         {
@@ -571,8 +572,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
         }
-        ultimateButtonClicked = false;
-        buttonCliked = false;
+     
     }
 
 
@@ -649,6 +649,8 @@ public class PlayerMechanics : MonoBehaviour
                 agent.SetDestination(transform.position);
                 //animator.SetBool("isSprint", false);
                 StartCoroutine(AbilityCooldown(2, 10f));
+                ultimateButtonClicked = false;
+                buttonCliked = false;
                 yield break; // Exit the coroutine
             }
 
