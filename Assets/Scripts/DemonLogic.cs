@@ -32,6 +32,7 @@ public class DemonLogic : MonoBehaviour
     public Rigidbody rb;
 
     bool isAttack = false;
+    public bool isBeingHit = false;
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -50,6 +51,8 @@ public class DemonLogic : MonoBehaviour
     }
 
     public void damageDemon(int dmg){
+        isBeingHit = true;
+        transform.position = transform.position;
         animator.SetBool("Hit", true);
 
         demonCurrentHealth -= dmg;
@@ -65,6 +68,13 @@ public class DemonLogic : MonoBehaviour
             isDead = true;
             Die();
         }
+        StartCoroutine(StopHitAnimation());
+    }
+    private IEnumerator StopHitAnimation()
+    {
+        yield return new WaitForSeconds(1.2f);
+        //animator.SetBool("Hit", false);
+        isBeingHit = false;
     }
 
     public void Die()
@@ -135,7 +145,7 @@ public class DemonLogic : MonoBehaviour
             yield return new WaitForSeconds(2f);
             animator.SetBool("swordOne" , true);
             yield return new WaitForSeconds(1);
-            if (agent.remainingDistance <= agent.stoppingDistance){
+            if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
                 if (wizardClone == null)
                     player.GetComponent<PlayerMechanics>().takeDamage(10);
             }
@@ -156,7 +166,7 @@ public class DemonLogic : MonoBehaviour
         yield return new WaitForSeconds(2);
         animator.SetBool("swordOne" , true);
         yield return new WaitForSeconds(1);
-        if (agent.remainingDistance <= agent.stoppingDistance){
+        if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
             if (wizardClone == null)
                 player.GetComponent<PlayerMechanics>().takeDamage(10);
         }
@@ -174,7 +184,7 @@ public class DemonLogic : MonoBehaviour
             yield return new WaitForSeconds(2);
             animator.SetBool("attackBomb" , true);
             yield return new WaitForSeconds(1);
-            if (agent.remainingDistance <= agent.stoppingDistance){
+            if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
                 if (wizardClone == null)
                     player.GetComponent<PlayerMechanics>().takeDamage(15);
             }

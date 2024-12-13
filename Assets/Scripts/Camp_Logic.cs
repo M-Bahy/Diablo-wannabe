@@ -124,7 +124,7 @@ public class Camp_Logic : MonoBehaviour
     {
 
         if(demonsArray[0] != null){
-            if(!demonsArray[0].GetComponent<DemonLogic>().isAggro){
+            if(!demonsArray[0].GetComponent<DemonLogic>().isAggro && !demonsArray[0].GetComponent<DemonLogic>().isBeingHit){
 
                 demonsArray[0].GetComponent<Rigidbody>().isKinematic = true;
 
@@ -142,7 +142,8 @@ public class Camp_Logic : MonoBehaviour
        
         if(demonsArray.Count >= 2){
              if(demonsArray[1] != null){
-                if(!demonsArray[1].GetComponent<DemonLogic>().isAggro){
+                if(!demonsArray[1].GetComponent<DemonLogic>().isAggro && !demonsArray[1].GetComponent<DemonLogic>().isBeingHit)
+                {
                     if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
                         && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
                             
