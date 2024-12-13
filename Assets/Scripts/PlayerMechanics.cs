@@ -30,6 +30,7 @@ public class PlayerMechanics : MonoBehaviour
     public static bool canHitSpecial = false;
     public  NavMeshSurface NavMeshSurface;
     public GameObject bossEmptyObj;
+    public GameObject Boss;
     //////////////
 
     public static int level = 1;
@@ -856,9 +857,11 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Enemy_Dies);
             minion.GetComponent<Minion_Logic>().Die();
         }
-        if (other.gameObject.tag == "Turtle_Stop" && animator.GetBool("isSprint"))
+        if (tag == "Barbarian" && other.gameObject.tag == "Turtle_Stop" && animator.GetBool("isSprint"))
         {
             agent.SetDestination(agent.transform.position);
+            Boss.GetComponent<BossMech>().damageBoss(20);
+
         }
         if (other.gameObject.tag == "Demon")
         {

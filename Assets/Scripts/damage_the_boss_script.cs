@@ -44,10 +44,10 @@ public class damage_the_boss_script : MonoBehaviour
             gameObject.GetComponent<BossMech>().damageBoss(5);
             Destroy(other.gameObject);
         }
-        if((other.CompareTag("Barbarian")) && other.GetComponent<Animator>().GetBool("isSprint"))
-        {
-            gameObject.GetComponent<BossMech>().damageBoss(20);
-        }
+        //if((other.CompareTag("Barbarian")) && other.GetComponent<Animator>().GetBool("isSprint"))
+        //{
+        //    gameObject.GetComponent<BossMech>().damageBoss(20);
+        //}
         if(other.CompareTag("Axe") && PlayerMechanics.circleAttacking)
         {
            if(specialAttackedBoss == false)

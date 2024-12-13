@@ -2456,6 +2456,7 @@ MonoBehaviour:
   axePrefab: {fileID: 0}
   NavMeshSurface: {fileID: 0}
   bossEmptyObj: {fileID: 2135351891}
+  Boss: {fileID: 0}
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
   expText: {fileID: 1801215173}
@@ -6921,6 +6922,7 @@ MonoBehaviour:
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
   NavMeshSurface: {fileID: 0}
   bossEmptyObj: {fileID: 0}
+  Boss: {fileID: 2085175668}
   healthText: {fileID: 252542978}
   healthSlider: {fileID: 1502845609}
   expText: {fileID: 1801215173}
