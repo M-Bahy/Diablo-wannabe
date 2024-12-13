@@ -145,6 +145,7 @@ public class Minion_Logic : MonoBehaviour
 
     public void Die()
     {
+        agent.isStopped = true;
         audioManager.PlaySFX(audioManager.Enemy_Dies);
         animator.SetBool("Hit", false);
         animator.SetBool("Death", true);
