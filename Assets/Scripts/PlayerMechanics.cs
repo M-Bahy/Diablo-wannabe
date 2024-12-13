@@ -32,6 +32,8 @@ public class PlayerMechanics : MonoBehaviour
     public GameObject bossEmptyObj;
     public GameObject Boss;
     private bool noDamageCheat = false;
+    private bool isSlowMotion = false; // Tracks the state of slow motion
+
     //////////////
 
     public static int level = 1;
@@ -131,14 +133,7 @@ public class PlayerMechanics : MonoBehaviour
         // {
         //     agent.SetDestination(agent.transform.position);
         //}
-        if ( Input.GetKeyDown(KeyCode.V)){
-            // go to level 2
-            // reset all the cooldowns first
-
-            HUD_Script.ResetCoolDowns();
-
-            SceneManager.LoadScene("Level2_scene");
-        }
+   
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
@@ -152,17 +147,33 @@ public class PlayerMechanics : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            // Trigger the animation
-            if(numberOfHealingPortions>0 && playerCurrenttHealth != playerMaxHealth ){
-                animator.Play("heal");
-                numberOfHealingPortions -- ;
-                
+            //// Trigger the animation
+            //if(numberOfHealingPortions>0 && playerCurrenttHealth != playerMaxHealth ){
+            //    animator.Play("heal");
+            //    numberOfHealingPortions -- ;
 
-                playerCurrenttHealth += playerMaxHealth/2; 
-                if(playerCurrenttHealth > playerMaxHealth){
-                    playerCurrenttHealth = playerMaxHealth;
-                }
+
+            //    playerCurrenttHealth += playerMaxHealth/2; 
+            //    if(playerCurrenttHealth > playerMaxHealth){
+            //        playerCurrenttHealth = playerMaxHealth;
+            //    }
+            //}
+            if (isSlowMotion)
+            {
+                // Restore normal speed
+                Time.timeScale = 1f;
+                Time.fixedDeltaTime = 0.02f; // Default value for Fixed Timestep
+                isSlowMotion = false;
             }
+            else
+            {
+                // Enable slow motion
+                Time.timeScale = 0.5f; // Half-speed
+                Time.fixedDeltaTime = 0.02f * Time.timeScale; // Adjust Fixed Timestep
+                isSlowMotion = true;
+            }
+
+
         }
       
         if (exp >= requiredExp  && level < 4){
@@ -202,7 +213,7 @@ public class PlayerMechanics : MonoBehaviour
         {
            noDamageCheat = !noDamageCheat;
         }
-        
+      
         if (Input.GetKeyDown(KeyCode.Escape)){
             if(pausePanel.activeSelf){
                 pausePanel.SetActive(false);
