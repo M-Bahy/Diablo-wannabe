@@ -472,10 +472,10 @@ public class PlayerMechanics : MonoBehaviour
             //rb.isKinematic = true;
             GameObject fireballInstance = new GameObject();
             if (isLevel1)
-                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x+1, 1, transform.position.z+1), Quaternion.identity);
+                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x, 1, transform.position.z), Quaternion.identity);
             else
             {
-                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x + 1, 8, transform.position.z + 1), Quaternion.identity);
+                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x, 8, transform.position.z), Quaternion.identity);
                 fireballInstance.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Adjust the scale values as needed
             }
 
