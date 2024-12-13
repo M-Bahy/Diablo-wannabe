@@ -146,6 +146,9 @@ public class Minion_Logic : MonoBehaviour
     public void Die()
     {
         agent.isStopped = true;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         audioManager.PlaySFX(audioManager.Enemy_Dies);
         animator.SetBool("Hit", false);
         animator.SetBool("Death", true);
