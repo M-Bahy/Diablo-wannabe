@@ -85,11 +85,9 @@ public class Minion_Logic : MonoBehaviour
             }
             else
             {
-                if (agent.remainingDistance > agent.stoppingDistance + 0.1f)
-                {
-                    agent.SetDestination(startingPos);
-                }
-                else
+                agent.SetDestination(startingPos);
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
                     animator.SetBool("isWalking", false);
             }
         }
@@ -102,13 +100,13 @@ public class Minion_Logic : MonoBehaviour
                 else
                     agent.SetDestination(wizardClone.transform.position);
             }
-            else
-            {
-                if (agent.remainingDistance > 0.1f)
-                {
-                    agent.SetDestination(startingPos);
-                }
-            }
+            //else
+            //{
+            //    if (agent.remainingDistance > 0.1f)
+            //    {
+            //        agent.SetDestination(startingPos);
+            //    }
+            //}
             animator.SetBool("isWalking", true);
         }
 
