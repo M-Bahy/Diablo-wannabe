@@ -421,7 +421,6 @@ public class PlayerMechanics : MonoBehaviour
             agent.SetDestination(transform.position);
             // Start the attack cooldown and reset
             StartCoroutine(ResetAfterBarbarianAttack());
-            StartCoroutine(AbilityCooldown(0, 1f));
         }
         
     }
@@ -467,7 +466,6 @@ public class PlayerMechanics : MonoBehaviour
             /////////////////////
             animator.SetBool("isAttacking", true);
             audioManager.PlaySFX(audioManager.Fireball_Shot);
-            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
             yield return new WaitForSeconds(delay);
 
             //transform.LookAt(pos); LINE BEING REPLACED
@@ -490,6 +488,7 @@ public class PlayerMechanics : MonoBehaviour
         yield return new WaitForSeconds(delay-0.1f);
         //rb.isKinematic = false;
         animator.SetBool("isAttacking", false);
+        StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
     }
 
 
@@ -533,7 +532,6 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Shield_Activated);
            activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
            activeShield.transform.parent = transform;
-           StartCoroutine(AbilityCooldown(1, 10f));
            StartCoroutine(DeactivateShieldAfterTime(3f));
 
             
@@ -563,9 +561,6 @@ public class PlayerMechanics : MonoBehaviour
         else if(tag == "Barbarian")
         {
             animator.SetBool("isSprint", true);
-            //agent.SetDestination(pos);
-
-            StartCoroutine(AbilityCooldown(2, 10f));
             //agent.enabled = false;
             StartCoroutine(MoveInStraightLine(pos));
             //agent.enabled = true;
@@ -612,7 +607,6 @@ public class PlayerMechanics : MonoBehaviour
             {
                 Destroy(rb);
             }
-            StartCoroutine(AbilityCooldown(3, 5f));
             StartCoroutine(ResetAfterBarbarianSpecialAttack());
 
 
@@ -652,6 +646,9 @@ public class PlayerMechanics : MonoBehaviour
             if (timeElapsed >= timeLimit)
             {
                 animator.SetBool("isSprint", false); // Stop the sprinting animation
+                agent.SetDestination(transform.position);
+                //animator.SetBool("isSprint", false);
+                StartCoroutine(AbilityCooldown(2, 10f));
                 yield break; // Exit the coroutine
             }
 
@@ -660,7 +657,7 @@ public class PlayerMechanics : MonoBehaviour
         }
         agent.SetDestination(transform.position);
         animator.SetBool("isSprint", false);
-        
+        StartCoroutine(AbilityCooldown(2, 10f));
     }
 
 
@@ -682,6 +679,7 @@ public class PlayerMechanics : MonoBehaviour
 
         // Destroy the shield GameObject
         Destroy(activeShield);
+        StartCoroutine(AbilityCooldown(1, 10f));
 
         // Explicitly set the reference to null
         activeShield = null;
@@ -693,7 +691,7 @@ public class PlayerMechanics : MonoBehaviour
         animator.SetBool("Attack", false); // Reset the attack animation state
         barAttacking = false;
         agent.updateRotation = true;
-
+        StartCoroutine(AbilityCooldown(0, 1f));
     }
 
     IEnumerator ResetAfterBarbarianSpecialAttack()
@@ -701,8 +699,9 @@ public class PlayerMechanics : MonoBehaviour
         yield return new WaitForSeconds(3.167f); // Wait for the animation duration
         animator.SetBool("Special_Attack", false); // Reset the attack animation state
         circleAttacking = false;
-       // agent.SetDestination(agent.transform.position);
-        rb= gameObject.AddComponent<Rigidbody>();
+        StartCoroutine(AbilityCooldown(3, 5f));
+        // agent.SetDestination(agent.transform.position);
+        rb = gameObject.AddComponent<Rigidbody>();
     } 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
@@ -715,15 +714,47 @@ public class PlayerMechanics : MonoBehaviour
 
     IEnumerator AbilityCooldown(int abilityIndex, float cooldownTime)
     {
-        // Set the ability cooldown to true
-        HUD_Script.abilitiesCoolDown[abilityIndex] = true;
-        HUD_Script.coolDownTimer[abilityIndex] = cooldownTime;
+        if (MainMenu_Script.isWizard)
+        {
+            if (abilityIndex == 2 || abilityIndex == 3)
+            {
+                HUD_Script.abilitiesCoolDown[abilityIndex] = true;
+                yield return new WaitForSeconds(5f);
+                HUD_Script.coolDownTimer[abilityIndex] = cooldownTime;
 
-        // Wait for the cooldown duration
-        yield return new WaitForSeconds(cooldownTime);
+                // Wait for the cooldown duration
+                yield return new WaitForSeconds(cooldownTime);
 
-        // Set the ability cooldown back to false
-        HUD_Script.abilitiesCoolDown[abilityIndex] = false;
+                // Set the ability cooldown back to false
+                HUD_Script.abilitiesCoolDown[abilityIndex] = false;
+            }
+            else
+            {
+                // Set the ability cooldown to true
+                HUD_Script.abilitiesCoolDown[abilityIndex] = true;
+                HUD_Script.coolDownTimer[abilityIndex] = cooldownTime;
+
+                // Wait for the cooldown duration
+                yield return new WaitForSeconds(cooldownTime);
+
+                // Set the ability cooldown back to false
+                HUD_Script.abilitiesCoolDown[abilityIndex] = false;
+            }
+            
+        }
+        else
+        {
+            // Set the ability cooldown to true
+            HUD_Script.abilitiesCoolDown[abilityIndex] = true;
+            HUD_Script.coolDownTimer[abilityIndex] = cooldownTime;
+
+            // Wait for the cooldown duration
+            yield return new WaitForSeconds(cooldownTime);
+
+            // Set the ability cooldown back to false
+            HUD_Script.abilitiesCoolDown[abilityIndex] = false;
+        }
+        
     }
 
   
