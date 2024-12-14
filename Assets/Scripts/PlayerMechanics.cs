@@ -207,9 +207,13 @@ public class PlayerMechanics : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H)){
             playerCurrenttHealth +=20;
+            if(playerCurrenttHealth > playerMaxHealth){
+                playerCurrenttHealth = playerMaxHealth;
+            }
         }
         if (Input.GetKeyDown(KeyCode.D)){
-            playerCurrenttHealth -=20;
+            //playerCurrenttHealth -=20;
+            takeDamage(20);
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
