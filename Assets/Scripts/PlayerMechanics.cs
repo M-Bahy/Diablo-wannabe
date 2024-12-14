@@ -310,7 +310,10 @@ public class PlayerMechanics : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                WildAttack(hit.point);
+                NavMeshHit navHit;
+                bool isWalkable = NavMesh.SamplePosition(hit.point, out navHit, 1.0f, NavMesh.AllAreas);
+                if (isWalkable) 
+                    WildAttack(hit.point);
             }
             
 

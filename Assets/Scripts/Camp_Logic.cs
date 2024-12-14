@@ -191,7 +191,8 @@ public class Camp_Logic : MonoBehaviour
             }
             else
             {
-                aggroEnemies();
+                if (Minion_Logic.wizardClone.transform.position.x >= minX && Minion_Logic.wizardClone.transform.position.x <= maxX && Minion_Logic.wizardClone.transform.position.z >= minZ && Minion_Logic.wizardClone.transform.position.z <= maxZ)
+                    aggroEnemies();
             }
         }
     }
