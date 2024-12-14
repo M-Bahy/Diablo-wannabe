@@ -149,6 +149,7 @@ public class MainMenu_Script : MonoBehaviour
     HUD_Script.abilitiesUnlocked = new bool[4];
     HUD_Script.abilitiesCoolDown = new bool[4];
     HUD_Script.coolDownTimer = new float[4];
+    Healing_Script.collectedHealingPotions.Clear();
     }
     public void LevelSelectButton(){
         playPanel.SetActive(false);
