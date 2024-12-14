@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,10 +39,22 @@ public class MainMenu_Script : MonoBehaviour
     public Button creditsBackButton;
     public Button iconWizard;
     public Button iconBarbarian;
+    [SerializeField] Button selectCameraButton;
+    [SerializeField] Button angle1Button;
+    [SerializeField] Button angle2Button;
+    [SerializeField] Button angle3Button;
+    [Header("------------ Images ------------")]
+    [SerializeField] Image cameraImage;
+    [SerializeField] Sprite angle1Image;
+    [SerializeField] Sprite angle2Image;
+    [SerializeField] Sprite angle3Image;
+
     public static int goToLevel = 1 ;
     public static bool isWizard = false;
     AudioManagerScript audioManager;
     bool cameFromLevelSelect = false;
+
+    public static int cameraChoice = 1;
 
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -75,6 +88,10 @@ public class MainMenu_Script : MonoBehaviour
         optionsBackButton.onClick.AddListener(OptionsBackButton);
         editCameraBackButton.onClick.AddListener(EditCameraBackButton);
         creditsBackButton.onClick.AddListener(CreditsBackButton);
+        selectCameraButton.onClick.AddListener(SelectCameraButton);
+        angle1Button.onClick.AddListener(Angle1Button);
+        angle2Button.onClick.AddListener(Angle2Button);
+        angle3Button.onClick.AddListener(Angle3Button);
         // set slider values
         musicSlider.value = AudioManagerScript.musicVolume;
         SFXSlider.value = AudioManagerScript.SFXVolume;
@@ -232,5 +249,41 @@ public class MainMenu_Script : MonoBehaviour
     public void CreditsBackButton(){
         assetsCreditsPanel.SetActive(false);
         optionsPanel.SetActive(true);
+    }
+    private void Angle1Button()
+    {
+        cameraImage.sprite = angle1Image;
+    }
+    private void Angle2Button()
+    {
+        cameraImage.sprite = angle2Image;
+    }
+    private void Angle3Button()
+    {
+        cameraImage.sprite = angle3Image;
+    }
+    private void SelectCameraButton()
+    {
+        if (cameraImage.sprite == angle1Image)
+        {
+            cameraChoice = 1;
+            angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1 X";
+            angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
+            angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
+        }
+        else if (cameraImage.sprite == angle2Image)
+        {
+            cameraChoice = 2;
+            angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
+            angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2 X";
+            angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
+        }
+        else
+        {
+            cameraChoice = 3;
+            angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
+            angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
+            angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3 X";
+        }
     }
 }

@@ -20698,12 +20698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3e5dda09e601642b72da49b743922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xOffset: 5.64
-  yOffset: 10.68
-  zOffset: 5.64
-  xRotation: 30.8
-  yRotation: 46.821
-  zRotation: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
