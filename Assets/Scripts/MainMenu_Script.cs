@@ -251,25 +251,49 @@ public class MainMenu_Script : MonoBehaviour
     private void Angle1Button()
     {
         cameraImage.sprite = angle1Image;
-        angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1 X";
-        angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
-        angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
+        Color hexColor;
+        if (ColorUtility.TryParseHtmlString("#00DB1E", out hexColor))
+        {
+            angle1Button.GetComponent<TextMeshProUGUI>().color = hexColor;
+        }
+        Color hexColor2;
+        if (ColorUtility.TryParseHtmlString("#FFFFFF", out hexColor2))
+        {
+            angle2Button.GetComponent<TextMeshProUGUI>().color = hexColor2;
+            angle3Button.GetComponent<TextMeshProUGUI>().color = hexColor2;
+        }
         cameraChoice = 1;
     }
     private void Angle2Button()
     {
         cameraImage.sprite = angle2Image;
-        angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
-        angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2 X";
-        angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
+        Color hexColor;
+        if (ColorUtility.TryParseHtmlString("#00DB1E", out hexColor))
+        {
+            angle2Button.GetComponent<TextMeshProUGUI>().color = hexColor;
+        }
+        Color hexColor2;
+        if (ColorUtility.TryParseHtmlString("#FFFFFF", out hexColor2))
+        {
+            angle1Button.GetComponent<TextMeshProUGUI>().color = hexColor2;
+            angle3Button.GetComponent<TextMeshProUGUI>().color = hexColor2;
+        }
         cameraChoice = 2;
     }
     private void Angle3Button()
     {
         cameraImage.sprite = angle3Image;
-        angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
-        angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
-        angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3 X";
+        Color hexColor;
+        if (ColorUtility.TryParseHtmlString("#00DB1E", out hexColor))
+        {
+            angle3Button.GetComponent<TextMeshProUGUI>().color = hexColor;
+        }
+        Color hexColor2;
+        if (ColorUtility.TryParseHtmlString("#FFFFFF", out hexColor2))
+        {
+            angle2Button.GetComponent<TextMeshProUGUI>().color = hexColor2;
+            angle1Button.GetComponent<TextMeshProUGUI>().color = hexColor2;
+        }
         cameraChoice = 3;
     }
 }

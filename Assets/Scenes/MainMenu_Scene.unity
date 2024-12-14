@@ -7082,7 +7082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Camera Angle 1 X
+  m_text: Camera Angle 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fa84463eb63cb5c5bd82e8f8ff017a3, type: 2}
   m_sharedMaterial: {fileID: -921335930582713533, guid: 3fa84463eb63cb5c5bd82e8f8ff017a3, type: 2}
@@ -7091,8 +7091,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280146432
+  m_fontColor: {r: 0, g: 0.85660374, b: 0.11386592, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
