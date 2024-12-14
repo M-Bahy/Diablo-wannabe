@@ -39,7 +39,6 @@ public class MainMenu_Script : MonoBehaviour
     public Button creditsBackButton;
     public Button iconWizard;
     public Button iconBarbarian;
-    [SerializeField] Button selectCameraButton;
     [SerializeField] Button angle1Button;
     [SerializeField] Button angle2Button;
     [SerializeField] Button angle3Button;
@@ -88,7 +87,6 @@ public class MainMenu_Script : MonoBehaviour
         optionsBackButton.onClick.AddListener(OptionsBackButton);
         editCameraBackButton.onClick.AddListener(EditCameraBackButton);
         creditsBackButton.onClick.AddListener(CreditsBackButton);
-        selectCameraButton.onClick.AddListener(SelectCameraButton);
         angle1Button.onClick.AddListener(Angle1Button);
         angle2Button.onClick.AddListener(Angle2Button);
         angle3Button.onClick.AddListener(Angle3Button);
@@ -253,37 +251,25 @@ public class MainMenu_Script : MonoBehaviour
     private void Angle1Button()
     {
         cameraImage.sprite = angle1Image;
+        angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1 X";
+        angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
+        angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
+        cameraChoice = 1;
     }
     private void Angle2Button()
     {
         cameraImage.sprite = angle2Image;
+        angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
+        angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2 X";
+        angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
+        cameraChoice = 2;
     }
     private void Angle3Button()
     {
         cameraImage.sprite = angle3Image;
-    }
-    private void SelectCameraButton()
-    {
-        if (cameraImage.sprite == angle1Image)
-        {
-            cameraChoice = 1;
-            angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1 X";
-            angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
-            angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
-        }
-        else if (cameraImage.sprite == angle2Image)
-        {
-            cameraChoice = 2;
-            angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
-            angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2 X";
-            angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3";
-        }
-        else
-        {
-            cameraChoice = 3;
-            angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
-            angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
-            angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3 X";
-        }
+        angle1Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 1";
+        angle2Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 2";
+        angle3Button.GetComponent<TextMeshProUGUI>().text = "Camera Angle 3 X";
+        cameraChoice = 3;
     }
 }
