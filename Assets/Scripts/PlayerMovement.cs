@@ -58,7 +58,10 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                agent.SetDestination(hit.point);
+                if (PlayerMechanics.isLevel1)
+                    agent.SetDestination(new Vector3(hit.point.x, 0, hit.point.z));
+                else
+                    agent.SetDestination(new Vector3(hit.point.x, hit.point.y, hit.point.z));
             }
 
         }
