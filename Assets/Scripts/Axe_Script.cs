@@ -30,7 +30,7 @@ public class Axe_Script : MonoBehaviour
                 return;
                }
                 GameObject minion = other.gameObject;
-                minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                minion.GetComponent<Minion_Logic>().TakeDamage(10);
                 affectedMinions.Add(minion);
 
             // Debug.Log("Minion Hit");
@@ -68,7 +68,7 @@ public class Axe_Script : MonoBehaviour
                 return;
             }
             GameObject minion = other.gameObject;
-            minion.GetComponent<Minion_Logic>().TakeDamage(5);
+            minion.GetComponent<Minion_Logic>().TakeDamage(10);
             affectedMinions.Add(minion);
 
             // Debug.Log("Minion Hit");
@@ -82,7 +82,7 @@ public class Axe_Script : MonoBehaviour
                 return;
             }
             GameObject minion = other.gameObject;
-            minion.GetComponent<DemonLogic>().damageDemon(5);
+            minion.GetComponent<DemonLogic>().damageDemon(10);
             affectedMinions.Add(minion);
 
             // Debug.Log("Minion Hit");
@@ -115,7 +115,7 @@ public class Axe_Script : MonoBehaviour
                 return;
             }
             GameObject minion = other.gameObject;
-            minion.GetComponent<Minion_Logic>().TakeDamage(5);
+            minion.GetComponent<Minion_Logic>().TakeDamage(10);
             affectedMinions.Add(minion);
 
             // Debug.Log("Minion Hit");
@@ -153,7 +153,7 @@ public class Axe_Script : MonoBehaviour
                 return;
             }
             GameObject minion = other.gameObject;
-            minion.GetComponent<Minion_Logic>().TakeDamage(5);
+            minion.GetComponent<Minion_Logic>().TakeDamage(10);
             affectedMinions.Add(minion);
 
             // Debug.Log("Minion Hit");
@@ -167,7 +167,7 @@ public class Axe_Script : MonoBehaviour
                 return;
             }
             GameObject minion = other.gameObject;
-            minion.GetComponent<DemonLogic>().damageDemon(5);
+            minion.GetComponent<DemonLogic>().damageDemon(10);
             affectedMinions.Add(minion);
 
             // Debug.Log("Minion Hit");
