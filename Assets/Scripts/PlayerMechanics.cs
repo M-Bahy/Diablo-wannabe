@@ -858,7 +858,9 @@ public class PlayerMechanics : MonoBehaviour
         {
             return;
         }
-        playerCurrenttHealth -= damage;
+    
+        if(playerCurrenttHealth >0)
+            playerCurrenttHealth -= damage;
         audioManager.PlaySFX(audioManager.Wanderer_Damaged);
         if(playerCurrenttHealth <= 0 && !isDead){
             playerCurrenttHealth = 0;
