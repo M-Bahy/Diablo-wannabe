@@ -219,6 +219,7 @@ public class DemonLogic : MonoBehaviour
             yield return new WaitForSeconds(2);
             animator.SetBool("attackBomb" , true);
             yield return new WaitForSeconds(1);
+            audioManager.PlaySFX(audioManager.Explosive_Detonates);
             if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
                 if (wizardClone == null)
                     player.GetComponent<PlayerMechanics>().takeDamage(15);
