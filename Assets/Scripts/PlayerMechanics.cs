@@ -34,7 +34,7 @@ public class PlayerMechanics : MonoBehaviour
     public GameObject Boss;
     private bool noDamageCheat = false;
     private bool isSlowMotion = false; // Tracks the state of slow motion
-
+    private bool noShieldNow = false;
     //////////////
 
     private bool isDead = false;
@@ -275,6 +275,7 @@ public class PlayerMechanics : MonoBehaviour
             buttonCliked = true;
             ultimateButtonClicked = true;
             isBossAttacked = false;
+            noShieldNow = true;
         }
 
 
@@ -283,7 +284,7 @@ public class PlayerMechanics : MonoBehaviour
             buttonCliked = true;
             wildButtonClicked = true;
         }
-        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && activeShield == null)
+        if (tag == "Barbarian" && Input.GetKeyDown(KeyCode.W) && HUD_Script.abilitiesUnlocked[1] && !HUD_Script.abilitiesCoolDown[1] && activeShield == null && !noShieldNow)
         {
             DefensiveAttack();
         }
@@ -299,7 +300,7 @@ public class PlayerMechanics : MonoBehaviour
             {
                 UltimateAttack(hit.point); 
             }
-          
+            noShieldNow = false;
 
         }
         if (defenseButtonClicked && Input.GetMouseButtonDown(1))
@@ -533,6 +534,7 @@ public class PlayerMechanics : MonoBehaviour
 
         if (enemyFound)
         {
+            HUD_Script.abilitiesCoolDown[0] = true;
             /////////////////////
             // Calculate the target direction, keeping rotation limited to the Y-axis
             Vector3 direction = pos - transform.position;
