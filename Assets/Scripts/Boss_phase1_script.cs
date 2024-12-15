@@ -70,14 +70,14 @@ public class Boss_phase1_script : MonoBehaviour
                 if (initialSummon)
                 {
                     initialSummon = false;
-                    // summon();
+                    summon();
                 }
                 else
                 {
                     summonDelay -= Time.deltaTime;
                     if (summonDelay <= 0)
                     {
-                        // summon();
+                        summon();
                         summonDelay = ogSummonDelay;
                     }
                 }
