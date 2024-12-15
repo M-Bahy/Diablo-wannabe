@@ -31,7 +31,7 @@ public class BossMech : MonoBehaviour
     float generationDelay = 10f;
     float ogGenerationDelay = 0;
     bool shieldDestroyed = false;
-    public bool gameOver = false;
+    public static bool gameOver = false;
 
     public bool auraActivated = false;
 

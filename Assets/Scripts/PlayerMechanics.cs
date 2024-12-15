@@ -142,7 +142,7 @@ public class PlayerMechanics : MonoBehaviour
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-            if(boss.gameOver){
+            if(BossMech.gameOver){
                 agent.isStopped = true;
                 healthSlider.value = 0;
                 healthText.text = "0";
@@ -330,7 +330,8 @@ public class PlayerMechanics : MonoBehaviour
     public void RestartGame() {
         Time.timeScale = 1;
         int level = PlayerMechanics.isLevel1 ? 1 : 2;
-
+        Minion_Logic.isGameOver = false;
+        BossMech.gameOver = false;
         PlayerMechanics.level = 4;
         PlayerMechanics.exp = 0;
         PlayerMechanics.playerMaxHealth = 400;
@@ -913,7 +914,7 @@ public class PlayerMechanics : MonoBehaviour
            // here we should display the end game screen
            if(!isLevel1){
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-           boss.gameOver = true;
+           BossMech.gameOver = true;
            }
             // UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
             StartCoroutine(GameOverWithDelay(5f));
