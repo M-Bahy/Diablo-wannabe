@@ -298,7 +298,34 @@ public class PlayerMechanics : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                UltimateAttack(hit.point); 
+
+                if (!isLevel1)
+                {
+                    Collider[] colliders = Physics.OverlapBox(hit.point, new Vector3(8, 8, 8)); // Adjust the sphere's position and radius as needed
+
+                    bool bossDetected = false;
+
+                    foreach (var collider in colliders)
+                    {
+                        if (collider.CompareTag("Boss")) // Replace "Boss" with the actual tag of your boss
+                        {
+                            bossDetected = true;
+                            break;
+                        }
+                    }
+
+                    if (bossDetected)
+                        UltimateAttack(new Vector3(-2.236006f, 11.04607f, 9.111984f));
+
+                    else
+
+                        UltimateAttack(hit.point);
+                }
+                else
+                {
+                    UltimateAttack(hit.point);
+                }
+
             }
             noShieldNow = false;
 
