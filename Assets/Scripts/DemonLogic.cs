@@ -79,6 +79,12 @@ public class DemonLogic : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("i entered");
+        StopCoroutine(AttackSwordOne());
+        StopCoroutine(AttackSwordTwo());
+        StopCoroutine(attackWithBomb());
+        //animator.SetBool("swordOne", false);
+        //animator.SetBool("attackBomb", false);
         isDead = true;
         rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -88,8 +94,8 @@ public class DemonLogic : MonoBehaviour
             agent.isStopped = true;
         audioManager.PlaySFX(audioManager.Enemy_Dies);
         animator.SetBool("Hit", false);
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-        animator.SetBool("Death", true);
+        //transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        animator.SetBool("DeathTrigger", true);
         StartCoroutine(WaitAndDestroy(4f));
     }
 
