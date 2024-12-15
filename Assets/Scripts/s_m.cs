@@ -20,7 +20,7 @@ public class s_m : MonoBehaviour
     void Update()
     {
         BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-        if(boss.gameOver){
+        if(BossMech.gameOver){
             agent.isStopped = true;
             return;
         }

@@ -52,7 +52,7 @@ public class Boss_phase1_script : MonoBehaviour
     void Update()
     {
        BossMech bm = GetComponent<BossMech>();
-        if (bm.gameOver )
+        if (BossMech.gameOver )
         {
             return;
         }
@@ -177,6 +177,7 @@ public class Boss_phase1_script : MonoBehaviour
             Vector3 pos = new Vector3(x, 4.05f, z);
             GameObject minion = Instantiate(minionPrefab, pos, Quaternion.identity);
             Minion_Logic m_l = minion.GetComponent<Minion_Logic>();
+            //Minion_Logic.player = player;
             m_l?.goAggresive(true);
             minions[i] = minion;
             //s_m.player = player;

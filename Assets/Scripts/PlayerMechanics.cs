@@ -142,7 +142,7 @@ public class PlayerMechanics : MonoBehaviour
         if (!isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-            if(boss.gameOver){
+            if(BossMech.gameOver){
                 agent.isStopped = true;
                 healthSlider.value = 0;
                 healthText.text = "0";
@@ -330,42 +330,21 @@ public class PlayerMechanics : MonoBehaviour
     public void RestartGame() {
         Time.timeScale = 1;
         int level = PlayerMechanics.isLevel1 ? 1 : 2;
-
-        if (level == 2)
-        {     
-            PlayerMechanics.level = 4;
-            PlayerMechanics.exp = 0;
-            PlayerMechanics.playerMaxHealth = 400;
-            PlayerMechanics.playerCurrenttHealth = 400;
-
-            PlayerMechanics.numberOfHealingPortions = 0;
-            PlayerMechanics.abilityPoints = 0;
-            HUD_Script.abilitiesUnlocked = new bool[4];
-            HUD_Script.abilitiesUnlocked[0] = true;
-            HUD_Script.abilitiesUnlocked[1] = true;
-            HUD_Script.abilitiesUnlocked[2] = true;
-            HUD_Script.abilitiesUnlocked[3] = true;
-            HUD_Script.ResetCoolDowns();
-            Healing_Script.collectedHealingPotions.Clear();
-        }
-        else
-        {
-            PlayerMechanics.level = 1;
-            PlayerMechanics.exp = 0;
-            PlayerMechanics.playerMaxHealth = 100;
-            PlayerMechanics.playerCurrenttHealth = 100;
-
-            PlayerMechanics.numberOfHealingPortions = 0;
-            PlayerMechanics.abilityPoints = 0;
-            HUD_Script.abilitiesUnlocked = new bool[4];
-            HUD_Script.abilitiesUnlocked[0] = true;
-            HUD_Script.abilitiesUnlocked[1] = false;
-            HUD_Script.abilitiesUnlocked[2] = false;
-            HUD_Script.abilitiesUnlocked[3] = false;
-            HUD_Script.ResetCoolDowns();
-            Healing_Script.collectedHealingPotions.Clear();
-            numberOfFragments = 0;
-        }
+        Minion_Logic.isGameOver = false;
+        BossMech.gameOver = false;
+        PlayerMechanics.level = 4;
+        PlayerMechanics.exp = 0;
+        PlayerMechanics.playerMaxHealth = 400;
+        PlayerMechanics.playerCurrenttHealth = 400;
+        PlayerMechanics.numberOfHealingPortions = 0;
+        PlayerMechanics.abilityPoints = 0;
+        HUD_Script.abilitiesUnlocked = new bool[4];
+        HUD_Script.abilitiesUnlocked[0] = true;
+        HUD_Script.abilitiesUnlocked[1] = true;
+        HUD_Script.abilitiesUnlocked[2] = true;
+        HUD_Script.abilitiesUnlocked[3] = true;
+        HUD_Script.ResetCoolDowns();
+        Healing_Script.collectedHealingPotions.Clear();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + level+"_scene");
     }
 
@@ -939,7 +918,7 @@ public class PlayerMechanics : MonoBehaviour
            // here we should display the end game screen
            if(!isLevel1){
            BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-           boss.gameOver = true;
+           BossMech.gameOver = true;
            }
             // UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
             StartCoroutine(GameOverWithDelay(5f));

@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         if (!PlayerMechanics.isLevel1)
         {
             BossMech boss = GameObject.Find("Tortoise_Boss_Anims").GetComponent<BossMech>();
-            if(boss.gameOver){
+            if(BossMech.gameOver){
                 agent.isStopped = true;
                 return;
             }
