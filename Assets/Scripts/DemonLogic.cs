@@ -150,6 +150,13 @@ public class DemonLogic : MonoBehaviour
     {
         
         if(animator.GetBool("Idle")){
+            agent.updateRotation = false; // Stop NavMeshAgent rotation
+
+            // Rotate the Barbarian to face the enemy
+            Vector3 attackDirection = (player.transform.position - agent.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+            agent.transform.rotation = targetRotation;
+
             yield return new WaitForSeconds(2f);
             animator.SetBool("swordOne" , true);
             yield return new WaitForSeconds(1);
@@ -172,7 +179,13 @@ public class DemonLogic : MonoBehaviour
     {
         
         if (animator.GetBool("Idle")){
-        yield return new WaitForSeconds(2);
+            agent.updateRotation = false; // Stop NavMeshAgent rotation
+
+            // Rotate the Barbarian to face the enemy
+            Vector3 attackDirection = (player.transform.position - agent.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+            agent.transform.rotation = targetRotation;
+            yield return new WaitForSeconds(2);
         animator.SetBool("swordOne" , true);
         yield return new WaitForSeconds(1);
             if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
@@ -191,6 +204,12 @@ public class DemonLogic : MonoBehaviour
     {
         
         if (animator.GetBool("Idle")){
+            agent.updateRotation = false; // Stop NavMeshAgent rotation
+
+            // Rotate the Barbarian to face the enemy
+            Vector3 attackDirection = (player.transform.position - agent.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
+            agent.transform.rotation = targetRotation;
             yield return new WaitForSeconds(2);
             animator.SetBool("attackBomb" , true);
             yield return new WaitForSeconds(1);
