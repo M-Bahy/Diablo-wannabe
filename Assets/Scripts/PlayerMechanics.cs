@@ -533,6 +533,7 @@ public class PlayerMechanics : MonoBehaviour
 
         if (enemyFound)
         {
+            HUD_Script.abilitiesCoolDown[0] = true;
             /////////////////////
             // Calculate the target direction, keeping rotation limited to the Y-axis
             Vector3 direction = pos - transform.position;
