@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 public class Axe_Script : MonoBehaviour
 {
     private Vector3 previousPosition;
@@ -53,7 +54,7 @@ public class Axe_Script : MonoBehaviour
             GameObject minion = other.gameObject;
             if (minion == PlayerMechanics.minion)
             {
-                minion.GetComponent<DemonLogic>().damageDemon(5);
+                StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
             }
             // Debug.Log("Minion Hit");
             PlayerMechanics.minion = null;
@@ -138,7 +139,9 @@ public class Axe_Script : MonoBehaviour
             GameObject minion = other.gameObject;
             if (minion == PlayerMechanics.minion)
             {
-                minion.GetComponent<DemonLogic>().damageDemon(5);
+                // minion.GetComponent<DemonLogic>().damageDemon(5);
+                StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
+
             }
             // Debug.Log("Minion Hit");
             PlayerMechanics.minion = null;
@@ -174,5 +177,11 @@ public class Axe_Script : MonoBehaviour
 
         }
 
+    }
+    // delay
+    private IEnumerator DelayedDamageDemon(GameObject minion,float delay, int damage)
+    {
+        yield return new WaitForSeconds(delay);  // Wait for the specified delay
+       minion.GetComponent<DemonLogic>().damageDemon(damage);  // Apply damage after the delay
     }
 }
