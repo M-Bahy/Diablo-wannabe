@@ -251,6 +251,7 @@ public class PlayerMechanics : MonoBehaviour
 
         if (!buttonCliked && Input.GetMouseButtonDown(1) && !isAttacking && !HUD_Script.abilitiesCoolDown[0] )
         {
+            //Debug.Log("Hit Achieved");
             if (tag == "Barbarian" &&  animator.GetBool("Attack"))
                 return;
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
@@ -411,6 +412,10 @@ public class PlayerMechanics : MonoBehaviour
         if(type == "Boss")
         {
             attackRange = 16.5f;
+        }
+        if (isLevel1)
+        {
+            attackRange = 2.0f;
         }
         Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
         float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
