@@ -555,11 +555,11 @@ public class PlayerMechanics : MonoBehaviour
             {
                 fireballLogic.SetTarget(pos);
             }
+            yield return new WaitForSeconds(delay-0.1f);
+            //rb.isKinematic = false;
+            animator.SetBool("isAttacking", false);
+            StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
         }
-        yield return new WaitForSeconds(delay-0.1f);
-        //rb.isKinematic = false;
-        animator.SetBool("isAttacking", false);
-        StartCoroutine(AbilityCooldown(0, 1f)); // Cooldown for 1 second
     }
 
 
