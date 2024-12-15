@@ -106,13 +106,13 @@ public class Minion_Logic : MonoBehaviour
                 else
                     agent.SetDestination(wizardClone.transform.position);
             }
-            //else
-            //{
-            //    if (agent.remainingDistance > 0.1f)
-            //    {
-            //        agent.SetDestination(startingPos);
-            //    }
-            //}
+            else
+            {
+                if (agent.remainingDistance > 0.1f)
+                {
+                    agent.SetDestination(startingPos);
+                }
+            }
             animator.SetBool("isWalking", true);
         }
 
