@@ -84,6 +84,7 @@ public class PlayerMechanics : MonoBehaviour
     public Button mainMenuButton;
     public Button resumeButton;
 
+    bool isBossAttacked = false;
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
     }
@@ -273,6 +274,7 @@ public class PlayerMechanics : MonoBehaviour
         {
             buttonCliked = true;
             ultimateButtonClicked = true;
+            isBossAttacked = false;
         }
 
 
@@ -969,10 +971,11 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Enemy_Dies);
             minion.GetComponent<Minion_Logic>().Die();
         }
-        if (tag == "Barbarian" && other.gameObject.tag == "Turtle_Stop" && animator.GetBool("isSprint"))
+        if (tag == "Barbarian" && other.gameObject.tag == "Turtle_Stop" && animator.GetBool("isSprint") && !isBossAttacked)
         {
             agent.SetDestination(agent.transform.position);
             Boss.GetComponent<BossMech>().damageBoss(20);
+            isBossAttacked = true;
 
         }
         if (tag =="Barbarian" && other.gameObject.tag == "Demon" && animator.GetBool("isSprint"))
@@ -1027,5 +1030,14 @@ public class PlayerMechanics : MonoBehaviour
         exp += expToAdd;
     }
 
+    private void OnTriggerStay(Collider other) {
+        if (tag == "Barbarian" && other.gameObject.tag == "Turtle_Stop" && animator.GetBool("isSprint") && !isBossAttacked)
+        {
+            agent.SetDestination(agent.transform.position);
+            Boss.GetComponent<BossMech>().damageBoss(20);
+            isBossAttacked = true;
+
+        }
+    }
  
 }
