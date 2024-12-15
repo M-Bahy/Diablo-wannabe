@@ -43,7 +43,8 @@ public class Axe_Script : MonoBehaviour
             GameObject minion = other.gameObject;
             if (minion == PlayerMechanics.minion)
             {
-                minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                //minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
             }
             // Debug.Log("Minion Hit");
             PlayerMechanics.minion = null;
@@ -128,7 +129,8 @@ public class Axe_Script : MonoBehaviour
             GameObject minion = other.gameObject;
             if (minion == PlayerMechanics.minion)
             {
-                minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                //minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
             }
             // Debug.Log("Minion Hit");
             PlayerMechanics.minion = null;
@@ -182,6 +184,9 @@ public class Axe_Script : MonoBehaviour
     private IEnumerator DelayedDamageDemon(GameObject minion,float delay, int damage)
     {
         yield return new WaitForSeconds(delay);  // Wait for the specified delay
-       minion.GetComponent<DemonLogic>().damageDemon(damage);  // Apply damage after the delay
+        if (minion.tag == "Minion")
+            minion.GetComponent<Minion_Logic>().TakeDamage(damage);  // Apply damage after the delay
+        else 
+            minion.GetComponent<DemonLogic>().damageDemon(damage);  // Apply damage after the delay
     }
 }
