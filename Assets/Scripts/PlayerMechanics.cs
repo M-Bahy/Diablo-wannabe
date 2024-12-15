@@ -111,6 +111,7 @@ public class PlayerMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(tag == "Sorcerer" && bossEmptyObj != null)
         {
             Destroy(bossEmptyObj);
@@ -317,7 +318,8 @@ public class PlayerMechanics : MonoBehaviour
 
         }
 
-
+        if (tag == "Barbarian" && animator.GetBool("Special_Attack"))
+            agent.SetDestination(agent.transform.position);
     }
 
 
@@ -929,7 +931,7 @@ public class PlayerMechanics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag == "Summoned_Minions" || other.gameObject.tag =="Minion") && animator.GetBool("isSprint"))
+        if (tag == "Barbarian" &&(other.gameObject.tag == "Summoned_Minions" || other.gameObject.tag =="Minion") && animator.GetBool("isSprint"))
         {
            // Debug.Log("Collision");
             GameObject minion = other.gameObject;
@@ -942,7 +944,7 @@ public class PlayerMechanics : MonoBehaviour
             Boss.GetComponent<BossMech>().damageBoss(20);
 
         }
-        if (other.gameObject.tag == "Demon")
+        if (tag =="Barbarian" && other.gameObject.tag == "Demon" && animator.GetBool("isSprint"))
         {
             GameObject Demon = other.gameObject;
             audioManager.PlaySFX(audioManager.Enemy_Dies);

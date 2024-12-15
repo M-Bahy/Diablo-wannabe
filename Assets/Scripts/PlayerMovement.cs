@@ -74,8 +74,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             anim.SetBool("isWalking", true);
+
         }
 
-
+        if (tag == "Barbarian" && anim.GetBool("Special_Attack"))
+            agent.SetDestination(agent.transform.position);
     }
+   
 }
