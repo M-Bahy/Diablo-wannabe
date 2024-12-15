@@ -8017,6 +8017,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1361328894881189791, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361328894881189791, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_TagString
       value: spikes
       objectReference: {fileID: 0}
@@ -8026,11 +8030,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2003275046278657630, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2003275046278657630, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003275046278657630, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316991016922225829, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_Height
@@ -8415,6 +8423,18 @@ PrefabInstance:
     - target: {fileID: 4812757560403886097, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
       propertyPath: m_TagString
       value: jump radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449909948242060384, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.0742
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449909948242060384, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.751
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449909948242060384, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.565
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2316991016922225829, guid: a5d9314dc0e90235789fec6f337508cc, type: 3}
