@@ -49,7 +49,7 @@ public class PlayerMechanics : MonoBehaviour
 
 
 
-    int numberOfFragments = 0;
+    static int numberOfFragments = 0;
     private Animator animator;
     private Collider collider;
     public static bool isLevel1 = true;
@@ -331,20 +331,41 @@ public class PlayerMechanics : MonoBehaviour
         Time.timeScale = 1;
         int level = PlayerMechanics.isLevel1 ? 1 : 2;
 
-        PlayerMechanics.level = 4;
-        PlayerMechanics.exp = 0;
-        PlayerMechanics.playerMaxHealth = 400;
-        PlayerMechanics.playerCurrenttHealth = 400;
+        if (level == 2)
+        {     
+            PlayerMechanics.level = 4;
+            PlayerMechanics.exp = 0;
+            PlayerMechanics.playerMaxHealth = 400;
+            PlayerMechanics.playerCurrenttHealth = 400;
 
-        PlayerMechanics.numberOfHealingPortions = 0;
-        PlayerMechanics.abilityPoints = 0;
-        HUD_Script.abilitiesUnlocked = new bool[4];
-        HUD_Script.abilitiesUnlocked[0] = true;
-        HUD_Script.abilitiesUnlocked[1] = true;
-        HUD_Script.abilitiesUnlocked[2] = true; 
-        HUD_Script.abilitiesUnlocked[3] = true; 
-        HUD_Script.ResetCoolDowns();
-        Healing_Script.collectedHealingPotions.Clear();
+            PlayerMechanics.numberOfHealingPortions = 0;
+            PlayerMechanics.abilityPoints = 0;
+            HUD_Script.abilitiesUnlocked = new bool[4];
+            HUD_Script.abilitiesUnlocked[0] = true;
+            HUD_Script.abilitiesUnlocked[1] = true;
+            HUD_Script.abilitiesUnlocked[2] = true;
+            HUD_Script.abilitiesUnlocked[3] = true;
+            HUD_Script.ResetCoolDowns();
+            Healing_Script.collectedHealingPotions.Clear();
+        }
+        else
+        {
+            PlayerMechanics.level = 1;
+            PlayerMechanics.exp = 0;
+            PlayerMechanics.playerMaxHealth = 100;
+            PlayerMechanics.playerCurrenttHealth = 100;
+
+            PlayerMechanics.numberOfHealingPortions = 0;
+            PlayerMechanics.abilityPoints = 0;
+            HUD_Script.abilitiesUnlocked = new bool[4];
+            HUD_Script.abilitiesUnlocked[0] = true;
+            HUD_Script.abilitiesUnlocked[1] = false;
+            HUD_Script.abilitiesUnlocked[2] = false;
+            HUD_Script.abilitiesUnlocked[3] = false;
+            HUD_Script.ResetCoolDowns();
+            Healing_Script.collectedHealingPotions.Clear();
+            numberOfFragments = 0;
+        }
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + level+"_scene");
     }
 
