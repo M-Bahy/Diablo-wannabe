@@ -984,7 +984,16 @@ public class PlayerMechanics : MonoBehaviour
             // UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
             StartCoroutine(GameOverWithDelay(5f));
         }else{
-            animator.Play("damage");
+            if(tag == "Sorcerer")
+                 animator.Play("damage");
+            else
+            {
+                if (tag == "Barbarian" && (animator.GetBool("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Attack 360 High") || animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint")))
+                    return;
+                else
+                  animator.Play("damage");
+            }
+            //
         }
     }
 
