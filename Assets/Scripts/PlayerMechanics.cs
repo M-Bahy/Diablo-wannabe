@@ -545,11 +545,16 @@ public class PlayerMechanics : MonoBehaviour
             //transform.LookAt(pos); LINE BEING REPLACED
             //rb.isKinematic = true;
             GameObject fireballInstance = new GameObject();
+            Vector3 offset = transform.forward * 0.5f; // Offset 0.5 units in the forward direction
+            Vector3 spawnPosition = transform.position + offset;
+
             if (isLevel1)
-                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x + 0.5f, 1, transform.position.z + 0.5f), Quaternion.identity);
+            {
+                fireballInstance = Instantiate(Fireball, spawnPosition, transform.rotation); // Use the object's rotation for the fireball
+            }
             else
             {
-                fireballInstance = Instantiate(Fireball, new Vector3(transform.position.x + 0.5f, 8, transform.position.z + 0.5f), Quaternion.identity);
+                fireballInstance = Instantiate(Fireball, spawnPosition + Vector3.up * 7, transform.rotation); // Add height offset for level 2
                 fireballInstance.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Adjust the scale values as needed
             }
 
