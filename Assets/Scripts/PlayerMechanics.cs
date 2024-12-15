@@ -5,6 +5,7 @@ using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -426,6 +427,36 @@ public class PlayerMechanics : MonoBehaviour
 
             while (true)
             {
+
+
+
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (EventSystem.current.IsPointerOverGameObject())
+                    {
+                        yield return null;
+                        continue;
+
+                    }
+                    Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (PlayerMechanics.isLevel1)
+                            agent.SetDestination(new Vector3(hit.point.x, 0, hit.point.z));
+                        else
+                            agent.SetDestination(new Vector3(hit.point.x, hit.point.y, hit.point.z));
+                    }
+                    yield break;
+                }
+
+
+
+
+
+
+
                 // Update the target position based on the enemy's current position
                 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
                 distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
