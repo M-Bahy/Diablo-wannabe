@@ -240,6 +240,7 @@ public class DemonLogic : MonoBehaviour
             if (isAggro)
             {
                 agent.enabled = true;
+                agent.updateRotation = true;
 
                 if (wizardClone == null) 
                     agent.SetDestination(player.transform.position);
