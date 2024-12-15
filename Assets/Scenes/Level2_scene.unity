@@ -2520,6 +2520,7 @@ MonoBehaviour:
   restartButton: {fileID: 542914096}
   mainMenuButton: {fileID: 1543550509}
   resumeButton: {fileID: 52782986}
+  inCover: 0
 --- !u!54 &596993864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6899,6 +6900,7 @@ MonoBehaviour:
   restartButton: {fileID: 542914096}
   mainMenuButton: {fileID: 1543550509}
   resumeButton: {fileID: 52782986}
+  inCover: 0
 --- !u!195 &1842789847
 NavMeshAgent:
   m_ObjectHideFlags: 0

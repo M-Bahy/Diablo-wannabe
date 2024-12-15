@@ -17,6 +17,9 @@ public class take_damage_script : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
+         if(player.inCover){
+                return;
+            }
         if(other.gameObject.tag == "jump radius"){
             // 20
             Debug.Log("Dive Bomb");

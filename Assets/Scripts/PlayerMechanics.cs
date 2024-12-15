@@ -84,6 +84,8 @@ public class PlayerMechanics : MonoBehaviour
     public Button mainMenuButton;
     public Button resumeButton;
 
+    public bool inCover = false;
+
     bool isBossAttacked = false;
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
@@ -1075,7 +1077,10 @@ public class PlayerMechanics : MonoBehaviour
             NavMeshSurface.BuildNavMesh();
 
         }
-
+        if(other.gameObject.tag == "Cover")
+        {
+            inCover = true;
+        }
 
     }
 
@@ -1101,6 +1106,17 @@ public class PlayerMechanics : MonoBehaviour
             Boss.GetComponent<BossMech>().damageBoss(20);
             isBossAttacked = true;
 
+        }
+        if(other.gameObject.tag == "Cover")
+        {
+            inCover = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Cover")
+        {
+            inCover = false;
         }
     }
  
