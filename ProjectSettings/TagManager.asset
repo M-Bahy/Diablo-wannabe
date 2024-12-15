@@ -24,6 +24,7 @@ TagManager:
   - Aura
   - Boss_Shield
   - Wall
+  - Cover
   layers:
   - Default
   - TransparentFX

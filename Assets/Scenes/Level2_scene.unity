@@ -2959,12 +2959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3e5dda09e601642b72da49b743922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xOffset: -2.84
-  yOffset: 35.3
-  zOffset: 22.1
-  xRotation: 50
-  yRotation: 0.347
-  zRotation: 0.003
 --- !u!1 &748816074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,7 +7819,6 @@ MonoBehaviour:
   shieldhealthText: {fileID: 669960230}
   shieldHealthSlider: {fileID: 771696379}
   bosshealthSlider: {fileID: 1405675838}
-  gameOver: 0
   auraActivated: 0
 --- !u!54 &2085175683
 Rigidbody:
