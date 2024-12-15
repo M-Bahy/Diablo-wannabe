@@ -34,6 +34,8 @@ public class DemonLogic : MonoBehaviour
     bool isAttack = false;
     public bool isBeingHit = false;
 
+    [SerializeField] GameObject explosionPrefab;
+
     private void Awake() {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManagerScript>();
     }
@@ -219,6 +221,12 @@ public class DemonLogic : MonoBehaviour
             yield return new WaitForSeconds(2);
             animator.SetBool("attackBomb" , true);
             yield return new WaitForSeconds(1);
+            ///////////////////
+            Vector3 flatForward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+            Vector3 spawnPosition = transform.position + flatForward;
+            GameObject bomb = Instantiate(explosionPrefab, spawnPosition, Quaternion.identity);
+            ///////////////////
+            Destroy(bomb, 1f);
             audioManager.PlaySFX(audioManager.Explosive_Detonates);
             if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance){
                 if (wizardClone == null)
