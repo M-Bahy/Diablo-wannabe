@@ -837,8 +837,9 @@ MonoBehaviour:
   isDead: 0
   isAggro: 0
   healthSlider: {fileID: 1889008039060479441}
-  player: {fileID: 0}
   rb: {fileID: 0}
+  isBeingHit: 0
+  explosionPrefab: {fileID: 159918, guid: 69df1e70ffc2fd642b019255ed5a7aa8, type: 3}
 --- !u!114 &5968541031231516759
 MonoBehaviour:
   m_ObjectHideFlags: 0

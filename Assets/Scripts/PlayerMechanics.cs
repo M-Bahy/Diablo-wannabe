@@ -233,6 +233,15 @@ public class PlayerMechanics : MonoBehaviour
 
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            HUD_Script.abilitiesUnlocked[0] = true;
+            HUD_Script.abilitiesUnlocked[1] = true;
+            HUD_Script.abilitiesUnlocked[2] = true;
+            HUD_Script.abilitiesUnlocked[3] = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape)){
             if(pausePanel.activeSelf){
                 pausePanel.SetActive(false);
