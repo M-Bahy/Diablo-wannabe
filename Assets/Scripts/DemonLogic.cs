@@ -219,6 +219,11 @@ public class DemonLogic : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(attackDirection.x, 0, attackDirection.z));
             agent.transform.rotation = targetRotation;
             yield return new WaitForSeconds(2);
+            if (!animator.GetBool("Idle"))
+            {
+                isAttack = false;
+                yield break;
+            }
             animator.SetBool("attackBomb" , true);
             yield return new WaitForSeconds(1);
             ///////////////////
