@@ -144,7 +144,9 @@ public class Camp_Logic : MonoBehaviour
              if(demonsArray[1] != null){
                 if(!demonsArray[1].GetComponent<DemonLogic>().isAggro && !demonsArray[1].GetComponent<DemonLogic>().isBeingHit && !demonsArray[1].GetComponent<DemonLogic>().isDead)
                 {
-                    if(patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
+                    demonsArray[1].GetComponent<Rigidbody>().isKinematic = true;
+
+                    if (patrollPoints2[targetPoint2].x-0.05 <=demonsArray[1].transform.position.x  &&  demonsArray[1].transform.position.x <= patrollPoints2[targetPoint2].x+0.05 
                         && patrollPoints2[targetPoint2].z-0.05 <=demonsArray[1].transform.position.z &&  demonsArray[1].transform.position.z <= patrollPoints2[targetPoint2].z+0.05 ){
                             
                             
