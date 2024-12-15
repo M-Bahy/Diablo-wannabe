@@ -22,6 +22,9 @@ public class Boss_phase1_script : MonoBehaviour
     float ogDiveBoomDelay = 0;
     float spikesDelay = 5f;
     float ogSpikesBoomDelay = 0;
+    float phase2Delay = 7f;
+    float ogPhase2Delay = 0;
+    int abilityIndex = 0;
     public NavMeshSurface surface;
     GameObject [] minions = new GameObject[3];
 
@@ -44,6 +47,7 @@ public class Boss_phase1_script : MonoBehaviour
        // PlayerMechanics playerMechanics = player.GetComponent<PlayerMechanics>();
         ogCastDelay = castDelay;
         ogSpikesBoomDelay = spikesDelay;
+        ogPhase2Delay = phase2Delay;
         audioManager.PlayBackground(audioManager.Level2);
 
     }
@@ -66,14 +70,14 @@ public class Boss_phase1_script : MonoBehaviour
                 if (initialSummon)
                 {
                     initialSummon = false;
-                    summon();
+                    // summon();
                 }
                 else
                 {
                     summonDelay -= Time.deltaTime;
                     if (summonDelay <= 0)
                     {
-                        summon();
+                        // summon();
                         summonDelay = ogSummonDelay;
                     }
                 }
@@ -89,39 +93,36 @@ public class Boss_phase1_script : MonoBehaviour
                 }
             }
             else{
-                // phase 2
-                if (!bm.auraActivated){
-                    if (false)
-                    {
-                        // initialCast = false;
-                        // castAura();
-                        // bm.activateAura();
-                    }
-                    else
-                    {
-                        castDelay -= Time.deltaTime;
-                        if (castDelay <= 0)
-                        {
-                            castAura();
-                            bm.activateAura();
-                            castDelay = ogCastDelay;
-                        }
-                    }
-                }
-                if (!bm.auraActivated){
-                    spikesDelay -= Time.deltaTime;
-                    if (spikesDelay <= 0)
-                    {
-                        bloodSpikes();
-                        spikesDelay = ogSpikesBoomDelay;
-                    }
-                }
-
+               
+                selectAndPlayPhase2Abilities();
             
         }
 
     }
     
+    }
+
+
+    public void selectAndPlayPhase2Abilities()
+    {
+        BossMech bm = GetComponent<BossMech>();
+        if(bm.auraActivated){
+            return;
+        }
+        phase2Delay -= Time.deltaTime;
+        if (phase2Delay <= 0)
+        {
+            if(abilityIndex % 2 == 0){
+                castAura();
+                bm.activateAura();
+                abilityIndex = 1;
+            }
+            else{
+                bloodSpikes();
+                abilityIndex = 0;
+            }
+            phase2Delay = ogPhase2Delay;
+        }
     }
 
     public bool isAllMinionsDead()
