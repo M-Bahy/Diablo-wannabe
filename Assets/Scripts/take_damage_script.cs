@@ -18,8 +18,14 @@ public class take_damage_script : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         PlayerMechanics player = gameObject.GetComponent<PlayerMechanics>();
         if(other.gameObject.tag == "jump radius"){
-            // 20 
-            player.takeDamage(20);
+            // 20
+            Debug.Log("Dive Bomb");
+            if (gameObject.tag == "Barbarian"){
+                player.takeDamage(10);
+            }
+            else{
+                player.takeDamage(20);
+            }
         }
         if(other.gameObject.tag == "spikes"){
             // 30
