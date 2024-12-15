@@ -749,6 +749,7 @@ public class PlayerMechanics : MonoBehaviour
 
     private IEnumerator MoveInStraightLine(Vector3 targetPosition)
     {
+        audioManager.PlaySFX(audioManager.Charging);
         //targetPosition.y = transform.position.y;
         //Debug.Log("position: "+ transform.position.y);
         float speed = 15f; // Adjust movement speed
