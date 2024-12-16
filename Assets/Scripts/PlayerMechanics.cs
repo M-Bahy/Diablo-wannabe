@@ -699,6 +699,8 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
+            ultimateButtonClicked = false;
+
             animator.SetBool("isSprint", true);
             //agent.enabled = false;
             StartCoroutine(MoveInStraightLine(pos));
@@ -788,7 +790,6 @@ public class PlayerMechanics : MonoBehaviour
                 agent.SetDestination(transform.position);
                 //animator.SetBool("isSprint", false);
                 StartCoroutine(AbilityCooldown(2, 10f));
-                ultimateButtonClicked = false;
                 buttonCliked = false;
                 yield break; // Exit the coroutine
             }
