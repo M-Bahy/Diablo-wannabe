@@ -426,7 +426,16 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
-            Collider[] hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
+            Collider[] hitColliders;
+            if (isLevel1)
+            {
+                hitColliders = Physics.OverlapSphere(pos, 2.0f);
+            }
+            else
+            {
+                hitColliders = Physics.OverlapSphere(pos, 5.0f); // Adjust radius as needed
+            }
+             // Adjust radius as needed
             bool enemyFound = false;
             Transform nearestEnemy = null;
             float closestDistance = Mathf.Infinity;
@@ -441,9 +450,12 @@ public class PlayerMechanics : MonoBehaviour
                         closestDistance = distance;
                         nearestEnemy = collider.transform;
                         minion = collider.gameObject;
+                       
                     }
+                   
                 }
             }
+            Debug.Log("Player Mechanics: " + minion);
             if (nearestEnemy!= null)
             {
 
@@ -479,7 +491,7 @@ public class PlayerMechanics : MonoBehaviour
         }
         if (isLevel1)
         {
-            attackRange = 2.0f;
+            attackRange = 1.2f;
         }
         Vector3 targetPosition = new Vector3(nearestEnemy.position.x, transform.position.y, nearestEnemy.position.z);
         float distanceToEnemy = Vector3.Distance(transform.position, targetPosition);
@@ -989,13 +1001,22 @@ public class PlayerMechanics : MonoBehaviour
                  animator.Play("damage");
             else
             {
-                if (tag == "Barbarian" && (animator.GetBool("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Attack 360 High") || animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint")))
-                    return;
-                else
-                  animator.Play("damage");
+                //if (tag == "Barbarian" && (animator.GetBool("Attack") || animator.GetBool("Special_Attack") || animator.GetBool("isSprint")))
+                //    return;
+                //else
+                //{
+                //    animator.SetBool("isHit", true);
+                //    // delay
+                //    StartCoroutine(ResetAfterHit());
+                //}
             }
             //
         }
+    }
+    private IEnumerator ResetAfterHit()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isHit", false);
     }
 
     private IEnumerator GameOverWithDelay(float delay)

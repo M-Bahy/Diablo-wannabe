@@ -19,9 +19,10 @@ public class Axe_Script : MonoBehaviour
             if (minion == PlayerMechanics.minion)
             {
                 minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                PlayerMechanics.minion = null;
             }
-            // Debug.Log("Minion Hit");
-            PlayerMechanics.minion = null;    
+           
+
         }
         if (PlayerMechanics.circleAttacking && other.CompareTag("Summoned_Minions"))
         {
@@ -39,26 +40,31 @@ public class Axe_Script : MonoBehaviour
         }
         if (PlayerMechanics.barAttacking && other.CompareTag("Minion"))
         {
-
+          //  Debug.Log("Attacked!");
             GameObject minion = other.gameObject;
+           // Debug.Log("True");
             if (minion == PlayerMechanics.minion)
             {
+               
                 //minion.GetComponent<Minion_Logic>().TakeDamage(5);
                 StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
             }
             // Debug.Log("Minion Hit");
-            PlayerMechanics.minion = null;
+            
         }
         if (PlayerMechanics.barAttacking && other.CompareTag("Demon"))
         {
+           // Debug.Log("Attacked!");
 
             GameObject minion = other.gameObject;
+
             if (minion == PlayerMechanics.minion)
             {
+               // Debug.Log("True");
                 StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
             }
             // Debug.Log("Minion Hit");
-            PlayerMechanics.minion = null;
+           
         }
 
 
@@ -100,14 +106,18 @@ public class Axe_Script : MonoBehaviour
 
         if (PlayerMechanics.barAttacking && other.CompareTag("Summoned_Minions"))
         {
+           // Debug.Log("Attacked!");
 
             GameObject minion = other.gameObject;
             if (minion == PlayerMechanics.minion)
             {
+                //Debug.Log("True");
                 minion.GetComponent<Minion_Logic>().TakeDamage(5);
+                PlayerMechanics.minion = null;
             }
             // Debug.Log("Minion Hit");
-            PlayerMechanics.minion = null;
+           
+
         }
         if (PlayerMechanics.circleAttacking && other.CompareTag("Summoned_Minions"))
         {
@@ -125,15 +135,18 @@ public class Axe_Script : MonoBehaviour
         }
         if (PlayerMechanics.barAttacking && other.CompareTag("Minion"))
         {
-
+            // Debug.Log("Attacked!");
+          //  Debug.Log("True");
             GameObject minion = other.gameObject;
             if (minion == PlayerMechanics.minion)
             {
+                //Debug.Log("True");
                 //minion.GetComponent<Minion_Logic>().TakeDamage(5);
                 StartCoroutine(DelayedDamageDemon(minion, 0.6f, 5));
+               
             }
             // Debug.Log("Minion Hit");
-            PlayerMechanics.minion = null;
+           
         }
         if (PlayerMechanics.barAttacking && other.CompareTag("Demon"))
         {
@@ -146,7 +159,7 @@ public class Axe_Script : MonoBehaviour
 
             }
             // Debug.Log("Minion Hit");
-            PlayerMechanics.minion = null;
+            
         }
 
 
@@ -183,10 +196,12 @@ public class Axe_Script : MonoBehaviour
     // delay
     private IEnumerator DelayedDamageDemon(GameObject minion,float delay, int damage)
     {
+        PlayerMechanics.minion = null;
         yield return new WaitForSeconds(delay);  // Wait for the specified delay
         if (minion.tag == "Minion")
             minion.GetComponent<Minion_Logic>().TakeDamage(damage);  // Apply damage after the delay
         else 
             minion.GetComponent<DemonLogic>().damageDemon(damage);  // Apply damage after the delay
+        
     }
 }

@@ -32,7 +32,7 @@ public class HUD_Script : MonoBehaviour
         coolDownTimer[0] = 0.0f;
 
        // pm = player.GetComponent<PlayerMechanics>();
-        Debug.Log(pm==null);
+       // Debug.Log(pm==null);
         abilityPoints = PlayerMechanics.abilityPoints;
 
         for (int i = 1; i < abilityButtons.Length; i++)

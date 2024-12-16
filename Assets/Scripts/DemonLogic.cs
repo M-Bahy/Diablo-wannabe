@@ -81,7 +81,7 @@ public class DemonLogic : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("i entered");
+       // Debug.Log("i entered");
         StopCoroutine(AttackSwordOne());
         StopCoroutine(AttackSwordTwo());
         StopCoroutine(attackWithBomb());
