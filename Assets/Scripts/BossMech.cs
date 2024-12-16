@@ -128,10 +128,17 @@ public class BossMech : MonoBehaviour
                 bosshealthSlider.value = phaseTwoHealth;
                 bosshealthText.text = $"{phaseTwoHealth:F0}";
                 gameOver = true;
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Credits_Scene");
+                // add delay
+                StartCoroutine(WaitForEnd());
         }
         }
  
+    }
+    private IEnumerator WaitForEnd()
+    {
+        yield return new WaitForSeconds(5f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Credits_Scene");
+
     }
 
     private void startPhaseTwo()
@@ -163,12 +170,13 @@ public class BossMech : MonoBehaviour
         if (gameOver){
             return;
         }
-        
-        //if (Input.GetKeyDown(KeyCode.P)){
-        //    damageBoss(11);
-        //}
 
-        if(shieldDestroyed ){
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            damageBoss(11);
+        }
+
+        if (shieldDestroyed ){
             generationDelay -= Time.deltaTime;
             if(generationDelay <= 0){
                 shieldHealth = 50;
