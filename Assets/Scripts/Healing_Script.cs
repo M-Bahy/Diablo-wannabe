@@ -60,7 +60,7 @@ public class Healing_Script : MonoBehaviour
 
     void spawnHealingPotions()
     { 
-        Debug.Log("is level 1: " + PlayerMechanics.isLevel1);
+        //Debug.Log("is level 1: " + PlayerMechanics.isLevel1);
         if (PlayerMechanics.isLevel1){
             // region 1 :
             // X : 108.7  ,   330.79
@@ -89,18 +89,36 @@ public class Healing_Script : MonoBehaviour
 
         }
         else{
-        for (int i = 0; i < numberOfHealingPotions; i++)
-        {
-           // pick up or down
-            bool up = Random.Range(0, 2) == 0;
-            // pick a random x value
-            float x =  up ? Random.Range(-52, 52) : Random.Range(-30, 30);
-            // pick a random z value
-            float z = up ? Random.Range(-80, -20) : Random.Range(30, 102);
+        // Level 2
 
-            float y = gameObject.transform.position.y;
-            availableHealingPotions.Add(Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity));
-        }
+        // Box 1 :
+        // bottom left : X : 23.25 , Z : -24.174
+        // top right : X : 27.931 , Z : -8.509
+
+         // Box 2 :
+        // bottom left : X : -31.15 , Z : -21.3
+        // top right : X : -15.27 , Z : -25.21
+
+         // Box 3 :
+        // bottom left : X : -26.189 , Z : 38.419
+        // top right : X : -38.93 , Z : 27.5
+
+         // Box 4 :
+        // bottom left : X : 29.7 , Z : 29.7
+        // top right : X : 16.6 , Z : 39.46
+
+            for (int i = 0; i < numberOfHealingPotions; i++)
+            {
+            // pick up or down
+                bool up = Random.Range(0, 2) == 0;
+                // pick a random x value
+                float x =  up ? Random.Range(-52, 52) : Random.Range(-30, 30);
+                // pick a random z value
+                float z = up ? Random.Range(-80, -20) : Random.Range(30, 102);
+
+                float y = gameObject.transform.position.y;
+                availableHealingPotions.Add(Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity));
+            }
         }
        
     }
