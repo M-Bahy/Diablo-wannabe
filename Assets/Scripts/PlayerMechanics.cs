@@ -1154,6 +1154,19 @@ public class PlayerMechanics : MonoBehaviour
         {
             inCover = true;
         }
+        if (tag == "Barbarian" && (other.gameObject.tag == "Summoned_Minions" || other.gameObject.tag == "Minion") && animator.GetBool("isSprint"))
+        {
+            // Debug.Log("Collision");
+            GameObject minion = other.gameObject;
+            audioManager.PlaySFX(audioManager.Enemy_Dies);
+            minion.GetComponent<Minion_Logic>().Die();
+        }
+        if (tag == "Barbarian" && other.gameObject.tag == "Demon" && animator.GetBool("isSprint"))
+        {
+            GameObject Demon = other.gameObject;
+            audioManager.PlaySFX(audioManager.Enemy_Dies);
+            Demon.GetComponent<DemonLogic>().Die();
+        }
     }
 
     private void OnTriggerExit(Collider other) {
