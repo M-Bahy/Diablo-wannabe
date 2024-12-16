@@ -166,8 +166,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 44.962036, y: 46.947712, z: 1.8429149}
-  m_Center: {x: 0.65961456, y: -0.04479599, z: 0.6420577}
+  m_Size: {x: 44.962036, y: 46.59229, z: 1.8429149}
+  m_Center: {x: 0.65961456, y: 0.1329155, z: 0.6420577}
 --- !u!1 &3883324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7036755779051619558, guid: 9cd3208b78d95a3439b8aad75d30e9f1, type: 3}
@@ -10601,8 +10601,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 44.962036, y: 46.947712, z: 1.8429149}
-  m_Center: {x: 0.65961456, y: -0.04479599, z: 0.6420577}
+  m_Size: {x: 44.962036, y: 46.59229, z: 1.8429149}
+  m_Center: {x: 0.65961456, y: 0.1329155, z: 0.6420577}
 --- !u!114 &1058751758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13049,8 +13049,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 44.962036, y: 46.947712, z: 1.8429149}
-  m_Center: {x: 0.65961456, y: -0.04479599, z: 0.6420577}
+  m_Size: {x: 44.962036, y: 46.59229, z: 1.8429149}
+  m_Center: {x: 0.65961456, y: 0.1329155, z: 0.6420577}
 --- !u!114 &1420540275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13392,8 +13392,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 44.962036, y: 46.947712, z: 1.8429149}
-  m_Center: {x: 0.65961456, y: -0.04479599, z: 0.6420577}
+  m_Size: {x: 44.962036, y: 46.59229, z: 1.8429149}
+  m_Center: {x: 0.65961456, y: 0.1329155, z: 0.6420577}
 --- !u!114 &1461083182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14976,6 +14976,7 @@ MonoBehaviour:
   axePrefab: {fileID: 3924548283725990906, guid: caf0033e4cdd5ca48a58333f6962cdc0, type: 3}
   NavMeshSurface: {fileID: 1056249115}
   bossEmptyObj: {fileID: 0}
+  Boss: {fileID: 0}
   healthText: {fileID: 1031188797}
   healthSlider: {fileID: 1492222210}
   expText: {fileID: 728154093}
@@ -14994,6 +14995,7 @@ MonoBehaviour:
   restartButton: {fileID: 606635584}
   mainMenuButton: {fileID: 1236707844}
   resumeButton: {fileID: 1393861525}
+  inCover: 0
 --- !u!195 &1597613623
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17255,8 +17257,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 44.962036, y: 46.947712, z: 1.8429149}
-  m_Center: {x: 0.65961456, y: -0.04479599, z: 0.6420577}
+  m_Size: {x: 44.962036, y: 46.59229, z: 1.8429149}
+  m_Center: {x: 0.65961456, y: 0.1329155, z: 0.6420577}
 --- !u!114 &1911445299
 MonoBehaviour:
   m_ObjectHideFlags: 0
