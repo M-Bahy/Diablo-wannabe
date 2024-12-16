@@ -155,6 +155,10 @@ public class Boss_phase1_script : MonoBehaviour
             // -59.22 , -13.94
             // back :
             // 25.99 , 62.93
+
+            Vector3 pos ;
+            do
+            {
             bool left = Random.Range(0, 2) == 0;
             bool front = Random.Range(0, 2) == 0;
             float x = 0.0f;
@@ -175,7 +179,11 @@ public class Boss_phase1_script : MonoBehaviour
             {
                 z = Random.Range(25.99f, 62.93f);
             }
-            Vector3 pos = new Vector3(x, 4.05f, z);
+            pos = new Vector3(x, 4.05f, z);
+            } 
+            while (IsInsideAnyBox(pos));
+
+            
             GameObject minion = Instantiate(minionPrefab, pos, Quaternion.identity);
             Minion_Logic m_l = minion.GetComponent<Minion_Logic>();
             //Minion_Logic.player = player;
@@ -220,5 +228,18 @@ public class Boss_phase1_script : MonoBehaviour
         DemonLogic.player = player;
         Camp_Logic.player = player;
         s_m.player = player;  
+    }
+     private bool IsInsideAnyBox(Vector3 position)
+    {
+        return IsInsideBox(position, new Vector3(23.25f, 0, -24.174f), new Vector3(27.931f, 0, -8.509f)) ||
+               IsInsideBox(position, new Vector3(-31.15f, 0, -21.3f), new Vector3(-15.27f, 0, -25.21f)) ||
+               IsInsideBox(position, new Vector3(-26.189f, 0, 38.419f), new Vector3(-38.93f, 0, 27.5f)) ||
+               IsInsideBox(position, new Vector3(29.7f, 0, 29.7f), new Vector3(16.6f, 0, 39.46f));
+    }
+
+    private bool IsInsideBox(Vector3 position, Vector3 bottomLeft, Vector3 topRight)
+    {
+        return position.x >= bottomLeft.x && position.x <= topRight.x &&
+               position.z >= bottomLeft.z && position.z <= topRight.z;
     }
 }
