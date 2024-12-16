@@ -164,9 +164,9 @@ public class BossMech : MonoBehaviour
             return;
         }
         
-        if (Input.GetKeyDown(KeyCode.P)){
-            damageBoss(11);
-        }
+        //if (Input.GetKeyDown(KeyCode.P)){
+        //    damageBoss(11);
+        //}
 
         if(shieldDestroyed ){
             generationDelay -= Time.deltaTime;
