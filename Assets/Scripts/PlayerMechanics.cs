@@ -699,6 +699,8 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(tag == "Barbarian")
         {
+            ultimateButtonClicked = false;
+
             animator.SetBool("isSprint", true);
             //agent.enabled = false;
             StartCoroutine(MoveInStraightLine(pos));
@@ -788,7 +790,6 @@ public class PlayerMechanics : MonoBehaviour
                 agent.SetDestination(transform.position);
                 //animator.SetBool("isSprint", false);
                 StartCoroutine(AbilityCooldown(2, 10f));
-                ultimateButtonClicked = false;
                 buttonCliked = false;
                 yield break; // Exit the coroutine
             }
@@ -984,7 +985,16 @@ public class PlayerMechanics : MonoBehaviour
             // UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Over_Scene");
             StartCoroutine(GameOverWithDelay(5f));
         }else{
-            animator.Play("damage");
+            if(tag == "Sorcerer")
+                 animator.Play("damage");
+            else
+            {
+                if (tag == "Barbarian" && (animator.GetBool("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Attack 360 High") || animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint")))
+                    return;
+                else
+                  animator.Play("damage");
+            }
+            //
         }
     }
 
