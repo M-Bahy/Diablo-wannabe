@@ -116,7 +116,23 @@ public class Minion_Logic : MonoBehaviour
             animator.SetBool("isWalking", true);
         }
 
-        
+        if (agent.isOnNavMesh)
+        {
+            if (agent.remainingDistance > agent.stoppingDistance + 10f) // Far away: Run
+            {
+                agent.speed = 4.5f; // Example running speed
+                animator.SetBool("Run", true);
+                animator.SetBool("isWalking", false);
+            }
+            else if (agent.remainingDistance > agent.stoppingDistance) // Close: Walk
+            {
+                agent.speed = 3.5f; // Example walking speed
+                animator.SetBool("Run", false);
+                animator.SetBool("isWalking", true);
+            }
+        }
+
+
 
 
     }
