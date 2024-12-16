@@ -109,7 +109,7 @@ public class PlayerMechanics : MonoBehaviour
         mainMenuButton.onClick.AddListener(MainMenu);
         resumeButton.onClick.AddListener(ResumeGame);
         pausePanel.SetActive(false);
-
+        numberOfFragments = 0;
     }
 
     // Update is called once per frame
