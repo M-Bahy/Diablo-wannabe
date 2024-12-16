@@ -868,6 +868,7 @@ public class PlayerMechanics : MonoBehaviour
         StartCoroutine(AbilityCooldown(3, 5f));
         // agent.SetDestination(agent.transform.position);
         rb = gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
     } 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition)
     {
