@@ -331,6 +331,7 @@ public class Camp_Logic : MonoBehaviour
             demonLogic?.goAggresive(false);
             aggroedDemons.Remove(demon);
         }
+        aggroedDemons = new List<GameObject>();
 
         foreach (GameObject minion in minionsArray)
         {
@@ -339,6 +340,7 @@ public class Camp_Logic : MonoBehaviour
             minionLogic?.goAggresive(false);
             aggroedMinions.Remove(minion);
         }
+        aggroedMinions = new List<GameObject>();
     }
 
 
