@@ -684,12 +684,22 @@ public class PlayerMechanics : MonoBehaviour
             audioManager.PlaySFX(audioManager.Shield_Activated);
            activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
            activeShield.transform.parent = transform;
+           animator.SetBool("isSheild", true);
+           StartCoroutine(DelayedShieldDeactivation(1f));
            StartCoroutine(DeactivateShieldAfterTime(3f));
 
             
         }
 
 
+    }
+    // delay after shield
+
+    private IEnumerator DelayedShieldDeactivation(float delay)
+    {
+        yield return new WaitForSeconds(delay);  // Wait for the specified delay
+
+        animator.SetBool("isSheild", false);
     }
     void UltimateAttack(Vector3 pos)
     {
