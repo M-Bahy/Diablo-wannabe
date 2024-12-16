@@ -285,6 +285,8 @@ public class PlayerMechanics : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E) && HUD_Script.abilitiesUnlocked[2] && !HUD_Script.abilitiesCoolDown[2] && !buttonCliked)
         {
+            if (tag == "Barbarian" && animator.GetBool("Special_Attack"))
+                return;
             buttonCliked = true;
             ultimateButtonClicked = true;
             isBossAttacked = false;
