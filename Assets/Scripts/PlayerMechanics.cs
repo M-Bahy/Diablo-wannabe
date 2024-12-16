@@ -268,6 +268,8 @@ public class PlayerMechanics : MonoBehaviour
             //Debug.Log("Hit Achieved");
             if (tag == "Barbarian" &&  animator.GetBool("Attack"))
                 return;
+            if(tag == "Barbarian" && (animator.GetBool("Special_Attack") || animator.GetBool("isSprint")))
+                return;
             Ray ray = _maincamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -1001,21 +1003,21 @@ public class PlayerMechanics : MonoBehaviour
                  animator.Play("damage");
             else
             {
-                //if (tag == "Barbarian" && (animator.GetBool("Attack") || animator.GetBool("Special_Attack") || animator.GetBool("isSprint")))
-                //    return;
-                //else
-                //{
-                //    animator.SetBool("isHit", true);
-                //    // delay
-                //    StartCoroutine(ResetAfterHit());
-                //}
+                if (tag == "Barbarian" && (animator.GetBool("Attack") || animator.GetBool("Special_Attack") || animator.GetBool("isSprint")))
+                    return;
+                else
+                {
+                    animator.SetBool("isHit", true);
+                    // delay
+                    StartCoroutine(ResetAfterHit());
+                }
             }
             //
         }
     }
     private IEnumerator ResetAfterHit()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         animator.SetBool("isHit", false);
     }
 
