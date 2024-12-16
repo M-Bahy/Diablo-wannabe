@@ -53,6 +53,8 @@ public class DemonLogic : MonoBehaviour
     }
 
     public void damageDemon(int dmg){
+        if (isDead)
+            return;
         isBeingHit = true;
         transform.position = transform.position;
         animator.SetBool("Hit", true);
