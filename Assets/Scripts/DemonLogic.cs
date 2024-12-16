@@ -295,11 +295,26 @@ public class DemonLogic : MonoBehaviour
             // }
             agent.enabled = false;
             animator.SetBool("Idle", false);
+            animator.SetBool("Run", false);
             StopCoroutine(AttackSwordOne());
             StopCoroutine(AttackSwordTwo());
             StopCoroutine(attackWithBomb());
             isAttack = false;
         }
-        
+        if (agent.isOnNavMesh)
+        {
+            if (agent.remainingDistance > agent.stoppingDistance + 6f) // Far away: Run
+            {
+                agent.speed = 4.5f; // Example running speed
+                animator.SetBool("Run", true);
+            }
+            else if (agent.remainingDistance > agent.stoppingDistance) // Close: Walk
+            {
+                agent.speed = 3.5f; // Example walking speed
+                animator.SetBool("Run", false);
+                //animator.SetBool
+            }
+        }
+
     }
 }
