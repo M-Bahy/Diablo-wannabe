@@ -109,18 +109,51 @@ public class Healing_Script : MonoBehaviour
 
             for (int i = 0; i < numberOfHealingPotions; i++)
             {
-            // pick up or down
+            // // pick up or down
+            //     bool up = Random.Range(0, 2) == 0;
+            //     // pick a random x value
+            //     float x =  up ? Random.Range(-52, 52) : Random.Range(-30, 30);
+            //     // pick a random z value
+            //     float z = up ? Random.Range(-80, -20) : Random.Range(30, 102);
+
+            //     float y = gameObject.transform.position.y;
+            //     availableHealingPotions.Add(Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity));
+
+
+            Vector3 position;
+            do
+            {
+                // pick up or down
                 bool up = Random.Range(0, 2) == 0;
                 // pick a random x value
-                float x =  up ? Random.Range(-52, 52) : Random.Range(-30, 30);
+                float x = up ? Random.Range(-52, 52) : Random.Range(-30, 30);
                 // pick a random z value
                 float z = up ? Random.Range(-80, -20) : Random.Range(30, 102);
 
                 float y = gameObject.transform.position.y;
-                availableHealingPotions.Add(Instantiate(healingPotionPrefab, new Vector3(x, y, z), Quaternion.identity));
+                position = new Vector3(x, y, z);
+            } while (IsInsideAnyBox(position));
+
+            availableHealingPotions.Add(Instantiate(healingPotionPrefab, position, Quaternion.identity));
+
+
             }
         }
        
+    }
+
+    private bool IsInsideAnyBox(Vector3 position)
+    {
+        return IsInsideBox(position, new Vector3(23.25f, 0, -24.174f), new Vector3(27.931f, 0, -8.509f)) ||
+               IsInsideBox(position, new Vector3(-31.15f, 0, -21.3f), new Vector3(-15.27f, 0, -25.21f)) ||
+               IsInsideBox(position, new Vector3(-26.189f, 0, 38.419f), new Vector3(-38.93f, 0, 27.5f)) ||
+               IsInsideBox(position, new Vector3(29.7f, 0, 29.7f), new Vector3(16.6f, 0, 39.46f));
+    }
+
+    private bool IsInsideBox(Vector3 position, Vector3 bottomLeft, Vector3 topRight)
+    {
+        return position.x >= bottomLeft.x && position.x <= topRight.x &&
+               position.z >= bottomLeft.z && position.z <= topRight.z;
     }
 
     public void spawnHealingPotionsInCamps (float minX, float maxX, float minZ, float maxZ)
