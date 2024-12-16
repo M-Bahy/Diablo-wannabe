@@ -58,7 +58,7 @@ public class BossMech : MonoBehaviour
     }
 
     public void damageBoss(int damageAmount){
-        Debug.Log("Damage Boss by " + damageAmount);
+        //Debug.Log("Damage Boss by " + damageAmount);
         if(!gameObject.GetComponent<Boss_phase1_script>().isAllMinionsDead()){
             return;
         }

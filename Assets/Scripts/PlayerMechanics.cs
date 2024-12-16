@@ -457,7 +457,7 @@ public class PlayerMechanics : MonoBehaviour
                    
                 }
             }
-            Debug.Log("Player Mechanics: " + minion);
+            //Debug.Log("Player Mechanics: " + minion);
             if (nearestEnemy!= null)
             {
 
