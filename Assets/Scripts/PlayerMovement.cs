@@ -77,6 +77,22 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        if (agent.isOnNavMesh)
+        {
+            if (agent.remainingDistance > agent.stoppingDistance + 17.5f) // Far away: Run
+            {
+                agent.speed = 13f; // Example running speed
+                anim.SetBool("Run", true);
+                //anim.SetBool("isWalking", false);
+            }
+            else if (agent.remainingDistance > agent.stoppingDistance) // Close: Walk
+            {
+                agent.speed = 10f; // Example walking speed
+                anim.SetBool("Run", false);
+                anim.SetBool("isWalking", true);
+            }
+        }
+
         if (tag == "Barbarian" && anim.GetBool("Special_Attack"))
             agent.SetDestination(agent.transform.position);
     }
